@@ -8,7 +8,15 @@ module.exports = {
     "./src/**/*.{html,js,jsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "background": "#000000",
+        "primary": "#d10000",
+        "primary-variant": "#a30000",
+        "on-primary": "#ffffff",
+        "on-secondary": "#000000",
+      }
+    },
   },
   corePlugins: {
     aspectRatio: false,
