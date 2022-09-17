@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import "react-multi-carousel/lib/styles.css";
-import Simple from "./components/Simple";
+import MovieCarousel from "./components/MovieCarousel";
 
 const currencies = ["CAD", "USD", "AUD", "EUR", "GBP"];
 const navigation = {
@@ -182,23 +182,32 @@ const footerNavigation = {
     { name: "Pinterest", href: "#" },
   ],
 };
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-    slidesToSlide: 3, // optional, default to 1.
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-    slidesToSlide: 2, // optional, default to 1.
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-    slidesToSlide: 1, // optional, default to 1.
-  },
-};
+const nowPlayingPosters = [
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1654093399/amc-cdn/production/2/movies/66800/66765/PosterDynamic/138993.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662466631/amc-cdn/production/2/movies/70100/70149/PosterDynamic/142564.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662739107/amc-cdn/production/2/movies/68200/68219/PosterDynamic/142758.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662137861/amc-cdn/production/2/movies/70600/70588/PosterDynamic/142476.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661543435/amc-cdn/production/2/movies/62300/62347/PosterDynamic/142136.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1653736847/amc-cdn/production/2/movies/67400/67369/Poster/Primary_BoxCover_800_1200.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660671932/amc-cdn/production/2/movies/55700/55685/OnDemandPoster/141739.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1659031905/amc-cdn/production/2/movies/70400/70398/PosterDynamic/140352.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663250700/amc-cdn/production/2/movies/68600/68554/OnDemandPoster/143033.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661892402/amc-cdn/production/2/movies/49600/49599/OnDemandPoster/142316.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660155304/amc-cdn/production/2/movies/69700/69667/Poster/259728R1.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661961569/amc-cdn/production/2/movies/66600/66630/OnDemandPoster/142376.jpg",
+];
+
+const comingSoonPosters = [
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660597317/amc-cdn/production/2/movies/70000/69999/PosterDynamic/141682.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661270647/amc-cdn/production/2/movies/63900/63945/PosterDynamic/142040.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662495069/amc-cdn/production/2/movies/67500/67497/PosterDynamic/142599.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661268404/amc-cdn/production/2/movies/70900/70882/PosterDynamic/142039.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663166862/amc-cdn/production/2/movies/71200/71175/PosterDynamic/142951.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1652888742/amc-cdn/production/2/movies/61600/61649/PosterDynamic/138588.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662579454/amc-cdn/production/2/movies/71000/71036/PosterDynamic/142632.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660685083/amc-cdn/production/2/movies/70000/69989/PosterDynamic/141743.jpg",
+  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662203114/amc-cdn/production/2/movies/70200/70165/Poster/334013R1.jpg",
+];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -261,7 +270,7 @@ export default function Homepage() {
                             classNames(
                               selected
                                 ? "text-indigo-600 border-indigo-600"
-                                : "text-gray-900 border-transparent",
+                                : "text-on-secondary border-transparent",
                               "flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium"
                             )
                           }
@@ -289,7 +298,7 @@ export default function Homepage() {
                               </div>
                               <a
                                 href={item.href}
-                                className="mt-6 block text-sm font-medium text-gray-900"
+                                className="mt-6 block text-sm font-medium text-on-secondary"
                               >
                                 <span
                                   className="absolute inset-0 z-10"
@@ -316,7 +325,7 @@ export default function Homepage() {
                     <div key={page.name} className="flow-root">
                       <a
                         href={page.href}
-                        className="-m-2 block p-2 font-medium text-gray-900"
+                        className="-m-2 block p-2 font-medium text-on-secondary"
                       >
                         {page.name}
                       </a>
@@ -328,7 +337,7 @@ export default function Homepage() {
                   <div className="flow-root">
                     <a
                       href="#"
-                      className="-m-2 block p-2 font-medium text-gray-900"
+                      className="-m-2 block p-2 font-medium text-on-secondary"
                     >
                       Create an account
                     </a>
@@ -336,7 +345,7 @@ export default function Homepage() {
                   <div className="flow-root">
                     <a
                       href="#"
-                      className="-m-2 block p-2 font-medium text-gray-900"
+                      className="-m-2 block p-2 font-medium text-on-secondary"
                     >
                       Sign in
                     </a>
@@ -377,25 +386,25 @@ export default function Homepage() {
       </Transition.Root>
 
       {/* Hero section */}
-      <div className="relative bg-gray-900">
+      <div className="relative bg-background">
         {/* Decorative image and overlay */}
         <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
           <img
-            src="https://tailwindui.com/img/ecommerce-images/home-page-01-hero-full-width.jpg"
+            src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/01/The-Best-Movie-Franchises-To-Binge-Watch.jpg"
             alt=""
             className="h-full w-full object-cover object-center"
           />
         </div>
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gray-900 opacity-50"
+          className="absolute inset-0 bg-background opacity-50"
         />
 
         {/* Navigation */}
         <header className="relative z-10">
           <nav aria-label="Top">
             {/* Top navigation */}
-            <div className="bg-gray-900">
+            <div className="bg-background">
               <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Currency selector */}
                 <form>
@@ -403,11 +412,11 @@ export default function Homepage() {
                     <label htmlFor="desktop-currency" className="sr-only">
                       Currency
                     </label>
-                    <div className="group relative -ml-2 rounded-md border-transparent bg-gray-900 focus-within:ring-2 focus-within:ring-white">
+                    <div className="group relative -ml-2 rounded-md border-transparent bg-background focus-within:ring-2 focus-within:ring-white">
                       <select
                         id="desktop-currency"
                         name="currency"
-                        className="flex items-center rounded-md border-transparent bg-gray-900 bg-none py-0.5 pl-2 pr-5 text-sm font-medium text-white focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-gray-100"
+                        className="flex items-center rounded-md border-transparent bg-background bg-none py-0.5 pl-2 pr-5 text-sm font-medium text-on-primary focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-gray-100"
                       >
                         {currencies.map((currency) => (
                           <option key={currency}>{currency}</option>
@@ -426,13 +435,13 @@ export default function Homepage() {
                 <div className="flex items-center space-x-6">
                   <a
                     href="#"
-                    className="text-sm font-medium text-white hover:text-gray-100"
+                    className="text-sm font-medium text-on-primary hover:text-gray-100"
                   >
                     Sign in
                   </a>
                   <a
                     href="#"
-                    className="text-sm font-medium text-white hover:text-gray-100"
+                    className="text-sm font-medium text-on-primary hover:text-gray-100"
                   >
                     Create an account
                   </a>
@@ -441,7 +450,7 @@ export default function Homepage() {
             </div>
 
             {/* Secondary navigation */}
-            <div className="bg-white bg-opacity-10 backdrop-blur-md backdrop-filter">
+            <div className="bg-background bg-opacity-30 backdrop-blur-md backdrop-filter">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div>
                   <div className="flex h-16 items-center justify-between">
@@ -449,11 +458,20 @@ export default function Homepage() {
                     <div className="hidden lg:flex lg:flex-1 lg:items-center">
                       <a href="#">
                         <span className="sr-only">Your Company</span>
-                        <img
-                          className="h-8 w-auto"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=white"
-                          alt=""
-                        />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-8 h-8"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5"
+                          />
+                        </svg>
                       </a>
                     </div>
 
@@ -466,7 +484,7 @@ export default function Homepage() {
                               {({ open }) => (
                                 <>
                                   <div className="relative flex">
-                                    <Popover.Button className="relative z-10 flex items-center justify-center text-sm font-medium text-white transition-colors duration-200 ease-out">
+                                    <Popover.Button className="relative z-10 flex items-center justify-center text-sm font-medium text-on-primary transition-colors duration-200 ease-out">
                                       {category.name}
                                       <span
                                         className={classNames(
@@ -511,7 +529,7 @@ export default function Homepage() {
                                                 </div>
                                                 <a
                                                   href={item.href}
-                                                  className="mt-4 block font-medium text-gray-900"
+                                                  className="mt-4 block font-medium text-on-secondary"
                                                 >
                                                   <span
                                                     className="absolute inset-0 z-10"
@@ -541,7 +559,7 @@ export default function Homepage() {
                             <a
                               key={page.name}
                               href={page.href}
-                              className="flex items-center text-sm font-medium text-white"
+                              className="flex items-center text-sm font-medium text-on-primary"
                             >
                               {page.name}
                             </a>
@@ -554,7 +572,7 @@ export default function Homepage() {
                     <div className="flex flex-1 items-center lg:hidden">
                       <button
                         type="button"
-                        className="-ml-2 p-2 text-white"
+                        className="-ml-2 p-2 text-on-primary"
                         onClick={() => setMobileMenuOpen(true)}
                       >
                         <span className="sr-only">Open menu</span>
@@ -562,7 +580,7 @@ export default function Homepage() {
                       </button>
 
                       {/* Search */}
-                      <a href="#" className="ml-2 p-2 text-white">
+                      <a href="#" className="ml-2 p-2 text-on-primary">
                         <span className="sr-only">Search</span>
                         <MagnifyingGlassIcon
                           className="h-6 w-6"
@@ -574,24 +592,46 @@ export default function Homepage() {
                     {/* Logo (lg-) */}
                     <a href="#" className="lg:hidden">
                       <span className="sr-only">Your Company</span>
-                      <img
-                        src="https://tailwindui.com/img/logos/mark.svg?color=white"
-                        alt=""
-                        className="h-8 w-auto"
-                      />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-8 h-8"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5"
+                        />
+                      </svg>
                     </a>
 
                     <div className="flex flex-1 items-center justify-end">
                       <a
                         href="#"
-                        className="hidden text-sm font-medium text-white lg:block"
+                        className="hidden text-sm font-medium text-on-primary lg:block"
                       >
-                        Search
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-6 h-6"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                          />
+                        </svg>
                       </a>
 
                       <div className="flex items-center lg:ml-8">
                         {/* Help */}
-                        <a href="#" className="p-2 text-white lg:hidden">
+                        <a href="#" className="p-2 text-on-primary lg:hidden">
                           <span className="sr-only">Help</span>
                           <QuestionMarkCircleIcon
                             className="h-6 w-6"
@@ -600,7 +640,7 @@ export default function Homepage() {
                         </a>
                         <a
                           href="#"
-                          className="hidden text-sm font-medium text-white lg:block"
+                          className="hidden text-sm font-medium text-on-primary lg:block"
                         >
                           Help
                         </a>
@@ -612,10 +652,10 @@ export default function Homepage() {
                             className="group -m-2 flex items-center p-2"
                           >
                             <ShoppingBagIcon
-                              className="h-6 w-6 flex-shrink-0 text-white"
+                              className="h-6 w-6 flex-shrink-0 text-on-primary"
                               aria-hidden="true"
                             />
-                            <span className="ml-2 text-sm font-medium text-white">
+                            <span className="ml-2 text-sm font-medium text-on-primary">
                               0
                             </span>
                             <span className="sr-only">
@@ -633,212 +673,29 @@ export default function Homepage() {
         </header>
 
         <div className="relative mx-auto flex max-w-3xl flex-col items-center py-32 px-6 text-center sm:py-64 lg:px-0">
-          <h1 className="text-4xl font-bold tracking-tight text-white lg:text-6xl">
-            New arrivals are here
+          <h1 className="text-6xl font-bold tracking-tight lg:text-8xl">
+            <span className="text-primary">Bulldog</span>
+            <span> </span>
+            <span className="text-on-primary">Cinema</span>
           </h1>
-          <p className="mt-4 text-xl text-white">
-            The new arrivals have, well, newly arrived. Check out the latest
-            options from our summer small-batch release while they're still in
-            stock.
+          <p className="mt-4 text-xl text-on-primary">
+            Browse through hundreds of spectacular movies.
           </p>
           <a
             href="#"
-            className="mt-8 inline-block rounded-md border border-transparent bg-white py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100"
+            className="mt-8 inline-block rounded-md border border-transparent bg-white py-3 px-8 text-base font-medium text-on-secondary hover:bg-primary hover:text-on-primary"
           >
-            Shop New Arrivals
+            Browse Movies
           </a>
         </div>
       </div>
 
       <main>
-        <Simple />
-
-        {/* Category section */}
-        <section
-          aria-labelledby="category-heading"
-          className="pt-24 sm:pt-32 xl:mx-auto xl:max-w-7xl xl:px-8"
-        >
-          <div className="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
-            <h2
-              id="category-heading"
-              className="text-2xl font-bold tracking-tight text-gray-900"
-            >
-              Shop by Category
-            </h2>
-            <a
-              href="#"
-              className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block"
-            >
-              Browse all categories
-              <span aria-hidden="true"> &rarr;</span>
-            </a>
-          </div>
-
-          <div className="mt-4 flow-root">
-            <div className="-my-2">
-              <div className="relative box-content h-80 overflow-x-auto py-2 xl:overflow-visible">
-                <div className="min-w-screen-xl absolute flex space-x-8 px-4 sm:px-6 lg:px-8 xl:relative xl:grid xl:grid-cols-5 xl:gap-x-8 xl:space-x-0 xl:px-0">
-                  {categories.map((category) => (
-                    <a
-                      key={category.name}
-                      href={category.href}
-                      className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
-                    >
-                      <span aria-hidden="true" className="absolute inset-0">
-                        <img
-                          src={category.imageSrc}
-                          alt=""
-                          className="h-full w-full object-cover object-center"
-                        />
-                      </span>
-                      <span
-                        aria-hidden="true"
-                        className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
-                      />
-                      <span className="relative mt-auto text-center text-xl font-bold text-white">
-                        {category.name}
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-6 px-4 sm:hidden">
-            <a
-              href="#"
-              className="block text-sm font-semibold text-indigo-600 hover:text-indigo-500"
-            >
-              Browse all categories
-              <span aria-hidden="true"> &rarr;</span>
-            </a>
-          </div>
-        </section>
-
-        {/* Featured section */}
-        <section
-          aria-labelledby="social-impact-heading"
-          className="mx-auto max-w-7xl px-4 pt-24 sm:px-6 sm:pt-32 lg:px-8"
-        >
-          <div className="relative overflow-hidden rounded-lg">
-            <div className="absolute inset-0">
-              <img
-                src="https://tailwindui.com/img/ecommerce-images/home-page-01-feature-section-01.jpg"
-                alt=""
-                className="h-full w-full object-cover object-center"
-              />
-            </div>
-            <div className="relative bg-gray-900 bg-opacity-75 py-32 px-6 sm:py-40 sm:px-12 lg:px-16">
-              <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
-                <h2
-                  id="social-impact-heading"
-                  className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
-                >
-                  <span className="block sm:inline">Level up</span>
-                  <span className="block sm:inline">your desk</span>
-                </h2>
-                <p className="mt-3 text-xl text-white">
-                  Make your desk beautiful and organized. Post a picture to
-                  social media and watch it get more likes than life-changing
-                  announcements. Reflect on the shallow nature of existence. At
-                  least you have a really nice desk setup.
-                </p>
-                <a
-                  href="#"
-                  className="mt-8 block w-full rounded-md border border-transparent bg-white py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100 sm:w-auto"
-                >
-                  Shop Workspace
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Collection section */}
-        <section
-          aria-labelledby="collection-heading"
-          className="mx-auto max-w-xl px-4 pt-24 sm:px-6 sm:pt-32 lg:max-w-7xl lg:px-8"
-        >
-          <h2
-            id="collection-heading"
-            className="text-2xl font-bold tracking-tight text-gray-900"
-          >
-            Shop by Collection
-          </h2>
-          <p className="mt-4 text-base text-gray-500">
-            Each season, we collaborate with world-class designers to create a
-            collection inspired by the natural world.
-          </p>
-
-          <div className="mt-10 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
-            {collections.map((collection) => (
-              <a
-                key={collection.name}
-                href={collection.href}
-                className="group block"
-              >
-                <div
-                  aria-hidden="true"
-                  className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
-                >
-                  <img
-                    src={collection.imageSrc}
-                    alt={collection.imageAlt}
-                    className="h-full w-full object-cover object-center"
-                  />
-                </div>
-                <h3 className="mt-4 text-base font-semibold text-gray-900">
-                  {collection.name}
-                </h3>
-                <p className="mt-2 text-sm text-gray-500">
-                  {collection.description}
-                </p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        {/* Featured section */}
-        <section
-          aria-labelledby="comfort-heading"
-          className="mx-auto max-w-7xl py-24 px-4 sm:py-32 sm:px-6 lg:px-8"
-        >
-          <div className="relative overflow-hidden rounded-lg">
-            <div className="absolute inset-0">
-              <img
-                src="https://tailwindui.com/img/ecommerce-images/home-page-01-feature-section-02.jpg"
-                alt=""
-                className="h-full w-full object-cover object-center"
-              />
-            </div>
-            <div className="relative bg-gray-900 bg-opacity-75 py-32 px-6 sm:py-40 sm:px-12 lg:px-16">
-              <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
-                <h2
-                  id="comfort-heading"
-                  className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
-                >
-                  Simple productivity
-                </h2>
-                <p className="mt-3 text-xl text-white">
-                  Endless tasks, limited hours, a single piece of paper. Not
-                  really a haiku, but we're doing our best here. No kanban
-                  boards, burndown charts, or tangled flowcharts with our Focus
-                  system. Just the undeniable urge to fill empty circles.
-                </p>
-                <a
-                  href="#"
-                  className="mt-8 block w-full rounded-md border border-transparent bg-white py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100 sm:w-auto"
-                >
-                  Shop Focus
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+        <MovieCarousel label="Featured" posters={nowPlayingPosters} />
+        <MovieCarousel label="Coming Soon" posters={comingSoonPosters} />
       </main>
 
-      <footer aria-labelledby="footer-heading" className="bg-gray-900">
+      <footer aria-labelledby="footer-heading" className="bg-background">
         <h2 id="footer-heading" className="sr-only">
           Footer
         </h2>
@@ -847,13 +704,13 @@ export default function Homepage() {
             <div className="grid grid-cols-2 gap-8 xl:col-span-2">
               <div className="space-y-12 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
                 <div>
-                  <h3 className="text-sm font-medium text-white">Shop</h3>
+                  <h3 className="text-sm font-medium text-on-primary">Shop</h3>
                   <ul role="list" className="mt-6 space-y-6">
                     {footerNavigation.shop.map((item) => (
                       <li key={item.name} className="text-sm">
                         <a
                           href={item.href}
-                          className="text-gray-300 hover:text-white"
+                          className="text-gray-300 hover:text-on-primary"
                         >
                           {item.name}
                         </a>
@@ -862,13 +719,13 @@ export default function Homepage() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-white">Company</h3>
+                  <h3 className="text-sm font-medium text-on-primary">Company</h3>
                   <ul role="list" className="mt-6 space-y-6">
                     {footerNavigation.company.map((item) => (
                       <li key={item.name} className="text-sm">
                         <a
                           href={item.href}
-                          className="text-gray-300 hover:text-white"
+                          className="text-gray-300 hover:text-on-primary"
                         >
                           {item.name}
                         </a>
@@ -879,13 +736,13 @@ export default function Homepage() {
               </div>
               <div className="space-y-12 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
                 <div>
-                  <h3 className="text-sm font-medium text-white">Account</h3>
+                  <h3 className="text-sm font-medium text-on-primary">Account</h3>
                   <ul role="list" className="mt-6 space-y-6">
                     {footerNavigation.account.map((item) => (
                       <li key={item.name} className="text-sm">
                         <a
                           href={item.href}
-                          className="text-gray-300 hover:text-white"
+                          className="text-gray-300 hover:text-on-primary"
                         >
                           {item.name}
                         </a>
@@ -894,13 +751,13 @@ export default function Homepage() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-white">Connect</h3>
+                  <h3 className="text-sm font-medium text-on-primary">Connect</h3>
                   <ul role="list" className="mt-6 space-y-6">
                     {footerNavigation.connect.map((item) => (
                       <li key={item.name} className="text-sm">
                         <a
                           href={item.href}
-                          className="text-gray-300 hover:text-white"
+                          className="text-gray-300 hover:text-on-primary"
                         >
                           {item.name}
                         </a>
@@ -911,7 +768,7 @@ export default function Homepage() {
               </div>
             </div>
             <div className="mt-12 md:mt-16 xl:mt-0">
-              <h3 className="text-sm font-medium text-white">
+              <h3 className="text-sm font-medium text-on-primary">
                 Sign up for our newsletter
               </h3>
               <p className="mt-6 text-sm text-gray-300">
@@ -926,12 +783,12 @@ export default function Homepage() {
                   type="text"
                   autoComplete="email"
                   required
-                  className="w-full min-w-0 appearance-none rounded-md border border-white bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900"
+                  className="w-full min-w-0 appearance-none rounded-md border border-white bg-white py-2 px-4 text-base text-on-secondary placeholder-gray-500 shadow-sm focus:border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900"
                 />
                 <div className="ml-4 flex-shrink-0">
                   <button
                     type="submit"
-                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-base font-medium text-on-primary shadow-sm hover:bg-primary-variant"
                   >
                     Sign up
                   </button>
