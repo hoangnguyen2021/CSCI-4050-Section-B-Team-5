@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import "react-multi-carousel/lib/styles.css";
-import MovieCarousel from "./components/MovieCarousel";
+import MovieCarousel from "../components/MovieCarousel";
 
 const currencies = ["CAD", "USD", "AUD", "EUR", "GBP"];
 const navigation = {
