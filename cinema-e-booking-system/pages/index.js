@@ -9,7 +9,9 @@ import {
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import "react-multi-carousel/lib/styles.css";
+import TopNavigation from "../components/TopNavigation";
 import MovieCarousel from "../components/MovieCarousel";
+import { classNames } from "../utils/utils";
 
 const currencies = ["CAD", "USD", "AUD", "EUR", "GBP"];
 const navigation = {
@@ -209,10 +211,6 @@ const comingSoonPosters = [
   "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662203114/amc-cdn/production/2/movies/70200/70165/Poster/334013R1.jpg",
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default function Homepage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -404,50 +402,7 @@ export default function Homepage() {
         <header className="relative z-10">
           <nav aria-label="Top">
             {/* Top navigation */}
-            <div className="bg-background">
-              <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-                {/* Currency selector */}
-                <form>
-                  <div>
-                    <label htmlFor="desktop-currency" className="sr-only">
-                      Currency
-                    </label>
-                    <div className="group relative -ml-2 rounded-md border-transparent bg-background focus-within:ring-2 focus-within:ring-white">
-                      <select
-                        id="desktop-currency"
-                        name="currency"
-                        className="flex items-center rounded-md border-transparent bg-background bg-none py-0.5 pl-2 pr-5 text-sm font-medium text-on-primary focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-gray-100"
-                      >
-                        {currencies.map((currency) => (
-                          <option key={currency}>{currency}</option>
-                        ))}
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
-                        <ChevronDownIcon
-                          className="h-5 w-5 text-gray-300"
-                          aria-hidden="true"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </form>
-
-                <div className="flex items-center space-x-6">
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-on-primary hover:text-gray-100"
-                  >
-                    Sign in
-                  </a>
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-on-primary hover:text-gray-100"
-                  >
-                    Create an account
-                  </a>
-                </div>
-              </div>
-            </div>
+            <TopNavigation />
 
             {/* Secondary navigation */}
             <div className="bg-background bg-opacity-30 backdrop-blur-md backdrop-filter">
@@ -719,7 +674,9 @@ export default function Homepage() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-on-primary">Company</h3>
+                  <h3 className="text-sm font-medium text-on-primary">
+                    Company
+                  </h3>
                   <ul role="list" className="mt-6 space-y-6">
                     {footerNavigation.company.map((item) => (
                       <li key={item.name} className="text-sm">
@@ -736,7 +693,9 @@ export default function Homepage() {
               </div>
               <div className="space-y-12 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
                 <div>
-                  <h3 className="text-sm font-medium text-on-primary">Account</h3>
+                  <h3 className="text-sm font-medium text-on-primary">
+                    Account
+                  </h3>
                   <ul role="list" className="mt-6 space-y-6">
                     {footerNavigation.account.map((item) => (
                       <li key={item.name} className="text-sm">
@@ -751,7 +710,9 @@ export default function Homepage() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-on-primary">Connect</h3>
+                  <h3 className="text-sm font-medium text-on-primary">
+                    Connect
+                  </h3>
                   <ul role="list" className="mt-6 space-y-6">
                     {footerNavigation.connect.map((item) => (
                       <li key={item.name} className="text-sm">

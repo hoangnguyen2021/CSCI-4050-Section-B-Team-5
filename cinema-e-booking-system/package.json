@@ -16,9 +16,7 @@
     "next": "12.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-multi-carousel": "^2.8.2",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.1.3"
+    "react-multi-carousel": "^2.8.2"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -27,6 +25,7 @@
     "eslint": "8.23.1",
     "eslint-config-next": "12.3.0",
     "postcss": "^8.4.16",
+    "tailwind-scrollbar": "^2.0.1",
     "tailwindcss": "^3.1.8"
   }
 }

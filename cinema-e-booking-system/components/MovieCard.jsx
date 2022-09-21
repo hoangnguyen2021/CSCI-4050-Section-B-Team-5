@@ -1,5 +1,5 @@
 import MovieTitle from "./MovieTitle";
-import MovieInfo from "./MovieInfo";
+import HPMovieInfo from "./HPMovieInfo";
 import LargeButton from "./LargeButton";
 
 const MovieCard = ({
@@ -14,7 +14,7 @@ const MovieCard = ({
       <img className="" src={imageSrc} />
       <div className="flex flex-col pt-3 pb-10 gap-y-4">
         <MovieTitle title={title} />
-        <MovieInfo
+        <HPMovieInfo
           durationInMin={durationInMin}
           rating={rating}
           releasedDate={releasedDate}

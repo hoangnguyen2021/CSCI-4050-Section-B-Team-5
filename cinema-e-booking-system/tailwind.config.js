@@ -10,12 +10,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "background": "#000000",
-        "primary": "#d10000",
+        background: "#000000",
+        primary: "#d10000",
         "primary-variant": "#a30000",
         "on-primary": "#ffffff",
         "on-secondary": "#000000",
-      }
+      },
     },
   },
   corePlugins: {
@@ -25,5 +25,6 @@ module.exports = {
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
     require("flowbite/plugin"),
+    require("tailwind-scrollbar"),
   ],
 };
