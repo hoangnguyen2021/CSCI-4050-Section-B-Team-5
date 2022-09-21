@@ -1,4 +1,4 @@
-const MovieInfo = ({ durationInMin, rating, releasedDate }) => {
+const HPMovieInfo = ({ durationInMin, rating, releasedDate }) => {
   const hours = Math.floor(durationInMin / 60);
   const minutes = durationInMin % 60;
 
@@ -14,4 +14,4 @@ const MovieInfo = ({ durationInMin, rating, releasedDate }) => {
   );
 };
 
-export default MovieInfo;
+export default HPMovieInfo;
