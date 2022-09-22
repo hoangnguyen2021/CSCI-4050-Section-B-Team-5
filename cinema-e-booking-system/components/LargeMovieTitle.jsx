@@ -1,9 +1,16 @@
-const MovieTitle = ({ title }) => {
+import { classNames } from "../utils/utils";
+
+const LargeMovieTitle = ({ title, textCenter = false }) => {
   return (
-    <div className="text-4xl text-center font-extrabold text-on-primary">
+    <div
+      className={classNames(
+        textCenter ? "text-center" : "",
+        "text-4xl font-extrabold text-on-primary"
+      )}
+    >
       {title}
     </div>
   );
 };
 
-export default MovieTitle;
+export default LargeMovieTitle;
