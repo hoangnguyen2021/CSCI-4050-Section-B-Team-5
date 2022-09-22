@@ -1,4 +1,4 @@
-import ShowTimeDetails from "./ShowtimeDetails";
+import ShowTimeOptions from "./ShowtimeOptions";
 import ShowtimeHeader from "./ShowtimeHeader";
 
 const showtimeList = [
@@ -42,7 +42,7 @@ const ShowtimeSection = ({ movieMeta }) => {
     <div className="flex flex-col gap-y-20 h-96 scrollbar-thin scrollbar-thumb-primary scrollbar-track-on-primary overflow-y-scroll">
       <ShowtimeHeader movieMeta={movieMeta} />
       {showtimeList.map((s) => (
-        <ShowTimeDetails showtimeDetails={s} />
+        <ShowTimeOptions showtimeDetails={s} />
       ))}
     </div>
   );
