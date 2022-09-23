@@ -1,3 +1,4 @@
+import BackgroundOverlay from "../../components/BackgroundOverlay";
 import ShowtimeSection from "../../components/ShowtimeSection";
 import TopNavigation from "../../components/TopNavigation";
 import TrailerSection from "../../components/TrailerSection";
@@ -15,17 +16,9 @@ export default function ShowtimePage() {
   return (
     <div className="bg-background">
       <div className="relative">
-        {/* Decorative image and overlay */}
-        <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-          <img
-            src="https://www.siff.net/images/CINEMA/Venues/OPS_Uptown_Thumbnail_1600x900.jpg"
-            alt=""
-            className="h-full w-full object-cover object-center"
-          />
-        </div>
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-background opacity-70"
+        <BackgroundOverlay
+          src="https://www.siff.net/images/CINEMA/Venues/OPS_Uptown_Thumbnail_1600x900.jpg"
+          opacity={70}
         />
         {/* Navigation */}
         <header className="relative z-10">
@@ -43,17 +36,9 @@ export default function ShowtimePage() {
       </div>
 
       <div className="relative">
-        {/* Decorative image and overlay */}
-        <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-          <img
-            src="https://www.chicagocanvas.com/wp-content/uploads/2019/12/rob-laughter-WW1jsInXgwM-unsplash-scaled.jpg"
-            alt=""
-            className="h-full w-full object-cover object-center"
-          />
-        </div>
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-background opacity-70"
+        <BackgroundOverlay
+          src="https://www.chicagocanvas.com/wp-content/uploads/2019/12/rob-laughter-WW1jsInXgwM-unsplash-scaled.jpg"
+          opacity={70}
         />
         <div className="relative grid grid-cols-12 gap-x-28 max-w-7xl maxh-screen h-screen mx-auto py-10">
           <section className="col-span-5">
