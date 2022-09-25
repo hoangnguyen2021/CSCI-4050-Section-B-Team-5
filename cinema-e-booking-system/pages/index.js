@@ -5,9 +5,7 @@ import {
   MagnifyingGlassIcon,
   QuestionMarkCircleIcon,
   ShoppingBagIcon,
-  XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import "react-multi-carousel/lib/styles.css";
 import TopNavigation from "../components/TopNavigation";
 import MovieCarousel from "../components/MovieCarousel";
@@ -185,31 +183,170 @@ const footerNavigation = {
     { name: "Pinterest", href: "#" },
   ],
 };
-const nowPlayingPosters = [
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1654093399/amc-cdn/production/2/movies/66800/66765/PosterDynamic/138993.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662466631/amc-cdn/production/2/movies/70100/70149/PosterDynamic/142564.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662739107/amc-cdn/production/2/movies/68200/68219/PosterDynamic/142758.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662137861/amc-cdn/production/2/movies/70600/70588/PosterDynamic/142476.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661543435/amc-cdn/production/2/movies/62300/62347/PosterDynamic/142136.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1653736847/amc-cdn/production/2/movies/67400/67369/Poster/Primary_BoxCover_800_1200.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660671932/amc-cdn/production/2/movies/55700/55685/OnDemandPoster/141739.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1659031905/amc-cdn/production/2/movies/70400/70398/PosterDynamic/140352.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663250700/amc-cdn/production/2/movies/68600/68554/OnDemandPoster/143033.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661892402/amc-cdn/production/2/movies/49600/49599/OnDemandPoster/142316.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660155304/amc-cdn/production/2/movies/69700/69667/Poster/259728R1.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661961569/amc-cdn/production/2/movies/66600/66630/OnDemandPoster/142376.jpg",
-];
 
-const comingSoonPosters = [
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660597317/amc-cdn/production/2/movies/70000/69999/PosterDynamic/141682.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661270647/amc-cdn/production/2/movies/63900/63945/PosterDynamic/142040.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662495069/amc-cdn/production/2/movies/67500/67497/PosterDynamic/142599.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661268404/amc-cdn/production/2/movies/70900/70882/PosterDynamic/142039.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663166862/amc-cdn/production/2/movies/71200/71175/PosterDynamic/142951.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1652888742/amc-cdn/production/2/movies/61600/61649/PosterDynamic/138588.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662579454/amc-cdn/production/2/movies/71000/71036/PosterDynamic/142632.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660685083/amc-cdn/production/2/movies/70000/69989/PosterDynamic/141743.jpg",
-  "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662203114/amc-cdn/production/2/movies/70200/70165/Poster/334013R1.jpg",
+const nowPlayingMovies = [
+  {
+    title: "Pearl",
+    durationInMin: 102,
+    rating: "R",
+    releasedDate: "Sep 16, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662137861/amc-cdn/production/2/movies/70600/70588/PosterDynamic/142476.jpg",
+  },
+  {
+    title: "Avatar (Re-Released 2022)",
+    durationInMin: 165,
+    rating: "PG-13",
+    releasedDate: "Sep 23, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661270647/amc-cdn/production/2/movies/63900/63945/PosterDynamic/142040.jpg",
+  },
+  {
+    title: "Don't Worry Darling",
+    durationInMin: 123,
+    rating: "R",
+    releasedDate: "Sep 23, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662495069/amc-cdn/production/2/movies/67500/67497/PosterDynamic/142599.jpg",
+  },
+  {
+    title: "The Women King",
+    durationInMin: 135,
+    rating: "PG-13",
+    releasedDate: "Sep 16, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662739107/amc-cdn/production/2/movies/68200/68219/PosterDynamic/142758.jpg",
+  },
+  {
+    title: "Barbarian",
+    durationInMin: 103,
+    rating: "R",
+    releasedDate: "Sep 9, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661543435/amc-cdn/production/2/movies/62300/62347/PosterDynamic/142136.jpg",
+  },
+  {
+    title: "Bullet Train",
+    durationInMin: 126,
+    rating: "R",
+    releasedDate: "Sep 5, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1654093399/amc-cdn/production/2/movies/66800/66765/PosterDynamic/138993.jpg",
+  },
+  {
+    title: "DC League of Super Pets",
+    durationInMin: 105,
+    rating: "PG",
+    releasedDate: "Jul 29, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660671932/amc-cdn/production/2/movies/55700/55685/OnDemandPoster/141739.jpg",
+  },
+  {
+    title: "Top Gun: Maverick",
+    durationInMin: 131,
+    rating: "PG-13",
+    releasedDate: "May 27, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1653736847/amc-cdn/production/2/movies/67400/67369/Poster/Primary_BoxCover_800_1200.jpg",
+  },
+  {
+    title: "Minions: The Rise of Gru",
+    durationInMin: 147,
+    rating: "PG",
+    releasedDate: "Jul 1, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661892402/amc-cdn/production/2/movies/49600/49599/OnDemandPoster/142316.jpg",
+  },
+  {
+    title: "See How They Run",
+    durationInMin: 98,
+    rating: "PG-13",
+    releasedDate: "Sep 16, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662466631/amc-cdn/production/2/movies/70100/70149/PosterDynamic/142564.jpg",
+  },
+];
+const comingSoonMovies = [
+  {
+    title: "Mobile Suit Gundam Cucuruz Doan's Island",
+    durationInMin: 108,
+    rating: "NR",
+    releasedDate: "Sep 27, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662748719/amc-cdn/production/2/movies/70600/70648/PosterDynamic/142800.jpg",
+  },
+  {
+    title: "Smile: Early Access",
+    durationInMin: 115,
+    rating: "R",
+    releasedDate: "Sep 27, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662579454/amc-cdn/production/2/movies/71000/71036/PosterDynamic/142632.jpg",
+  },
+  {
+    title: "Brandi Carlile: In The Canyon Haze",
+    durationInMin: 75,
+    rating: "R",
+    releasedDate: "Sep 28, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663943049/amc-cdn/production/2/movies/71200/71202/PosterDynamic/143421.jpg",
+  },
+  {
+    title: "Bros",
+    durationInMin: 115,
+    rating: "R",
+    releasedDate: "Sep 30, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1652888742/amc-cdn/production/2/movies/61600/61649/PosterDynamic/138588.jpg",
+  },
+  {
+    title: "Smile",
+    durationInMin: 115,
+    rating: "R",
+    releasedDate: "Sep 30, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660685083/amc-cdn/production/2/movies/70000/69989/PosterDynamic/141743.jpg",
+  },
+  {
+    title: "The Good House",
+    durationInMin: 103,
+    rating: "R",
+    releasedDate: "Sep 30, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663864208/amc-cdn/production/2/movies/70200/70165/PosterDynamic/143364.jpg",
+  },
+  {
+    title: "Amsterdam",
+    durationInMin: 134,
+    rating: "R",
+    releasedDate: "Oct 7, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663975835/amc-cdn/production/2/movies/56500/56463/PosterDynamic/143448.jpg",
+  },
+  {
+    title: "Lyle,Lyle,Crocodile",
+    durationInMin: 106,
+    rating: "PG",
+    releasedDate: "Oct 7, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661435602/amc-cdn/production/2/movies/66600/66623/PosterDynamic/142117.jpg",
+  },
+  {
+    title: "TAR",
+    durationInMin: 158,
+    rating: "R",
+    releasedDate: "Oct 7, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663975937/amc-cdn/production/2/movies/68400/68392/PosterDynamic/143450.jpg",
+  },
+  {
+    title: "Terrifier 2",
+    durationInMin: 158,
+    rating: "R",
+    releasedDate: "Oct 7, 2022",
+    posterSrc:
+      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663251888/amc-cdn/production/2/movies/70900/70906/PosterDynamic/143043.jpg",
+  },
 ];
 
 export default function Homepage() {
@@ -276,61 +413,6 @@ export default function Homepage() {
                                       />
                                     </Popover.Button>
                                   </div>
-
-                                  <Transition
-                                    as={Fragment}
-                                    enter="transition ease-out duration-200"
-                                    enterFrom="opacity-0"
-                                    enterTo="opacity-100"
-                                    leave="transition ease-in duration-150"
-                                    leaveFrom="opacity-100"
-                                    leaveTo="opacity-0"
-                                  >
-                                    <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
-                                      {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                                      <div
-                                        className="absolute inset-0 top-1/2 bg-white shadow"
-                                        aria-hidden="true"
-                                      />
-
-                                      <div className="relative bg-white">
-                                        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                                          <div className="grid grid-cols-4 gap-y-10 gap-x-8 py-16">
-                                            {category.featured.map((item) => (
-                                              <div
-                                                key={item.name}
-                                                className="group relative"
-                                              >
-                                                <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-gray-100 group-hover:opacity-75">
-                                                  <img
-                                                    src={item.imageSrc}
-                                                    alt={item.imageAlt}
-                                                    className="object-cover object-center"
-                                                  />
-                                                </div>
-                                                <a
-                                                  href={item.href}
-                                                  className="mt-4 block font-medium text-on-secondary"
-                                                >
-                                                  <span
-                                                    className="absolute inset-0 z-10"
-                                                    aria-hidden="true"
-                                                  />
-                                                  {item.name}
-                                                </a>
-                                                <p
-                                                  aria-hidden="true"
-                                                  className="mt-1"
-                                                >
-                                                  Shop now
-                                                </p>
-                                              </div>
-                                            ))}
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </Popover.Panel>
-                                  </Transition>
                                 </>
                               )}
                             </Popover>
@@ -472,8 +554,16 @@ export default function Homepage() {
       </div>
 
       <main>
-        <MovieCarousel label="Featured" posters={nowPlayingPosters} />
-        <MovieCarousel label="Coming Soon" posters={comingSoonPosters} />
+        <MovieCarousel
+          label="Featured"
+          movies={nowPlayingMovies}
+          buttonText="Book Tickets"
+        />
+        <MovieCarousel
+          label="Coming Soon"
+          movies={comingSoonMovies}
+          buttonText="Advance Tickets"
+        />
       </main>
 
       <footer aria-labelledby="footer-heading" className="bg-background">

@@ -3,13 +3,14 @@ import MovieCard from "./MovieCard";
 import Heading from "./Heading";
 import CustomRightArrow from "./CustomRightArrow";
 import CustomLeftArrow from "./CustomLeftArrow";
+import PaymentForm from "./PaymentForm";
 
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 4,
     paritialVisibilityGutter: 60,
-    slidesToSlide: 1, // optional, default to 1.
+    slidesToSlide: 2, // optional, default to 1.
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -25,7 +26,7 @@ const responsive = {
   },
 };
 
-const MovieCarousel = ({ label, posters }) => {
+const MovieCarousel = ({ label, movies, buttonText }) => {
   return (
     <div className="relative bg-background">
       {/* Decorative image and overlay */}
@@ -48,17 +49,9 @@ const MovieCarousel = ({ label, posters }) => {
           customRightArrow={<CustomRightArrow />}
           customLeftArrow={<CustomLeftArrow />}
         >
-          {posters.map((image) => {
-            return (
-              <MovieCard
-                imageSrc={image}
-                title="Title"
-                durationInMin={150}
-                rating="PG-13"
-                releasedDate="Sep 17, 2022"
-              />
-            );
-          })}
+          {movies.map((movie) => (
+            <MovieCard movie={movie} buttonText={buttonText} />
+          ))}
         </Carousel>
       </div>
     </div>

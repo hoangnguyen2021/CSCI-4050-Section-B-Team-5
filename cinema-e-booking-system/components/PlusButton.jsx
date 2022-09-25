@@ -4,10 +4,10 @@ const PlusButton = ({ disabled = false }) => {
   return (
     <button
       type="button"
-      disabled="disabled"
+      disabled={disabled}
       className="rounded-full border-2 border-on-primary p-3 text-on-primary shadow-sm hover:bg-primary"
     >
-      <PlusIcon className="h-6 w-6" aria-hidden="true" />
+      <PlusIcon className="h-6 w-6" disabled={disabled} aria-hidden="true" />
     </button>
   );
 };
