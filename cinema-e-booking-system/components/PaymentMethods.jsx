@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const paymentMethods = [
   {
     id: "bitpay",
@@ -41,7 +43,7 @@ const PaymentMethods = () => {
             htmlFor={paymentMethod.id}
             className="text-md font-normal text-on-primary"
           >
-            <img className="inline-block h-6" src={paymentMethod.imageSrc} />
+            <Image className="inline-block h-6" src={paymentMethod.imageSrc} />
             <span className="ml-3">{paymentMethod.title}</span>
           </label>
         </div>
