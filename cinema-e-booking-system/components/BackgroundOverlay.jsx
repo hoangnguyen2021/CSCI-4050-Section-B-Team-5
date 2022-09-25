@@ -11,7 +11,7 @@ const BackgroundOverlay = ({ src, opacity }) => {
       </div>
       <div
         aria-hidden="true"
-        className={`absolute inset-0 bg-background opacity-${opacity}`}
+        className={`absolute inset-0 bg-background bg-opacity-${opacity}`}
       />
     </>
   );

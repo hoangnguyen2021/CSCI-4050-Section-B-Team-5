@@ -1,9 +1,9 @@
-import TopNavigation from "../../../../components/TopNavigation";
-import MovieBookingHeader from "../../../../components/MovieBookingHeader";
-import TicketPrompt from "../../../../components/TicketPrompt";
-import TicketAddRemove from "../../../../components/TicketAddRemove";
-import BackgroundOverlay from "../../../../components/BackgroundOverlay";
-import LargeButton from "../../../../components/LargeButton";
+import TopNavigation from "../../../components/TopNavigation";
+import MovieBookingHeader from "../../../components/MovieBookingHeader";
+import BackgroundOverlay from "../../../components/BackgroundOverlay";
+import OrderSummary from "../../../components/OrderSummary";
+import PaymentForm from "../../../components/PaymentForm";
+import LargeButton from "../../../components/LargeButton";
 
 const movieMeta = {
   title: "The Woman King",
@@ -26,9 +26,24 @@ const showtimeDetails = {
   showtime: "6:15 pm",
 };
 
+const tickets = [
+  {
+    name: "Adult",
+    quantity: 2,
+    unitPrice: 16.39,
+    seats: ["E5", "E7"],
+  },
+  {
+    name: "Child",
+    quantity: 1,
+    unitPrice: 14.39,
+    seats: ["E6"],
+  },
+];
+
 export default function SelectTicketsPage() {
   return (
-    <div className="bg-background">
+    <div className="relative bg-background">
       {/* Navigation */}
       <header className="relative z-10">
         <nav aria-label="Top">
@@ -37,9 +52,9 @@ export default function SelectTicketsPage() {
         </nav>
       </header>
 
-      <div className="relative min-h-screen">
+      <div className="relative">
         <BackgroundOverlay
-          src="https://image.cnbcfm.com/api/v1/image/107120708-1663605936404-The_WOman_King_Cropped.jpg?v=1663672360&w=1920&h=1080"
+          src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/the-woman-king-1663170483.png"
           opacity={70}
         />
 
@@ -52,17 +67,21 @@ export default function SelectTicketsPage() {
           </div>
         </div>
 
-        <div className="relative flex flex-col justify-center my-10 gap-y-4 mx-auto max-w-4xl px-6">
-          <TicketPrompt value={2} />
-          <TicketAddRemove type="Adult" ageRange="12-60" setPrice={16.39} />
-          <TicketAddRemove type="Child" ageRange="2-12" setPrice={13.39} />
-          <TicketAddRemove type="Adult" ageRange="60+" setPrice={14.89} />
+        <div className="relative grid grid-cols-12 max-w-7xl mx-auto min-h-screen px-6">
+          <section className="col-span-7 my-10">
+            <PaymentForm />
+          </section>
+          <section className="col-span-5 my-10">
+            <OrderSummary tickets={tickets} />
+          </section>
         </div>
       </div>
 
       <div className="sticky bottom-0 flex justify-end items-center gap-x-4 bg-background px-10 py-3">
+        <p className="text-on-primary text-lg font-semibold uppercase">TOTAL</p>
+        <p className="text-on-primary text-2xl font-bold">$50.39</p>
         <div className="pl-10">
-          <LargeButton text="Go to checkout" />
+          <LargeButton text="Purchase" />
         </div>
       </div>
     </div>

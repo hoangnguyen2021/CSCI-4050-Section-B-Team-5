@@ -35,9 +35,9 @@ export default function ShowtimePage() {
         </div>
       </div>
 
-      <div className="relative">
+      <div className="relative min-h-screen">
         <BackgroundOverlay
-          src="https://www.chicagocanvas.com/wp-content/uploads/2019/12/rob-laughter-WW1jsInXgwM-unsplash-scaled.jpg"
+          src="https://image.cnbcfm.com/api/v1/image/107120708-1663605936404-The_WOman_King_Cropped.jpg?v=1663672360&w=1920&h=1080"
           opacity={70}
         />
         <div className="relative grid grid-cols-12 gap-x-28 max-w-7xl maxh-screen h-screen mx-auto py-10">

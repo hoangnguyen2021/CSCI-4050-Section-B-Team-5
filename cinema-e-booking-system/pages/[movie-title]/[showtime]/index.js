@@ -3,6 +3,7 @@ import TopNavigation from "../../../components/TopNavigation";
 import SeatRow from "../../../components/SeatRow";
 import ScreenSvg from "../../../components/ScreenSvg";
 import MovieBookingHeader from "../../../components/MovieBookingHeader";
+import LargeButton from "../../../components/LargeButton";
 
 const movieMeta = {
   title: "The Woman King",
@@ -46,9 +47,9 @@ export default function SelectSeatsPage() {
         </nav>
       </header>
 
-      <div className="relative">
+      <div className="relative min-h-screen">
         <BackgroundOverlay
-          src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/the-woman-king-1663170483.png"
+          src="https://image.cnbcfm.com/api/v1/image/107120708-1663605936404-The_WOman_King_Cropped.jpg?v=1663672360&w=1920&h=1080"
           opacity={70}
         />
         <div className="relative bg-primary bg-opacity-50">
@@ -60,18 +61,26 @@ export default function SelectSeatsPage() {
           </div>
         </div>
 
-        <div className="relative my-10">
-          <div className="absolute inset-0 max-w-4xl mx-auto">
-            <ScreenSvg />
+        <div className="relative py-20 mx-auto">
+          <div className="relative mb-20">
+            <div className="absolute inset-0 max-w-4xl mx-auto">
+              <ScreenSvg />
+            </div>
+            <h2 className="relative text-3xl font-semibold text-center py-8">
+              SCREEN
+            </h2>
           </div>
-          <h2 className="relative text-3xl font-semibold text-center py-8">
-            SCREEN
-          </h2>
+          <div className="relative flex flex-col gap-y-2 items-center max-w-7xl mx-auto px-6">
+            {seatMap.map((row) => (
+              <SeatRow row={row} />
+            ))}
+          </div>
         </div>
-        <div className="relative flex flex-col gap-y-2 items-center max-w-7xl mx-auto pb-40 px-6">
-          {seatMap.map((row) => (
-            <SeatRow row={row} />
-          ))}
+
+        <div className="sticky bottom-0 flex justify-end items-center gap-x-4 bg-background bg-opacity-70 px-10 py-3">
+          <div className="pl-10">
+            <LargeButton text="Select tickets" />
+          </div>
         </div>
       </div>
     </div>
