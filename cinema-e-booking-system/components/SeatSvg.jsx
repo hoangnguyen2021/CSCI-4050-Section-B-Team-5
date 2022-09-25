@@ -1,7 +1,9 @@
-const SeatSvg = () => {
+const SeatSvg = ({ seat }) => {
   return (
     <div className="group relative flex justify-center">
-      <p className="absolute group-hover:text-primary text-sm font-light">A1</p>
+      <p className="absolute group-hover:text-primary text-sm font-light">
+        {seat.seat}
+      </p>
       <svg
         viewBox="0 0 1000 1000"
         enable-background="new 0 0 1000 1000"

@@ -28,12 +28,14 @@ const showtimeDetails = {
 
 const tickets = [
   {
+    key: 1,
     name: "Adult",
     quantity: 2,
     unitPrice: 16.39,
     seats: ["E5", "E7"],
   },
   {
+    key: 2,
     name: "Child",
     quantity: 1,
     unitPrice: 14.39,

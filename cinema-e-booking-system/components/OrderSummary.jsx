@@ -12,7 +12,7 @@ const OrderSummary = ({ tickets }) => {
         </div>
         <div className="flex flex-col gap-y-5">
           {tickets.map((ticket) => (
-            <Ticket ticket={ticket} />
+            <Ticket key={ticket.key} ticket={ticket} />
           ))}
         </div>
       </div>
