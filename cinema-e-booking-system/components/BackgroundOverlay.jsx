@@ -7,6 +7,7 @@ const BackgroundOverlay = ({ src, opacity }) => {
       <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
         <Image
           src={src}
+          layout="fill"
           alt=""
           className="h-full w-full object-cover object-center"
         />

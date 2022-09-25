@@ -7,7 +7,6 @@ import Dropdown from "./Dropdown";
 import InputField from "./InputField";
 import LargeButton from "./LargeButton";
 import { CVVSvg, ZipCodeSvg } from "./Svg";
-import Image from "next/image";
 
 const months = [
   { id: 1, name: "Jan" },
@@ -54,7 +53,7 @@ const PaymentForm = () => {
       <Modal open={open} setOpen={setOpen} title="Add Card">
         <div className="flex flex-col gap-y-5">
           <div className="flex">
-            <Image
+            <img
               className="h-6"
               src="https://amc-theatres-res.cloudinary.com/image/upload/v1556564205/amc-cdn/static/images/forms/accepted_cards.png"
             />
