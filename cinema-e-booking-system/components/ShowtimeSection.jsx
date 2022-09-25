@@ -3,6 +3,7 @@ import ShowtimeHeader from "./ShowtimeHeader";
 
 const showtimeList = [
   {
+    key: 1,
     format: "DOLBY CINEMA",
     attributes: [
       "AMC Signature Recliners",
@@ -13,6 +14,7 @@ const showtimeList = [
     showtime: ["3:30 pm", "6:15 pm"],
   },
   {
+    key: 2,
     format: "LASER AT AMC",
     attributes: [
       "AMC Signature Recliners",
@@ -24,6 +26,7 @@ const showtimeList = [
     showtime: ["1:30 pm", "2:00 pm", "4:45 pm", "5:15 pm"],
   },
   {
+    key: 3,
     format: "DIGITAL",
     attributes: ["Reserved Seating", "Closed Caption", "Audio Description"],
     showtime: [
@@ -42,7 +45,7 @@ const ShowtimeSection = ({ movieMeta }) => {
     <div className="flex flex-col gap-y-20 h-96 scrollbar-thin scrollbar-thumb-primary scrollbar-track-on-primary overflow-y-scroll">
       <ShowtimeHeader movieMeta={movieMeta} />
       {showtimeList.map((s) => (
-        <ShowTimeOptions showtimeDetails={s} />
+        <ShowTimeOptions key={s.key} showtimeDetails={s} />
       ))}
     </div>
   );

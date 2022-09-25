@@ -50,7 +50,7 @@ const MovieCarousel = ({ label, movies, buttonText }) => {
           customLeftArrow={<CustomLeftArrow />}
         >
           {movies.map((movie) => (
-            <MovieCard movie={movie} buttonText={buttonText} />
+            <MovieCard key={movie.key} movie={movie} buttonText={buttonText} />
           ))}
         </Carousel>
       </div>

@@ -186,6 +186,7 @@ const footerNavigation = {
 
 const nowPlayingMovies = [
   {
+    key: 1,
     title: "Pearl",
     durationInMin: 102,
     rating: "R",
@@ -194,6 +195,7 @@ const nowPlayingMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662137861/amc-cdn/production/2/movies/70600/70588/PosterDynamic/142476.jpg",
   },
   {
+    key: 2,
     title: "Avatar (Re-Released 2022)",
     durationInMin: 165,
     rating: "PG-13",
@@ -202,6 +204,7 @@ const nowPlayingMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661270647/amc-cdn/production/2/movies/63900/63945/PosterDynamic/142040.jpg",
   },
   {
+    key: 3,
     title: "Don't Worry Darling",
     durationInMin: 123,
     rating: "R",
@@ -210,6 +213,7 @@ const nowPlayingMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662495069/amc-cdn/production/2/movies/67500/67497/PosterDynamic/142599.jpg",
   },
   {
+    key: 4,
     title: "The Women King",
     durationInMin: 135,
     rating: "PG-13",
@@ -218,6 +222,7 @@ const nowPlayingMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662739107/amc-cdn/production/2/movies/68200/68219/PosterDynamic/142758.jpg",
   },
   {
+    key: 5,
     title: "Barbarian",
     durationInMin: 103,
     rating: "R",
@@ -226,6 +231,7 @@ const nowPlayingMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661543435/amc-cdn/production/2/movies/62300/62347/PosterDynamic/142136.jpg",
   },
   {
+    key: 6,
     title: "Bullet Train",
     durationInMin: 126,
     rating: "R",
@@ -234,6 +240,7 @@ const nowPlayingMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1654093399/amc-cdn/production/2/movies/66800/66765/PosterDynamic/138993.jpg",
   },
   {
+    key: 7,
     title: "DC League of Super Pets",
     durationInMin: 105,
     rating: "PG",
@@ -242,6 +249,7 @@ const nowPlayingMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660671932/amc-cdn/production/2/movies/55700/55685/OnDemandPoster/141739.jpg",
   },
   {
+    key: 8,
     title: "Top Gun: Maverick",
     durationInMin: 131,
     rating: "PG-13",
@@ -250,6 +258,7 @@ const nowPlayingMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1653736847/amc-cdn/production/2/movies/67400/67369/Poster/Primary_BoxCover_800_1200.jpg",
   },
   {
+    key: 9,
     title: "Minions: The Rise of Gru",
     durationInMin: 147,
     rating: "PG",
@@ -258,6 +267,7 @@ const nowPlayingMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661892402/amc-cdn/production/2/movies/49600/49599/OnDemandPoster/142316.jpg",
   },
   {
+    key: 10,
     title: "See How They Run",
     durationInMin: 98,
     rating: "PG-13",
@@ -268,6 +278,7 @@ const nowPlayingMovies = [
 ];
 const comingSoonMovies = [
   {
+    key: 1,
     title: "Mobile Suit Gundam Cucuruz Doan's Island",
     durationInMin: 108,
     rating: "NR",
@@ -276,6 +287,7 @@ const comingSoonMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662748719/amc-cdn/production/2/movies/70600/70648/PosterDynamic/142800.jpg",
   },
   {
+    key: 2,
     title: "Smile: Early Access",
     durationInMin: 115,
     rating: "R",
@@ -284,6 +296,7 @@ const comingSoonMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662579454/amc-cdn/production/2/movies/71000/71036/PosterDynamic/142632.jpg",
   },
   {
+    key: 3,
     title: "Brandi Carlile: In The Canyon Haze",
     durationInMin: 75,
     rating: "R",
@@ -292,6 +305,7 @@ const comingSoonMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663943049/amc-cdn/production/2/movies/71200/71202/PosterDynamic/143421.jpg",
   },
   {
+    key: 4,
     title: "Bros",
     durationInMin: 115,
     rating: "R",
@@ -300,6 +314,7 @@ const comingSoonMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1652888742/amc-cdn/production/2/movies/61600/61649/PosterDynamic/138588.jpg",
   },
   {
+    key: 5,
     title: "Smile",
     durationInMin: 115,
     rating: "R",
@@ -308,6 +323,7 @@ const comingSoonMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660685083/amc-cdn/production/2/movies/70000/69989/PosterDynamic/141743.jpg",
   },
   {
+    key: 6,
     title: "The Good House",
     durationInMin: 103,
     rating: "R",
@@ -316,6 +332,7 @@ const comingSoonMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663864208/amc-cdn/production/2/movies/70200/70165/PosterDynamic/143364.jpg",
   },
   {
+    key: 7,
     title: "Amsterdam",
     durationInMin: 134,
     rating: "R",
@@ -324,6 +341,7 @@ const comingSoonMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663975835/amc-cdn/production/2/movies/56500/56463/PosterDynamic/143448.jpg",
   },
   {
+    key: 8,
     title: "Lyle,Lyle,Crocodile",
     durationInMin: 106,
     rating: "PG",
@@ -332,6 +350,7 @@ const comingSoonMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661435602/amc-cdn/production/2/movies/66600/66623/PosterDynamic/142117.jpg",
   },
   {
+    key: 9,
     title: "TAR",
     durationInMin: 158,
     rating: "R",
@@ -340,6 +359,7 @@ const comingSoonMovies = [
       "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1663975937/amc-cdn/production/2/movies/68400/68392/PosterDynamic/143450.jpg",
   },
   {
+    key: 10,
     title: "Terrifier 2",
     durationInMin: 158,
     rating: "R",
