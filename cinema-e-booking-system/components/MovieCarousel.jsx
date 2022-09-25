@@ -34,6 +34,7 @@ const MovieCarousel = ({ label, movies, buttonText }) => {
         <Image
           src="https://www.thx.com/wp-content/uploads/2021/03/Nordisk-Film-Cinemas-inside-theatre-image.jpg"
           alt=""
+          layout="fill"
           className="h-full w-full object-cover object-center"
         />
       </div>

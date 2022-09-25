@@ -8,7 +8,7 @@ const MovieCard = ({ movie, buttonText }) => {
 
   return (
     <div className="group max-w-sm bg-transparent rounded-t-lg px-8 hover:bg-primary/50">
-      <Image className="" src={posterSrc} />
+      <Image className="" width={310} height={465} src={posterSrc} />
       <div className="flex flex-col pt-3 pb-10 gap-y-4">
         <MovieTitle title={title} />
         <HPMovieInfo
