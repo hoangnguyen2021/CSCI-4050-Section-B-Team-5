@@ -3,7 +3,6 @@ import MovieCard from "./MovieCard";
 import Heading from "./Heading";
 import CustomRightArrow from "./CustomRightArrow";
 import CustomLeftArrow from "./CustomLeftArrow";
-import Image from "next/image";
 
 const responsive = {
   desktop: {
@@ -31,10 +30,9 @@ const MovieCarousel = ({ label, movies, buttonText }) => {
     <div className="relative bg-background">
       {/* Decorative image and overlay */}
       <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-        <Image
+        <img
           src="https://www.thx.com/wp-content/uploads/2021/03/Nordisk-Film-Cinemas-inside-theatre-image.jpg"
           alt=""
-          layout="fill"
           className="h-full w-full object-cover object-center"
         />
       </div>

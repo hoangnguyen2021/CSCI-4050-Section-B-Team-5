@@ -1,13 +1,10 @@
-import Image from "next/image";
-
 const BackgroundOverlay = ({ src, opacity }) => {
   return (
     <>
       {/* Decorative image and overlay */}
       <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-        <Image
+        <img
           src={src}
-          layout="fill"
           alt=""
           className="h-full w-full object-cover object-center"
         />
