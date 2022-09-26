@@ -4,6 +4,7 @@ import BackgroundOverlay from "../../../components/BackgroundOverlay";
 import OrderSummary from "../../../components/OrderSummary";
 import PaymentForm from "../../../components/PaymentForm";
 import LargeButton from "../../../components/LargeButton";
+import Link from "next/link";
 
 const movieMeta = {
   title: "The Woman King",
@@ -83,7 +84,11 @@ export default function SelectTicketsPage() {
         <p className="text-on-primary text-lg font-semibold uppercase">TOTAL</p>
         <p className="text-on-primary text-2xl font-bold">$50.39</p>
         <div className="pl-10">
-          <LargeButton text="Purchase" />
+          <Link href="/orders/1/confirm">
+            <a>
+              <LargeButton text="Purchase" />
+            </a>
+          </Link>
         </div>
       </div>
     </div>

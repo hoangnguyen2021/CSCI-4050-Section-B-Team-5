@@ -1,3 +1,4 @@
+import Link from "next/link";
 import OutlinedButton from "./OutlinedButton";
 import ShowtimeAttributes from "./ShowtimeAttributes";
 
@@ -10,7 +11,11 @@ const ShowTimeOptions = ({ showtimeDetails }) => {
       <ShowtimeAttributes attributes={attributes} />
       <div className="flex flex-wrap gap-3 pt-4">
         {showtime.map((time) => (
-          <OutlinedButton key={time} text={time} />
+          <Link href="/1/1">
+            <a>
+              <OutlinedButton key={time} text={time} />
+            </a>
+          </Link>
         ))}
       </div>
     </div>

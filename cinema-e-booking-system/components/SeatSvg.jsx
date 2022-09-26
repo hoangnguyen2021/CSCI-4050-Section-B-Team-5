@@ -1,6 +1,6 @@
 const SeatSvg = ({ seat }) => {
   return (
-    <div className="group relative flex justify-center">
+    <div className="group relative flex justify-center cursor-pointer">
       <p className="absolute group-hover:text-primary text-sm font-light">
         {seat.seat}
       </p>

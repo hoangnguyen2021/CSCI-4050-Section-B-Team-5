@@ -4,6 +4,7 @@ import TicketPrompt from "../../../../components/TicketPrompt";
 import TicketAddRemove from "../../../../components/TicketAddRemove";
 import BackgroundOverlay from "../../../../components/BackgroundOverlay";
 import LargeButton from "../../../../components/LargeButton";
+import Link from "next/link";
 
 const movieMeta = {
   title: "The Woman King",
@@ -62,7 +63,11 @@ export default function SelectTicketsPage() {
 
       <div className="sticky bottom-0 flex justify-end items-center gap-x-4 bg-background px-10 py-3">
         <div className="pl-10">
-          <LargeButton text="Go to checkout" />
+          <Link href="/orders/1">
+            <a>
+              <LargeButton text="Go to checkout" />
+            </a>
+          </Link>
         </div>
       </div>
     </div>
