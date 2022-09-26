@@ -1,6 +1,7 @@
 import MovieTitle from "./MovieTitle";
 import HPMovieInfo from "./HPMovieInfo";
 import LargeButton from "./LargeButton";
+import Link from "next/link";
 
 const MovieCard = ({ movie, buttonText }) => {
   const { posterSrc, title, durationInMin, rating, releasedDate } = movie;
@@ -15,7 +16,11 @@ const MovieCard = ({ movie, buttonText }) => {
           rating={rating}
           releasedDate={releasedDate}
         />
-        <LargeButton text={buttonText} />
+        <Link href="/1">
+          <a className="block">
+            <LargeButton text={buttonText} />
+          </a>
+        </Link>
       </div>
     </div>
   );

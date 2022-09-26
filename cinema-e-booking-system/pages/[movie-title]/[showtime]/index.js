@@ -4,6 +4,7 @@ import SeatRow from "../../../components/SeatRow";
 import ScreenSvg from "../../../components/ScreenSvg";
 import MovieBookingHeader from "../../../components/MovieBookingHeader";
 import LargeButton from "../../../components/LargeButton";
+import Link from "next/link";
 
 const movieMeta = {
   title: "The Woman King",
@@ -198,7 +199,11 @@ export default function SelectSeatsPage() {
 
         <div className="sticky bottom-0 flex justify-end items-center gap-x-4 bg-background bg-opacity-70 px-10 py-3">
           <div className="pl-10">
-            <LargeButton text="Select tickets" />
+            <Link href="/1/1/ticket">
+              <a>
+                <LargeButton text="Select tickets" />
+              </a>
+            </Link>
           </div>
         </div>
       </div>
