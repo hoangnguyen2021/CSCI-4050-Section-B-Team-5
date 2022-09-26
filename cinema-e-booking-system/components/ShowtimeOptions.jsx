@@ -11,9 +11,9 @@ const ShowTimeOptions = ({ showtimeDetails }) => {
       <ShowtimeAttributes attributes={attributes} />
       <div className="flex flex-wrap gap-3 pt-4">
         {showtime.map((time) => (
-          <Link href="/1/1">
+          <Link key={time} href="/1/1">
             <a>
-              <OutlinedButton key={time} text={time} />
+              <OutlinedButton text={time} />
             </a>
           </Link>
         ))}
