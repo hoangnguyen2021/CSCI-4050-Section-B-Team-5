@@ -7,6 +7,11 @@ export default function Register() {
   const[show,setShow]=useState(true)
 return (
   <div className="bg-background">
+          <div className="back-to-home">
+        <Link href="/">
+    <button className="home"> Back to Home</button>
+    </Link>
+</div>
       <div className="relative">
         {/* Decorative image and overlay */}
         <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
@@ -21,11 +26,6 @@ return (
           className="absolute inset-0 bg-background opacity-70"
         />
     <div className="login">
-        <div className="back-to-home">
-        <Link href="/">
-    <button className="home"> Back to Home</button>
-    </Link>
-</div>
       <div className="login-form">
         <div className="title text-center">
         <span className="text-primary">Bulldog</span>
