@@ -1,4 +1,4 @@
-import { Navbar } from "./components/AdminBar";
+import { Navbar } from "../components/AdminBar";
 import React from 'react';
 
 export default function ManageUsers() {
