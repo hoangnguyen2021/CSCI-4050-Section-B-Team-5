@@ -4,16 +4,16 @@ const TopNavigation = () => {
       <div className="mx-auto flex flex-row-reverse h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center space-x-6">
           <a
-            href="#"
+            href="/login"
             className="text-sm font-medium text-on-primary hover:text-gray-100"
           >
-            Sign in
+            Sign in/Join
           </a>
           <a
-            href="#"
+            href="/editProfile"
             className="text-sm font-medium text-on-primary hover:text-gray-100"
           >
-            Create an account
+            Account
           </a>
         </div>
       </div>
