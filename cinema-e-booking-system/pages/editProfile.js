@@ -1,4 +1,3 @@
-import { Navbar } from "./components/AdminBar";
 import Link from 'next/link'
 import React from 'react';
 
