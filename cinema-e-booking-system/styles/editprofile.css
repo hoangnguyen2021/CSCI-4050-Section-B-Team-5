@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+/* can now reference my font */
+
+#editprofile {
+    margin: none;
+    width: 100%; 
+    font-size: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    background-color: rgba(38, 37, 37, 0.88);
+}
+
+.form1 {
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 50%; 
+    text-align: center;
+    position: fixed;
+    left: 350px;
+    height: 400px;
+    top: 80px;
+    
+}
+.form2 {/*
+    width: 50%; 
+    border: 1px solid white;
+    float: left;
+    text-align: center;
+    border: 1px solid white;
+    width:900px;
+    height:500px;
+    position: fixed;
+    top: 40%;
+    left: 35%;
+    margin-top: -250px;
+    margin-left: -250px;
+    border-radius: 20px;*/
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 50%; 
+    text-align: center;
+    position: fixed;
+    left: 350px;
+    height: 400px;
+    top: 100px;
+}
+#passwordButtonStyle {
+    /*padding: 0.4em;
+    border-radius: 12px;
+    background-color: red;
+    color: white;
+    width: 25%;
+    left: 50%;
+    margin-top: 1em;
+    display:flex;
+    justify-content: center;
+    margin: 0 auto;*/
+    position:fixed;
+    left: 540px;
+    top: 300px;
+    border-radius: 12px;
+    background-color: red;
+    color: white;
+    width: 25%;
+    margin-top: 1em;
+    display:block;
+    
+}
+
+
+
+#editprofile span {
+    padding-top: 0.2em;
+    margin-bottom: 0.2em;;
+}
+
+#buttonstyle {
+    /*padding: 0.4em;*/
+    position:fixed;
+    left: 540px;
+    top: 350px;
+    border-radius: 12px;
+    background-color: red;
+    color: white;
+    width: 25%;
+    margin-top: 1em;
+    display:block;
+    
+
+}
+#buttonstyle:hover {
+    background: #C51515;
+}
+#editprofile input {
+    margin: 0.2em;
+    padding: 0.2em;
+}
+
+
+#inline {
+    display: inline;
+}
+
+/*#footer {
+    font-size: 90%;
+    margin: auto;
+    margin-top: 3em;
+    width: 50%;  
+}*/
+
+.fields {
+    width: 50%;
+    height: 50%;
+    font-size: 100%;
+    //text-align: center;
+   //width: 100%;
+   //height: 100%;
+   //font-size: 150%;
+  //padding-left: 0.5em;
+    /*padding-top: 0.25em;*/
+    /*padding-bottom: 0.30em;*/
+    
+}
+.passwordFields {
+    width: 50%;
+    height: 50%;
+    font-size: 100%;
+}
+.passfields {
+    position: relative;
+    left: 10px;
+    top: 30px;
+}
