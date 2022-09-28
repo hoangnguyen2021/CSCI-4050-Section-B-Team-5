@@ -41,3 +41,145 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+.login {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, 
+  Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+  /*
+ background-color: rgba(38, 37, 37, 0.88);
+  border: white;*/
+}
+
+input[type="text"],
+input[type="password"] {
+  /*height: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;*/
+  border: none;
+    background: transparent;
+    border-bottom: 1px solid #fff;
+    height: 40px;
+    outline: none;
+    color: white;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+  /*.submit {*/
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  background: red;
+  border: 1px solid red;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+}
+
+input[type="submit"]:hover {
+  /*.submit:hover {*/
+  background: #C51515;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.login-form {
+  background-color:  #121212;
+  padding: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 500px;
+  height: 500px;
+  border-radius: 10px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.list-container {
+  display: flex;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.title {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px;
+}
+.createSpan {
+  Position: relative;
+  text-align: center;
+  bottom: 10;
+}
+.back-to-home {
+  text-align: center;
+  color: white;
+}
+.nav-container {
+  font-size: x-large;
+  width: 100%;
+  background-color: #293d38;
+  text-align: center;
+  font-weight: 500;
+  color: #429d5b;
+  padding-bottom: 15px;
+}
+.app-container {
+  background-color: lightgray;
+  padding-bottom: 32%;
+}
+
+#addPromo {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 8px;
+  margin: 10px;
+  
+}
+#movieTable {
+    /*font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 700px;
+    height: 500px;
+    float: left;*/
+    font-family: arial, sans-serif;
+            width:1400px;
+            height:200px;
+            position: fixed;
+            background-color: white;
+            top: 40%;
+            left: 18%;
+            margin-top: -250px;
+            margin-left: -250px;
+            border-radius: 20px;
+}
+#manageMovies {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  gap: 8px;
+  margin: 10px;
+  
+}
+.newMovieTag {
+  color: red;
+  position: fixed;
+  top: 40px;
+  left: 35px;
+}
