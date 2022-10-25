@@ -40,3 +40,17 @@ export const ZipCodeSvg = () => {
     </svg>
   );
 };
+
+export const SearchSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 45 45"
+      fill="#ffffff"
+      stroke="currentColor"
+      className="absolute bottom-0 left-0 -mb-0.5 transform translate-x-1/3 -translate-y-1/2 text-on-primary h-10 w-10"
+    >
+      <path d="M37.151 17.176A17.176 17.176 0 1 0 19.976 34.35 17.204 17.204 0 0 0 37.15 17.176zM19.976 32.27A15.095 15.095 0 1 1 35.07 17.176 15.095 15.095 0 0 1 19.976 32.27zm13.493.393a1.05 1.05 0 0 0-1.63 1.322l8.573 10.625a1.05 1.05 0 1 0 1.63-1.32z" />
+    </svg>
+  );
+};
