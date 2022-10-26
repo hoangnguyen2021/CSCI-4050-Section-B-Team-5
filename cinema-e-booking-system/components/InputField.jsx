@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { classNames } from "../utils/utils";
 
-const InputField = ({ label, placeholder, icon }) => {
+const InputField = ({ label, placeholder, icon, readOnly = false }) => {
   const [input, setInput] = useState("");
 
   return (
@@ -18,6 +18,7 @@ const InputField = ({ label, placeholder, icon }) => {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         required
+        readOnly={readOnly}
       />
       {icon}
     </label>
