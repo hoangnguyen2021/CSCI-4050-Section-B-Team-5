@@ -27,23 +27,17 @@ const LoginPage = () => {
               <span> </span>
               <span className="text-on-primary">Cinema</span>
             </h2>
-            <h3 className="text-xl font-semibold text-center">Sign In</h3>
+            <h3 className="text-xl font-semibold text-center">Admin Login</h3>
             <EmailField placeholder="Email" />
             <PasswordField placeholder="Password" />
-            <Link href="/admin-login">
+            <Link href="/login">
               <div className="text-base font-medium text-primary cursor-pointer hover:text-primary-variant">
-                Admin Portal
+                Back to login
               </div>
             </Link>
 
             <div className="pt-10 flex justify-center">
-              <Button text="Sign in" />
-            </div>
-            <div className="text-base font-medium text-center">
-              <span className="text-on-primary">Don't have an account? </span>
-              <Link href="/register">
-                <span className="text-primary cursor-pointer">Join</span>
-              </Link>
+              <Button text="Admin Login" />
             </div>
           </div>
         </div>
