@@ -1,4 +1,4 @@
-const LargeButton = ({ text, onClick }) => {
+const PillButton = ({ text, onClick }) => {
   return (
     <button
       type="button"
@@ -10,4 +10,4 @@ const LargeButton = ({ text, onClick }) => {
   );
 };
 
-export default LargeButton;
+export default PillButton;

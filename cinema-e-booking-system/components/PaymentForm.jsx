@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import PaymentMethods from "./PaymentMethods";
 import Dropdown from "./Dropdown";
 import InputField from "./InputField";
-import LargeButton from "./LargeButton";
+import PillButton from "./PillButton";
 import { CVVSvg, ZipCodeSvg } from "./Svg";
 
 const months = [
@@ -72,7 +72,7 @@ const PaymentForm = () => {
             />
           </div>
           <div className="flex">
-            <LargeButton text="Add Card" onClick={() => setOpen(false)} />
+            <PillButton text="Add Card" onClick={() => setOpen(false)} />
           </div>
         </div>
       </Modal>

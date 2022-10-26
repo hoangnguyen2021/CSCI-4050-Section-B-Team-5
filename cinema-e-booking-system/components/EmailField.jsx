@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { classNames } from "../utils/utils";
 
-const InputField = ({ label, placeholder, icon }) => {
+const EmailField = ({ label, placeholder, icon }) => {
   const [input, setInput] = useState("");
 
   return (
@@ -12,7 +12,7 @@ const InputField = ({ label, placeholder, icon }) => {
           icon ? "pl-12 pr-2 py-2" : "",
           "bg-transparent border-0 border-b border-on-primary placeholder-gray-500 text-base focus:ring-0 focus:border-0 focus:border-b-2 focus:border-on-primary"
         )}
-        type="text"
+        type="email"
         name="input"
         placeholder={placeholder}
         value={input}
@@ -24,4 +24,4 @@ const InputField = ({ label, placeholder, icon }) => {
   );
 };
 
-export default InputField;
+export default EmailField;
