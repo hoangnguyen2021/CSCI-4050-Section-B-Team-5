@@ -1,9 +1,13 @@
-import { useState } from "react";
 import { classNames } from "../utils/utils";
 
-const EmailField = ({ label, placeholder, icon, readOnly = false }) => {
-  const [input, setInput] = useState("");
-
+const EmailField = ({
+  label,
+  email,
+  setEmail,
+  placeholder,
+  icon,
+  readOnly = false,
+}) => {
   return (
     <label className="relative w-full flex flex-col">
       <span className="text-on-primary text-base font-medium">{label}</span>
@@ -15,8 +19,8 @@ const EmailField = ({ label, placeholder, icon, readOnly = false }) => {
         type="email"
         name="input"
         placeholder={placeholder}
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         required
         readOnly={readOnly}
       />

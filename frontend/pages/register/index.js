@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
+import { useFetch } from "../../hooks/useFetch";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
 import EmailField from "../../components/EmailField";
 import InputField from "../../components/InputField";
@@ -8,6 +9,24 @@ import PasswordField from "../../components/PasswordField";
 import Button from "../../components/Button";
 
 const RegisterPage = () => {
+  const { post } = useFetch();
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rePassword, setRePassword] = useState("");
+
+  const registerUser = async () => {
+    const response = await post("auth/users/", {
+      name: name,
+      phonenumber: phoneNumber,
+      email: email,
+      password: password,
+      re_password: rePassword,
+    });
+    console.log(response.data);
+  };
+
   return (
     <div className="bg-background">
       <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -30,12 +49,25 @@ const RegisterPage = () => {
               <span className="text-on-primary">Cinema</span>
             </h2>
             <h3 className="text-xl font-semibold text-center">Sign Up</h3>
-            <InputField placeholder="Name" />
-            <PhoneNumberField placeholder="Phone Number" />
-            <EmailField placeholder="Email" />
-            <PasswordField placeholder="Password" />
+            <InputField placeholder="Name" input={name} setInput={setName} />
+            <PhoneNumberField
+              placeholder="Phone Number"
+              phoneNumber={phoneNumber}
+              setPhoneNumber={setPhoneNumber}
+            />
+            <EmailField placeholder="Email" email={email} setEmail={setEmail} />
+            <PasswordField
+              placeholder="Password"
+              password={password}
+              setPassword={setPassword}
+            />
+            <PasswordField
+              placeholder="Confirm Password"
+              password={rePassword}
+              setPassword={setRePassword}
+            />
             <div className="pt-10">
-              <Button text="Submit" />
+              <Button text="Submit" onClick={registerUser} />
             </div>
             <div className="text-base font-medium text-center">
               <span className="text-on-primary">Already have an account? </span>

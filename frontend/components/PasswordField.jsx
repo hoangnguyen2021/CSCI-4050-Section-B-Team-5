@@ -1,9 +1,13 @@
-import { useState } from "react";
 import { classNames } from "../utils/utils";
 
-const PasswordField = ({ label, placeholder, icon, minLength = 8 }) => {
-  const [input, setInput] = useState("");
-
+const PasswordField = ({
+  label,
+  password,
+  setPassword,
+  placeholder,
+  icon,
+  minLength = 8,
+}) => {
   return (
     <label className="relative w-full flex flex-col">
       <span className="text-on-primary text-base font-medium">{label}</span>
@@ -15,9 +19,9 @@ const PasswordField = ({ label, placeholder, icon, minLength = 8 }) => {
         type="password"
         name="input"
         placeholder={placeholder}
-        value={input}
+        value={password}
         minLength={minLength}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
         required
       />
       {icon}
