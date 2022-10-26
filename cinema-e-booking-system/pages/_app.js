@@ -1,7 +1,5 @@
 import "../styles/globals.css";
 import "../styles/styles.css";
-import "../styles/adminBar.css";
-import "../styles/editprofile.css";
 import "../styles/manageUsers.css";
 
 function MyApp({ Component, pageProps }) {
