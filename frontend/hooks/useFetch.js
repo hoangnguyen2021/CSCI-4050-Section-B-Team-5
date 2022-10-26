@@ -2,10 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 
 const server = axios.create({
-  baseURL: "",
+  baseURL: "http://localhost:8000/",
 });
 
-const useFetch = () => {
+export const useFetch = () => {
   const [loading, setLoading] = useState(true);
 
   const get = async (url) => {
@@ -23,6 +23,7 @@ const useFetch = () => {
 
   const post = async (url, body) => {
     try {
+      console.log(body);
       const response = await server.post(url, body);
       console.log(response);
       setLoading(false);

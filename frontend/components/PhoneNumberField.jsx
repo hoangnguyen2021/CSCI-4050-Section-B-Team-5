@@ -1,9 +1,13 @@
-import { useState } from "react";
 import { classNames } from "../utils/utils";
 
-const PhoneNumberField = ({ label, placeholder, icon, readOnly = false }) => {
-  const [phoneNumber, setPhoneNumber] = useState("");
-
+const PhoneNumberField = ({
+  label,
+  phoneNumber,
+  setPhoneNumber,
+  placeholder,
+  icon,
+  readOnly = false,
+}) => {
   const isNumericInput = (event) => {
     const key = event.keyCode;
     return (

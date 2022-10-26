@@ -1,9 +1,13 @@
-import { useState } from "react";
 import { classNames } from "../utils/utils";
 
-const InputField = ({ label, placeholder, icon, readOnly = false }) => {
-  const [input, setInput] = useState("");
-
+const InputField = ({
+  label,
+  input,
+  setInput,
+  placeholder,
+  icon,
+  readOnly = false,
+}) => {
   return (
     <label className="relative w-full flex flex-col">
       <span className="text-on-primary text-base font-medium">{label}</span>
