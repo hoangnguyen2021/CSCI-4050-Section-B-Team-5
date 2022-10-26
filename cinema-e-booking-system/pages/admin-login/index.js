@@ -5,7 +5,7 @@ import EmailField from "../../components/EmailField";
 import PasswordField from "../../components/PasswordField";
 import Button from "../../components/Button";
 
-const LoginPage = () => {
+const AdminLoginPage = () => {
   return (
     <div className="bg-background">
       <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -46,4 +46,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default AdminLoginPage;

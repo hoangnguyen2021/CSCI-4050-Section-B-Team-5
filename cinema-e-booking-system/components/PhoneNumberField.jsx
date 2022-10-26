@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { classNames } from "../utils/utils";
 
-const PhoneNumberField = ({ label, placeholder, icon }) => {
+const PhoneNumberField = ({ label, placeholder, icon, readOnly = false }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const isNumericInput = (event) => {
@@ -71,6 +71,7 @@ const PhoneNumberField = ({ label, placeholder, icon }) => {
         onKeyDown={enforceFormat}
         onKeyUp={formatToPhone}
         required
+        readOnly={readOnly}
       />
       {icon}
     </label>
