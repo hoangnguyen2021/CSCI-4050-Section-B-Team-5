@@ -6,11 +6,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser , PermissionsMixin , BaseUserManager
 
 class UserAccountManager(BaseUserManager):
-    def create_user(self,email,name , password=None):
+    def create_user(self,email,name ,  phonenumber , password=None ):
         if not email:
             raise ValueError('Users Must have an email')
         email = self.normalize_email(email)
-        user = self.model(email=email , name=name)
+        user = self.model(email=email , name=name , phonenumber = phonenumber)
         user.set_password(password)
         user.save()
         return user
@@ -21,6 +21,7 @@ class UserAccountManager(BaseUserManager):
 class UserAccount(AbstractBaseUser , PermissionsMixin ):
     email = models.EmailField(max_length = 225 , unique=True)
     name = models.CharField(max_length = 225)
+    phonenumber = models.CharField(max_length = 12)
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default=False)
     objects = UserAccountManager()
