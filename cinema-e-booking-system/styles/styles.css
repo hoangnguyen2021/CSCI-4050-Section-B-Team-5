@@ -83,10 +83,6 @@ input[type="submit"]:hover {
   text-align: center;
   bottom: 10;
 }
-.back-to-home {
-  text-align: center;
-  color: white;
-}
 .nav-container {
   font-size: x-large;
   width: 100%;

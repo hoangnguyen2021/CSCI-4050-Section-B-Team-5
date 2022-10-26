@@ -1,6 +1,6 @@
 import MovieTitle from "./MovieTitle";
 import HPMovieInfo from "./HPMovieInfo";
-import LargeButton from "./LargeButton";
+import PillButton from "./PillButton";
 import Link from "next/link";
 
 const MovieCard = ({ movie, buttonText }) => {
@@ -18,7 +18,7 @@ const MovieCard = ({ movie, buttonText }) => {
         />
         <Link href="/1">
           <a className="block">
-            <LargeButton text={buttonText} />
+            <PillButton text={buttonText} />
           </a>
         </Link>
       </div>

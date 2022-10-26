@@ -3,7 +3,7 @@ import MovieBookingHeader from "../../../components/MovieBookingHeader";
 import BackgroundOverlay from "../../../components/BackgroundOverlay";
 import OrderSummary from "../../../components/OrderSummary";
 import PaymentForm from "../../../components/PaymentForm";
-import LargeButton from "../../../components/LargeButton";
+import PillButton from "../../../components/PillButton";
 import Link from "next/link";
 
 const movieMeta = {
@@ -86,7 +86,7 @@ export default function SelectTicketsPage() {
         <div className="pl-10">
           <Link href="/orders/1/confirm">
             <a>
-              <LargeButton text="Purchase" />
+              <PillButton text="Purchase" />
             </a>
           </Link>
         </div>
