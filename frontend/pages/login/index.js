@@ -4,14 +4,15 @@ import { useFetch } from "../../hooks/useFetch";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
 import EmailField from "../../components/EmailField";
 import PasswordField from "../../components/PasswordField";
-import Button from "../../components/Button";
+import SubmitButton from "../../components/SubmitButton";
 
 const LoginPage = () => {
   const { post } = useFetch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginUser = async () => {
+  const loginUser = async (e) => {
+    e.preventDefault();
     const response = await post("auth/jwt/create/", {
       email: email,
       password: password,
@@ -41,19 +42,22 @@ const LoginPage = () => {
               <span> </span>
               <span className="text-on-primary">Cinema</span>
             </h2>
-            <h3 className="text-xl font-semibold text-center">Sign In</h3>
-            <EmailField placeholder="Email" email={email} setEmail={setEmail} />
-            <PasswordField placeholder="Password" password={password}
-              setPassword={setPassword} />
-            <Link href="/admin-login">
-              <div className="text-base font-medium text-primary cursor-pointer hover:text-primary-variant">
-                Admin Portal
-              </div>
-            </Link>
+            <form className="w-full flex flex-col items-center space-y-3" onSubmit={loginUser}>
+              <h3 className="text-xl font-semibold text-center">Sign In</h3>
+              <EmailField placeholder="Email" email={email} setEmail={setEmail} />
+              <PasswordField placeholder="Password" password={password}
+                setPassword={setPassword} />
+              <Link href="/admin-login">
+                <div className="self-start text-base font-medium text-primary cursor-pointer hover:text-primary-variant">
+                  Admin Portal
+                </div>
+              </Link>
 
-            <div className="pt-10 flex justify-center">
-              <Button text="Sign in" onClick={loginUser} />
-            </div>
+              <div className="pt-10 flex justify-center">
+                <SubmitButton text="Sign in" />
+              </div>
+            </form>
+
             <div className="text-base font-medium text-center">
               <span className="text-on-primary">Don't have an account? </span>
               <Link href="/register">
