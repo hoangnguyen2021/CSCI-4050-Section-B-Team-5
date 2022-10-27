@@ -6,7 +6,7 @@ import EmailField from "../../components/EmailField";
 import InputField from "../../components/InputField";
 import PhoneNumberField from "../../components/PhoneNumberField";
 import PasswordField from "../../components/PasswordField";
-import Button from "../../components/Button";
+import SubmitButton from "../../components/SubmitButton";
 
 const RegisterPage = () => {
   const { post } = useFetch();
@@ -16,7 +16,8 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
 
-  const registerUser = async () => {
+  const registerUser = async (e) => {
+    e.preventDefault();
     const response = await post("auth/users/", {
       name: name,
       phonenumber: phoneNumber,
@@ -48,27 +49,31 @@ const RegisterPage = () => {
               <span> </span>
               <span className="text-on-primary">Cinema</span>
             </h2>
-            <h3 className="text-xl font-semibold text-center">Sign Up</h3>
-            <InputField placeholder="Name" input={name} setInput={setName} />
-            <PhoneNumberField
-              placeholder="Phone Number"
-              phoneNumber={phoneNumber}
-              setPhoneNumber={setPhoneNumber}
-            />
-            <EmailField placeholder="Email" email={email} setEmail={setEmail} />
-            <PasswordField
-              placeholder="Password"
-              password={password}
-              setPassword={setPassword}
-            />
-            <PasswordField
-              placeholder="Confirm Password"
-              password={rePassword}
-              setPassword={setRePassword}
-            />
-            <div className="pt-10">
-              <Button text="Submit" onClick={registerUser} />
-            </div>
+
+            <form className="w-full flex flex-col items-center space-y-3" onSubmit={registerUser}>
+              <h3 className="text-xl font-semibold text-center">Sign Up</h3>
+              <InputField placeholder="Name" input={name} setInput={setName} />
+              <PhoneNumberField
+                placeholder="Phone Number"
+                phoneNumber={phoneNumber}
+                setPhoneNumber={setPhoneNumber}
+              />
+              <EmailField placeholder="Email" email={email} setEmail={setEmail} />
+              <PasswordField
+                placeholder="Password"
+                password={password}
+                setPassword={setPassword}
+              />
+              <PasswordField
+                placeholder="Confirm Password"
+                password={rePassword}
+                setPassword={setRePassword}
+              />
+              <div className="pt-10">
+                <SubmitButton text="Submit" />
+              </div>
+            </form>
+
             <div className="text-base font-medium text-center">
               <span className="text-on-primary">Already have an account? </span>
               <Link href="/login">
