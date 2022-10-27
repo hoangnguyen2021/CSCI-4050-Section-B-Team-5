@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function EditProfiles() {
 
-  const [promotion, setPromotion] = useState(0);
+  //const [promotion, setPromotion] = useState(0);
 
   let handleCheckbox = async (e) => {
 
@@ -30,9 +30,6 @@ export default function EditProfiles() {
               </div>
               <div>
               <input className="fields" type="text" placeholder="Billing Address" />
-              </div>
-              <div>
-              <input className="fields" type="text" placeholder="Email" />
               </div>
               <div>
               <input className="fields" type="text" placeholder="New Phone Number"/>
