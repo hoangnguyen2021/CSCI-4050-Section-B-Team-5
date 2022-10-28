@@ -44,7 +44,7 @@ const RegisterPage = () => {
       } else {
         toast.error("Registration error!");
       }
-      console.log(error);
+      console.error(error);
     }
   };
 

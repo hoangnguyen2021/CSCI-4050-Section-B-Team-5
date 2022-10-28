@@ -28,13 +28,12 @@ const ChangePasswordPage = () => {
               <span className="text-on-primary">Cinema</span>
             </h2>
             <h3 className="text-xl font-semibold text-center">
-              Change Password
+              New Password
             </h3>
-            <EmailField placeholder="Email" />
             <PasswordField placeholder="New Password" />
             <PasswordField placeholder="Confirm Password" />
             <div className="pt-10 flex justify-center">
-              <Button text="Change password" />
+              <Button text="New password" />
             </div>
           </div>
         </div>
