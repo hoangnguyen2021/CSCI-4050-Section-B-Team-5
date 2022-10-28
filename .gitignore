@@ -1,2 +1,4 @@
 *.pyc
 backend/debug.log
+cinema-e-booking-system/*
+virtualenv/*
