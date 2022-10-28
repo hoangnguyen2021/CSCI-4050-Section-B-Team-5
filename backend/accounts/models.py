@@ -21,7 +21,7 @@ class UserAccount(AbstractBaseUser , PermissionsMixin ):
     email = models.EmailField(max_length = 225 , unique=True)
     name = models.CharField(max_length = 225)
     is_active = models.BooleanField(default = True)
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
     phonenumber = models.CharField(max_length=10)
     cardnum = models.CharField(max_length = 16, default = "", blank=True)
     cvv = models.CharField(max_length = 3, default = "", blank=True)
