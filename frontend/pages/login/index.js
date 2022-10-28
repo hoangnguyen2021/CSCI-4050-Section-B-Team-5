@@ -70,7 +70,14 @@ const LoginPage = () => {
       console.error(error);
     }
   };
-
+  // Remember Me
+    let handleCheckbox = async (e) => {
+      if (rememberMe == 0) {
+        setRememberMe(1);
+      } else {
+        setRememberMe(0);
+      }
+    };
   return (
     <div className="bg-background">
       <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -108,6 +115,13 @@ const LoginPage = () => {
               </div>
             </form>
 
+            <div className="pt-10 flex justify-center">
+              <Button text="Sign in" />
+            </div>
+              <div className="text-center">
+              <span>Remember Me</span>
+              <input type="checkbox" onChange={handleCheckbox}/>
+              </div>
             <div className="text-base font-medium text-center">
               <span className="text-on-primary">Don't have an account? </span>
               <Link href="/register">
