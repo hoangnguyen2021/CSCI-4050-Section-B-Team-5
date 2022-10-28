@@ -39,7 +39,7 @@ const LoginPage = () => {
       } else {
         toast.error("Cannot activate your account!");
       }
-      //console.error(error);
+      console.error(error);
     }
   };
 
@@ -67,7 +67,7 @@ const LoginPage = () => {
       } else {
         toast.error("Login error!");
       }
-      console.log(error);
+      console.error(error);
     }
   };
 

@@ -30,10 +30,8 @@ const ResetPasswordPage = () => {
       } else {
         toast.error("Cannot send verification email!");
       }
-      console.log(error);
+      console.error(error);
     }
-
-    // TODO: store token in local storage
   };
 
   return (
