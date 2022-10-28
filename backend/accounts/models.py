@@ -26,10 +26,10 @@ class UserAccount(AbstractBaseUser , PermissionsMixin ):
     name = models.CharField(max_length = 225)
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default=False)
-    cardnum = models.CharField(max_length = 16)
-    cvv = models.CharField(max_length = 3)
-    expiration_year = models.CharField(max_length = 4)
-    zip_code = models.CharField()
+    cardnum = models.CharField(max_length = 16, default = None, blank = True)
+    cvv = models.CharField(max_length = 3, default = None, blank = True)
+    expiration_year = models.CharField(max_length = 4, default = None, blank = True)
+    zip_code = models.CharField(max_length = 5, default = None, blank = True)
     objects = UserAccountManager()
     
     USERNAME_FIELD = 'email'
