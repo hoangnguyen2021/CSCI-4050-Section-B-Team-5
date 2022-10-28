@@ -1,12 +1,14 @@
 import { Navbar } from "../components/AdminBar";
-import React from "react";
+import React from 'react'  
 import Link from 'next/link'
+import Select from 'react-select'
 
-export default function ManageMovies() {
+export default function ManageMovies (){
+
     return (
     <div className="manageMovies-container">
         <Navbar />
-        <div className="text-center">Manage Movies</div>
+        <div className="text-center"></div>
         <table className="table" id="movieTable">
           <tbody>
               <tr>
@@ -20,10 +22,8 @@ export default function ManageMovies() {
               </tr>
               <tr>
                 <td>1</td>
-                <select className="fields2" id="times" name="times">
-                <option value="2:00 PM">2:00 PM</option>
-                <option value="7:00 PM">7:00 PM</option>
-              </select>
+                {/*Couldn't figure out drop down, may need reatc hook*/}
+                <td>2:00PM</td>  
                 <td>Bullet Train</td>
                 <td>Action</td>
                 <td>Five Assassins aboard a fast moving
@@ -37,10 +37,8 @@ export default function ManageMovies() {
              </tr>
              <tr>
                 <td>2</td>
-                <select className="fields2" id="times" name="times">
-                <option value="1:00 PM">1:00 PM</option>
-                <option value="9:00 PM">9:00 PM</option>
-              </select>
+                {/*Couldn't figure out drop down, may need reatc hook*/}
+                <td>2:00PM</td>  
                 <td>Moonlight</td>
                 <td>Drama</td>
                 <td>A young African-American man grapples with his identity and sexuality while 
