@@ -6,34 +6,31 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser , PermissionsMixin , BaseUserManager
 
 class UserAccountManager(BaseUserManager):
-    def create_user(self,email,name , password=None):
+    def create_user(self,email,name, phonenumber, zip_code, cardnum, cvv, expiration_year, password=None):
         if not email:
             raise ValueError('Users Must have an email')
         email = self.normalize_email(email)
-        user = self.model(email=email , name=name)
+        user = self.model(email=email , name=name, phonenumber=phonenumber, cardnum=cardnum, cvv=cvv, expiration_year=expiration_year, zip_code=zip_code)
         user.set_password(password)
         user.save()
         return user
 
     # def create_super_user():
 
-    def edit_user(self, email, name, password):
-        
-        return user
-
 class UserAccount(AbstractBaseUser , PermissionsMixin ):
     email = models.EmailField(max_length = 225 , unique=True)
     name = models.CharField(max_length = 225)
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default=False)
-    cardnum = models.CharField(max_length = 16, default = "", blank = True)
-    cvv = models.CharField(max_length = 3, default = "", blank = True)
-    expiration_year = models.CharField(max_length = 4, default = "", blank = True)
-    zip_code = models.CharField(max_length = 5, default ="", blank = True)
+    phonenumber = models.CharField(max_length=10)
+    cardnum = models.CharField(max_length = 16, default = "", blank=True)
+    cvv = models.CharField(max_length = 3, default = "", blank=True)
+    expiration_year = models.CharField(max_length = 4, default = "", blank=True)
+    zip_code = models.CharField(max_length = 5, default ="30605", blank=True)
     objects = UserAccountManager()
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = ['name', 'phonenumber', 'zip_code', 'cardnum', 'cvv', 'expiration_year']
 
    
 
