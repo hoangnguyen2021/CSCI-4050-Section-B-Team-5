@@ -3,7 +3,7 @@ import MovieBookingHeader from "../../../../components/MovieBookingHeader";
 import TicketPrompt from "../../../../components/TicketPrompt";
 import TicketAddRemove from "../../../../components/TicketAddRemove";
 import BackgroundOverlay from "../../../../components/BackgroundOverlay";
-import LargeButton from "../../../../components/LargeButton";
+import PillButton from "../../../../components/PillButton";
 import Link from "next/link";
 
 const movieMeta = {
@@ -65,7 +65,7 @@ export default function SelectTicketsPage() {
         <div className="pl-10">
           <Link href="/orders/1">
             <a>
-              <LargeButton text="Go to checkout" />
+              <PillButton text="Go to checkout" />
             </a>
           </Link>
         </div>
