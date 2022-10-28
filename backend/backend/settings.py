@@ -143,7 +143,7 @@ SIMPLE_JWT = {
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'build/static')]
 STATIC_ROOT = os.path.join(BASE_DIR , 'static')
-
+DOMAIN = "localhost:3000"
 DJOSER = {
     'LOGIN_FIELD' : 'email',
     'USER_CREATE_PASSWORD_RETYPE' : True,
@@ -154,7 +154,7 @@ DJOSER = {
     'SET_PASSWORD_RETYPE':True,
     'PASSWORD_RESET_CONFIRM_URL':'password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL':'email/reset/confirm/{uid}/{token}', 
-    'ACTIVATION_URL' : 'activate/{uid}/{token}',
+    'ACTIVATION_URL' : '/login?uid={uid}&token={token}',
     'SEND_ACTIVATION_EMAIL' : True,
     'SERIALIZERS':{
         'user_create':'accounts.serializers.UserCreateSerializer',
