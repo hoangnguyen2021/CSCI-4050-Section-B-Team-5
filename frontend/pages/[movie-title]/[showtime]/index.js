@@ -3,7 +3,7 @@ import TopNavigation from "../../../components/TopNavigation";
 import SeatRow from "../../../components/SeatRow";
 import ScreenSvg from "../../../components/ScreenSvg";
 import MovieBookingHeader from "../../../components/MovieBookingHeader";
-import LargeButton from "../../../components/LargeButton";
+import PillButton from "../../../components/PillButton";
 import Link from "next/link";
 
 const movieMeta = {
@@ -201,7 +201,7 @@ export default function SelectSeatsPage() {
           <div className="pl-10">
             <Link href="/1/1/ticket">
               <a>
-                <LargeButton text="Select tickets" />
+                <PillButton text="Select tickets" />
               </a>
             </Link>
           </div>
