@@ -11,11 +11,9 @@ export const useFetch = () => {
   const get = async (url) => {
     try {
       const response = await server.get(url);
-      console.log(response);
       setLoading(false);
       return response;
     } catch (error) {
-      console.error(error);
       setLoading(false);
       throw error;
     }
@@ -25,11 +23,9 @@ export const useFetch = () => {
     try {
       console.log(body);
       const response = await server.post(url, body);
-      console.log(response);
       setLoading(false);
       return response;
     } catch (error) {
-      console.error(error);
       setLoading(false);
       throw error;
     }
