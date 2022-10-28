@@ -30,6 +30,10 @@ const RegisterPage = () => {
         email: email,
         password: password,
         re_password: rePassword,
+        cardnum: "",
+        cvv: "",
+        expiration_year: "",
+        zip_code: ""
       });
       toast.success("You are registered!");
       router.push('/login');
