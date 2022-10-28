@@ -92,6 +92,10 @@ const RegisterPage = () => {
               <div className="pt-10">
                 <SubmitButton text="Submit" />
               </div>
+              <div className="text-base font-medium text-center">
+                <span>Subscribe to Promotions </span>
+                <input type="checkbox" />
+              </div>
             </form>
 
             <div className="text-base font-medium text-center">
