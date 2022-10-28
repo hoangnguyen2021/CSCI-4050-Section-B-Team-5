@@ -69,7 +69,7 @@ const AdminLoginPage = () => {
               <PasswordField placeholder="Password" password={password}
                 setPassword={setPassword} />
               <Link href="/login">
-                <div className="self-start text-base font-medium text-primary cursor-pointer hover:text-primary-variant">
+                <div className="text-base font-medium text-primary cursor-pointer hover:text-primary-variant">
                   Back to login
                 </div>
               </Link>

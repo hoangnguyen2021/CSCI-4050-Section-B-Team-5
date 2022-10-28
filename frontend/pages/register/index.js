@@ -8,6 +8,7 @@ import EmailField from "../../components/EmailField";
 import InputField from "../../components/InputField";
 import PhoneNumberField from "../../components/PhoneNumberField";
 import PasswordField from "../../components/PasswordField";
+import Checkbox from "../../components/Checkbox";
 import SubmitButton from "../../components/SubmitButton";
 
 const RegisterPage = () => {
@@ -17,6 +18,7 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const [promotion, setPromotion] = useState(0);
   const router = useRouter();
 
   const registerUser = async (e) => {
@@ -89,12 +91,11 @@ const RegisterPage = () => {
                 password={rePassword}
                 setPassword={setRePassword}
               />
+              <div className="self-start">
+                <Checkbox label="Subscribe to Promotions" value={promotion} setValue={setPromotion} />
+              </div>
               <div className="pt-10">
                 <SubmitButton text="Submit" />
-              </div>
-              <div className="text-base font-medium text-center">
-                <span>Subscribe to Promotions </span>
-                <input type="checkbox" />
               </div>
             </form>
 
