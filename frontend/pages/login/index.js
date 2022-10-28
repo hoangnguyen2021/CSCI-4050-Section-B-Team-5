@@ -35,11 +35,8 @@ const LoginPage = () => {
     } catch (error) {
       const responseData = error.response?.data;
       if (responseData) {
-        if (responseData.detail) {
-          toast.error(responseData.detail);
-        }
-        if (responseData.uid) {
-          toast.error(responseData.uid);
+        if (responseData.token) {
+          toast.error(responseData.token);
         }
       } else {
         toast.error("Cannot activate your account!");
