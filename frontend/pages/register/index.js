@@ -1,5 +1,7 @@
-import Link from "next/link";
 import React, { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 import { useFetch } from "../../hooks/useFetch";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
 import EmailField from "../../components/EmailField";
@@ -15,17 +17,35 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const router = useRouter();
 
   const registerUser = async (e) => {
     e.preventDefault();
-    const response = await post("auth/users/", {
-      name: name,
-      phonenumber: phoneNumber,
-      email: email,
-      password: password,
-      re_password: rePassword,
-    });
-    console.log(response.data);
+    try {
+      const response = await post("auth/users/", {
+        name: name,
+        phonenumber: phoneNumber.match(/\d/g).join(""),
+        email: email,
+        password: password,
+        re_password: rePassword,
+      });
+      toast.success("You are registered!");
+      router.push('/login');
+      console.log(response.data);
+    } catch (error) {
+      const responseData = error.response?.data;
+      if (responseData) {
+        if (responseData.email) {
+          responseData.email.forEach(item => toast.error(item));
+        }
+        if (responseData.password) {
+          responseData.password.forEach(item => toast.error(item));
+        }
+      } else {
+        toast.error("Registration error!");
+      }
+      console.log(error);
+    }
   };
 
   return (
@@ -42,7 +62,7 @@ const RegisterPage = () => {
           src="https://wallpapercave.com/wp/wp6608538.jpg"
           opacity={70}
         />
-        <div className="relative flex justify-center items-center pt-20">
+        <div className="relative flex justify-center pt-20">
           <div className="basis-1/4 flex flex-col items-center space-y-3 bg-background-variant rounded-lg shadow-md px-8 py-10">
             <h2 className="text-3xl font-semibold text-center pb-5">
               <span className="text-primary">Bulldog</span>

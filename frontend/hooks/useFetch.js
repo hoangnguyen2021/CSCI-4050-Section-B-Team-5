@@ -17,7 +17,7 @@ export const useFetch = () => {
     } catch (error) {
       console.error(error);
       setLoading(false);
-      throw new Error(400);
+      throw error;
     }
   };
 
@@ -31,7 +31,7 @@ export const useFetch = () => {
     } catch (error) {
       console.error(error);
       setLoading(false);
-      throw new Error(400);
+      throw error;
     }
   };
 
