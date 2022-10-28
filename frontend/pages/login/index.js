@@ -6,12 +6,14 @@ import { useFetch } from "../../hooks/useFetch";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
 import EmailField from "../../components/EmailField";
 import PasswordField from "../../components/PasswordField";
+import Checkbox from "../../components/Checkbox";
 import SubmitButton from "../../components/SubmitButton";
 
 const LoginPage = () => {
   const { post } = useFetch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(0);
   const router = useRouter();
   const { uid, token } = router.query;
 
@@ -74,15 +76,6 @@ const LoginPage = () => {
     }
   };
 
-  // Remember Me
-  let handleCheckbox = async (e) => {
-    if (rememberMe == 0) {
-      setRememberMe(1);
-    } else {
-      setRememberMe(0);
-    }
-  };
-
   return (
     <div className="bg-background">
       <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -114,15 +107,13 @@ const LoginPage = () => {
                   Admin Portal
                 </div>
               </Link>
-
+              <div className="self-start">
+                <Checkbox label="Remember me" value={rememberMe} setValue={setRememberMe} />
+              </div>
               <div className="pt-10 pb-5 flex justify-center">
                 <SubmitButton text="Sign in" />
               </div>
             </form>
-            <div className="text-base font-medium text-center">
-              <span>Remember Me </span>
-              <input type="checkbox" onChange={handleCheckbox} />
-            </div>
             <div className="text-base font-medium text-center">
               <span className="text-on-primary">Don't have an account? </span>
               <Link href="/register">
