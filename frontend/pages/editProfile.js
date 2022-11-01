@@ -1,9 +1,48 @@
 import Link from 'next/link'
 import React from 'react';
+import toast from "react-hot-toast";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
+import { useFetch } from "../../hooks/useFetch";
+import BackgroundOverlay from "../../components/BackgroundOverlay";
+import SubmitButton from "../../components/SubmitButton";
 
 export default function EditProfiles() {
 
   //const [promotion, setPromotion] = useState(0);
+  const {post} = useFetch();
+  const [Formdata , setFormData] =  useState({
+    name: '',
+    phonenumber: '' ,
+    cardnum: '',
+    cvv: '' ,
+    expiration_year: '',
+    zip_code: '' 
+});
+  const handleChange= e => setFormData({ ...FormData, [e.target.name]: e.target.value });
+  const onSubmit= e => { e.preventDefault() ;
+    try {
+      const token = await localStorage.getItem("access");
+      if( token == null)
+      {
+        toast.error("The user is not logged in");
+      }
+      else{
+        try {
+          const  response = await post("auth/users/me/"),{
+            ...Formdata
+
+          }
+        }
+
+      }
+     }
+     catch(error){
+
+
+     }
 
   let handleCheckbox = async (e) => {
 
@@ -26,25 +65,22 @@ export default function EditProfiles() {
               <h1 className="text-center">Update your Information</h1>
               <h3>Profile Info</h3>
               <div>
-              <input className="fields" type="text" placeholder="New Name"/>
+              <input className="fields" type="text" name= "name" placeholder="New Name" onChange={handleChange}/>
               </div>
               <div>
-              <input className="fields" type="text" placeholder="Billing Address" />
+              <input className="fields" type="text" name= "zip_code" placeholder="zip_code" onChange={handleChange} />
               </div>
               <div>
-              <input className="fields" type="text" placeholder="New Phone Number"/>
+              <input className="fields" type="text" name= "phonenumber"  placeholder="New Phone Number" onChange={handleChange} />
               </div>
               <div>
-              <input className="fields" type="text" placeholder="Card Number"/>
+              <input className="fields" type="text" name= "cardnum"  placeholder="Card Number" onChange={handleChange}/>
               </div>
               <div>
-              <input className="fields" type="text" placeholder="Expiration Date"/>
+              <input className="fields" type="text" name = "expiration_year"   placeholder="Expiration Date" onChange={handleChange} />
               </div>
               <div>
-              <input className="fields" type="text" placeholder="CVV"/>
-              </div>
-              <div>
-              <input className="fields" type="text" placeholder="Zipcode"/>
+              <input className="fields" type="text" name= "cvv" placeholder="CVV" onChange={handleChange} />
               </div>
               <div className="createSpan text-center">
           <Link href="/changePassword">

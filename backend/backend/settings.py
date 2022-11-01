@@ -61,7 +61,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR , 'build')],
+        'DIRS': ["C:\\Users\\guval\\Fall22\\Software-Project\\CSCI-4050-Section-B-Team-5\\frontend\pages"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
