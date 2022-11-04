@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'accounts',
     'rest_framework',
-    'djoser',
+    'djoser'
 ]
 
 MIDDLEWARE = [
@@ -193,3 +193,5 @@ LOGGING = {
         },
     },
 }
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR , 'media')

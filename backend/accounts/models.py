@@ -1,5 +1,4 @@
 from email.policy import default
-from unittest.util import _MAX_LENGTH
 from django.db import models
 
 # Create your models here.
@@ -27,7 +26,6 @@ class UserAccount(AbstractBaseUser , PermissionsMixin ):
     cvv = models.CharField(max_length = 3, default = "", blank=True)
     expiration_year = models.CharField(max_length = 4, default = "", blank=True)
     zip_code = models.CharField(max_length = 5, default ="30605", blank=True)
-    objects = UserAccountManager()
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'phonenumber', 'zip_code', 'cardnum', 'cvv', 'expiration_year']
