@@ -33,8 +33,8 @@ export default function EditProfiles() {
         try {
           const  response = await post("auth/users/me/"),{
             ...Formdata
-
           }
+          if( )
         }
 
       }
