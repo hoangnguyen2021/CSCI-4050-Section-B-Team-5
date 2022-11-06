@@ -14,7 +14,15 @@ class UserAccountManager(BaseUserManager):
         user.save()
         return user
 
-    # def create_super_user():
+    def create_superuser(self,email,name, phonenumber, zip_code, cardnum, cvv, expiration_year, password=None ):
+        if not email:
+            raise ValueError('Users Must have an email')
+        email = self.normalize_email(email)
+        user = self.model(email=email , name=name, phonenumber=phonenumber, cardnum=cardnum, cvv=cvv, expiration_year=expiration_year, zip_code=zip_code , is_staff = True)
+        user.set_password(password)
+        user.save()
+        return user
+
 
 class UserAccount(AbstractBaseUser , PermissionsMixin ):
     email = models.EmailField(max_length = 225 , unique=True)
@@ -26,7 +34,8 @@ class UserAccount(AbstractBaseUser , PermissionsMixin ):
     cvv = models.CharField(max_length = 3, default = "", blank=True)
     expiration_year = models.CharField(max_length = 4, default = "", blank=True)
     zip_code = models.CharField(max_length = 5, default ="30605", blank=True)
-    
+
+    objects = UserAccountManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'phonenumber', 'zip_code', 'cardnum', 'cvv', 'expiration_year']
 
