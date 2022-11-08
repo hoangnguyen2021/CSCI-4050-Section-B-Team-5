@@ -20,9 +20,3 @@ class Show(models.Model):
 
     movie_id = models.CharField()
     #//foreign key from movie table
-
-    
-    remaining_seats = models.IntegerField()
-    #// goes in showroom
-    #// upon checkout, the remaining seats decrement
-    #// need to find a way to store the seat location info
