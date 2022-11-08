@@ -6,3 +6,5 @@ class Promotions(models.Model):
     promo_code = models.CharField(max_length = 300)
     is_active = models.BooleanField()
     percentage = models.FloatField(max = 100.00)
+
+    #subscribed = models.JSONField()
