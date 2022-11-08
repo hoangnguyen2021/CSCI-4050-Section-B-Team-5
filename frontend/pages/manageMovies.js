@@ -1,7 +1,6 @@
 import { Navbar } from "../components/AdminBar";
 import React from 'react'  
 import Link from 'next/link'
-import Select from 'react-select'
 
 export default function ManageMovies (){
 
