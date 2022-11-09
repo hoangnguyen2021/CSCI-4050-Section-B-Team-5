@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const CardNumberInputField = () => {
+const CardNumberField = () => {
   const [card, setCard] = useState("");
 
   const validate = (input) => {
@@ -49,4 +49,4 @@ const CardNumberInputField = () => {
   );
 };
 
-export default CardNumberInputField;
+export default CardNumberField;
