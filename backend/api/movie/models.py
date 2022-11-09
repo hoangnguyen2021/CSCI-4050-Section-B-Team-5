@@ -4,7 +4,6 @@ from django.db import models
 
 class Movie(models.Model):
     movie_title = models.CharField(max_length = 100)
-    #movie_category = models.IntegerField() //it can be a string Horror, only a type for a movie
     movie_category = models.CharField(max_length = 100)
 
     movie_cast = models.CharField(max_length = 300)
@@ -15,5 +14,5 @@ class Movie(models.Model):
     trailer_pic = models.URLField()
     trailer_video = models.URLField()
     rating = models.IntegerField(max = 3)
-    is_active = models.BooleanField()  
+    is_active = models.BooleanField(default = False)  
     movie_duration = models.DurationField()
