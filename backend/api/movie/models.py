@@ -12,8 +12,8 @@ class Movie(models.Model):
     producer = models.CharField(max_length = 300)
     synopsis = models.CharField(max_length = 300)
     reviews = models.CharField(max_length = 300)
-    trailer_pic = models.ImageField(upload_to = 'pics/')
-    trailer_video = models.FileField(upload_to='videos/', null=True, verbose_name="")
+    trailer_pic = models.ImageField(upload_to = 'pics/')#this has to be a hyperlink field (models.URLField)
+    trailer_video = models.FileField(upload_to='videos/', null=True, verbose_name="")  #same goes in here
     rating = models.FloatField()
     show_date = models.DateField() 
     #// showroom table, movie id will be a foreign key
