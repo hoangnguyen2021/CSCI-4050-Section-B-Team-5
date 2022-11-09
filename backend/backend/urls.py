@@ -32,8 +32,7 @@ urlpatterns = [
     # path('api/' ,  include('auth.urls')),
     path('auth/',include('djoser.urls')),
     path('auth/' , include('djoser.urls.jwt')),
-    path('users/' , UserViewSet.as_view({'get' : 'get_user_list'}) )
-   
+    path('users/' , include('accounts.urls')),
     
 ]
 urlpatterns+= router.urls
