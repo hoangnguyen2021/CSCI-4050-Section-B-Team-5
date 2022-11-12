@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'accounts',
     'rest_framework',
-    'djoser'
+    'djoser',
+    'api',
+    'api.movie'
 ]
 
 MIDDLEWARE = [
@@ -131,7 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES':{
-        'rest_framework.permissions.IsAuthenticated'
+        'rest_framework.permissions.IsAuthenticated',
     },
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
