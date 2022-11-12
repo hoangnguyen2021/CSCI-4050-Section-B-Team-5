@@ -1,2 +1,3 @@
 *.pyc
 backend/debug.log
+backend/accounts/migrations/0005_useraccount_cardnum_useraccount_cvv_and_more.py

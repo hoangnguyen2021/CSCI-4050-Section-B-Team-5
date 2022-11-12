@@ -1,0 +1,69 @@
+import { useState } from "react";
+import BackToHomeNavigation from "../../components/BackToHomeNavigation";
+import BackgroundOverlay from "../../components/BackgroundOverlay";
+import InputField from "../../components/InputField";
+import SelectMenu from "../../components/SelectMenu";
+import DateField from "../../components/DateField";
+import InputArea from "../../components/InputArea";
+import NumberField from "../../components/NumberField";
+import SubmitButton from "../../components/SubmitButton";
+
+const categories = [{ id: 0, name: "Action" }];
+const ratings = [
+  { id: 0, name: "G" },
+  { id: 1, name: "PG" },
+  { id: 2, name: "PG-13" },
+  { id: 3, name: "R" },
+  { id: 4, name: "NC-17" },
+];
+
+export default function MovieForm() {
+  const [title, setTitle] = useState();
+  const [category, setCategory] = useState(categories[0]);
+  const [rating, setRating] = useState(ratings[0]);
+  const [duration, setDuration] = useState();
+  const [director, setDirector] = useState();
+  const [producer, setProducer] = useState();
+  const [cast, setCast] = useState();
+  const [synopsis, setSynopsis] = useState();
+  const [month, setMonth] = useState({ id: 1, name: "Jan" });
+  const [day, setDay] = useState({ id: 1, name: "1" });
+  const [year, setYear] = useState({ id: 1, name: 2004 });
+  const [posterUrl, setPosterUrl] = useState();
+  const [trailerUrl, setTrailerUrl] = useState();
+
+  return (
+    <div className="bg-background">
+      <BackToHomeNavigation text="Back to Manage Movies" href="/manageMovies" />
+      <div className="relative">
+        <BackgroundOverlay
+          src="https://wallpaper.dog/large/20493433.jpg"
+          opacity={70}
+        />
+        <div className="relative flex justify-center items-center py-20">
+          <div className="basis-1/2 flex flex-col items-center bg-background-variant rounded-lg shadow-md px-8 py-10">
+            <form className="w-full flex flex-col gap-y-3">
+              <h3 className="text-xl font-semibold text-center">Add Movies</h3>
+              <InputField label="Title" input={title} setInput={setTitle} />
+              <div className="grid grid-cols-2 gap-x-10">
+                <SelectMenu label="Category" options={categories} selected={category} setSelected={setCategory} />
+                <SelectMenu label="Rating" options={ratings} selected={rating} setSelected={setRating} />
+              </div>
+              <NumberField label="Duration (in minutes)" min={0} max={300} input={duration} setInput={setDuration} />
+              <InputField label="Director" input={director} setInput={setDirector} />
+              <InputField label="Producer" input={producer} setInput={setProducer} />
+              <InputField label="Cast" input={cast} setInput={setCast} />
+              <InputArea label="Synopsis" input={synopsis} setInput={setSynopsis} />
+              <DateField label="Released Date" month={month} day={day} year={year} setMonth={setMonth} setDay={setDay} setYear={setYear} />
+              <InputField label="Poster URL" input={posterUrl} setInput={setPosterUrl} />
+              <InputField label="Trailer URL" input={trailerUrl} setInput={setTrailerUrl} />
+              <div className="pt-10 pb-5 flex justify-center">
+                <SubmitButton text="Add movie" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

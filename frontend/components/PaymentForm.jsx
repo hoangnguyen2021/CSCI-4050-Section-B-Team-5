@@ -1,9 +1,9 @@
 import { useState } from "react";
 import AddButton from "./AddButton";
-import CardNumberInputField from "./CardNumberInputField";
+import CardNumberField from "./CardNumberField";
 import Modal from "./Modal";
 import PaymentMethods from "./PaymentMethods";
-import Dropdown from "./Dropdown";
+import SelectMenu from "./SelectMenu";
 import InputField from "./InputField";
 import PillButton from "./PillButton";
 import { CVVSvg, ZipCodeSvg } from "./Svg";
@@ -58,10 +58,10 @@ const PaymentForm = () => {
               src="https://amc-theatres-res.cloudinary.com/image/upload/v1556564205/amc-cdn/static/images/forms/accepted_cards.png"
             />
           </div>
-          <CardNumberInputField />
+          <CardNumberField />
           <div className="grid grid-cols-2 gap-x-10">
-            <Dropdown label="Exp. Month" options={months} />
-            <Dropdown label="Exp. Year" options={years} />
+            <SelectMenu label="Exp. Month" options={months} />
+            <SelectMenu label="Exp. Year" options={years} />
           </div>
           <div className="grid grid-cols-2 gap-x-10">
             <InputField label="CVV" placeholder="CVV" icon={<CVVSvg />} />
