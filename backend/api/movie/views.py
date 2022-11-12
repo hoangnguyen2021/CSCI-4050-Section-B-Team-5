@@ -40,7 +40,7 @@ class MovieViewSet(viewsets.ModelViewSet):
 class MovieReadSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
     def list(self, request):
-        queryset = movie.objects.filter(is_active = True)
+        queryset = movie.objects.filter(is_active = False)
         serializer = MovieSerializers(queryset , many = True)
         return Response(serializer.data , status = status.HTTP_200_OK)
     
