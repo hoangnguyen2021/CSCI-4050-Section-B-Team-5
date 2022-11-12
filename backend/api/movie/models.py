@@ -1,4 +1,5 @@
 from django.db import models
+from showroom.models import Showroom
 
 # Create your models here.
 
@@ -25,3 +26,15 @@ class Movie(models.Model):
     is_active = models.BooleanField()  
     movie_duration = models.DurationField()
     #//Store as minutes
+
+#newly created models for scheduling movies
+class ScheduleMovie(models.Model):
+    start_time = models.TimeField()
+    start_date = models.DateField()
+    movie_name = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    end_date = models.DateField()
+    screen_number = models.ForeignKey(Showroom, on_delete=models.CASCADE)
+
+#class ShowRoom(models.Model):
+#    showroom_name = models.CharField(max_length=200)
+#    total_seats = models.IntegerField()
