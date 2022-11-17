@@ -29,7 +29,7 @@ const MovieForm = () => {
   const { post } = useFetch();
   const router = useRouter();
 
-  const [title, setTitle] = useState();
+  const [title, setTitle] = useState("");
   const [category, setCategory] = useState(categories[0]);
   const [rating, setRating] = useState(ratings[0]);
   const [duration, setDuration] = useState("");
