@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'api',
-    'api.movie'
+    'api.movie',
+    'api.promotions'
 ]
 
 MIDDLEWARE = [
@@ -87,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'auth_system',
         'USER': 'postgres',
-        'PASSWORD': 'abc123',
+        'PASSWORD': 'dees',
         'HOST': 'localhost'
     }
 }
