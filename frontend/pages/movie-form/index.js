@@ -63,7 +63,7 @@ const MovieForm = () => {
         }
       );
       toast.success("Movie added successfully!");
-      router.push("/manageMovies");
+      router.push("/manage-movies");
       console.log(response.data);
     } catch (error) {
       const responseData = error.response?.data;
