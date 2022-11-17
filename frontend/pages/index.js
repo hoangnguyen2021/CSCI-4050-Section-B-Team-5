@@ -283,28 +283,6 @@ export default function Homepage() {
                       </Link>
                     </div>
 
-                    {/* Mobile menu and search (lg-) */}
-                    <div className="flex flex-1 items-center lg:hidden">
-                      <button
-                        type="button"
-                        className="-ml-2 p-2 text-on-primary"
-                        onClick={() => setMobileMenuOpen(true)}
-                      >
-                        <span className="sr-only">Open menu</span>
-                        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-                      </button>
-
-                      {/* Search */}
-                      <a href="/movie-form" className="ml-2 p-2 text-on-primary">
-                        <span className="sr-only">Search</span>
-                        <MagnifyingGlassIcon
-                          className="h-6 w-6"
-                          aria-hidden="true" 
-                        /> 
-                        
-                      </a>
-                    </div>
-
                     {/* Logo (lg-) */}
                     <a href="#" className="lg:hidden">
                       <span className="sr-only">Your Company</span>
