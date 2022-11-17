@@ -6,3 +6,4 @@ class Promotions(models.Model):
     promo_code = models.CharField(max_length = 8)
     is_active = models.BooleanField(default="false")
     percentage = models.FloatField(max = 100.00)
+    expiration_date = models.DateField()
