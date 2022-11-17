@@ -295,12 +295,13 @@ export default function Homepage() {
                       </button>
 
                       {/* Search */}
-                      <a href="#" className="ml-2 p-2 text-on-primary">
+                      <a href="/movie-form" className="ml-2 p-2 text-on-primary">
                         <span className="sr-only">Search</span>
                         <MagnifyingGlassIcon
                           className="h-6 w-6"
-                          aria-hidden="true"
-                        />
+                          aria-hidden="true" 
+                        /> 
+                        
                       </a>
                     </div>
 
@@ -325,7 +326,7 @@ export default function Homepage() {
 
                     <div className="flex flex-1 items-center justify-end">
                       <a
-                        href="#"
+                        href="search/index.html"
                         className="hidden text-sm font-medium text-on-primary lg:block"
                       >
                         <svg
