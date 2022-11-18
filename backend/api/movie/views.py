@@ -44,7 +44,7 @@ class MovieReadSet(viewsets.ModelViewSet):
         serializer = MovieSerializers(queryset , many = True)
         return Response(serializer.data , status = status.HTTP_200_OK)
     
-class MovieViewSet(viewsets.ViewSet):
+class MovieSearchSet(viewsets.ViewSet):
     def get_movie_list(self, request):
         queryset = movie.objects.filter(is_active = True)
         serializer = MovieSerializers(queryset, many = True)
