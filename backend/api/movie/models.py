@@ -1,11 +1,9 @@
 from django.db import models
-from showroom.models import Showroom
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 
-class Movie(models.Model):
-    movie_title = models.CharField(max_length = 100)
-    #movie_category = models.IntegerField() //it can be a string Horror, only a type for a movie
+class movie(models.Model):
+    movie_title = models.CharField(max_length = 100 , unique = True)
     movie_category = models.CharField(max_length = 100)
 
     movie_cast = models.CharField()
@@ -13,29 +11,12 @@ class Movie(models.Model):
     director = models.CharField(max_length = 100)
     producer = models.CharField(max_length = 300)
     synopsis = models.CharField(max_length = 300)
-    reviews = models.CharField(max_length = 300)
-    trailer_pic = models.URLField()
-    trailer_video = models.URLField()
-    rating = models.IntegerField()
-    #//0:G, 1:PG, 2:PG-13, 3:R, 4:NC-17
-    release_date = models.DateField()
-    #//YYYY-MM-DD as string
-
-    #//ticket_price = models.FloatField()
-    #//ticket prices are static based upon age-- not the movie itself
-    is_active = models.BooleanField()  
+    trailer_pic_url = models.URLField()
+    trailer_video_url = models.URLField()
+    rating = models.IntegerField(validators=[
+            MaxValueValidator(4)
+        ])
+    is_active = models.BooleanField(default = False)  
     movie_duration = models.DurationField()
-    #//Store as minutes
-
-#newly created models for scheduling movies
-class ScheduleMovie(models.Model):
-    start_time = models.TimeField()
-    start_date = models.DateField()
-    movie_name = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    end_date = models.DateField()
-    screen_number = models.ForeignKey(Showroom, on_delete=models.CASCADE)
-    end_time = start_time + Movie.movie_duration
-
-#class ShowRoom(models.Model):
-#    showroom_name = models.CharField(max_length=200)
-#    total_seats = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
