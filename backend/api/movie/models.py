@@ -6,7 +6,7 @@ class movie(models.Model):
     movie_title = models.CharField(max_length = 100 , unique = True)
     movie_category = models.CharField(max_length = 100)
 
-    movie_cast = models.CharField()
+    movie_cast = models.CharField(max_length=3000)
     #// csv of all cast
     director = models.CharField(max_length = 100)
     producer = models.CharField(max_length = 300)
