@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'api',
-    'api.movie'
+    'api.movie',
+    'api.promotions'
 ]
 
 MIDDLEWARE = [
