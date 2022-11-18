@@ -7,7 +7,7 @@ from movie.models import Movie
 
 class Show(models.Model):
     start_time = models.TimeField()
-    end_time = models.TimeField()
+    end_time = start_time + Movie.movie_duration
     #//movie table, calculate show_time + duration rounded to nearest
     #//30 mins
 
