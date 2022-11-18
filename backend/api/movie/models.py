@@ -34,6 +34,7 @@ class ScheduleMovie(models.Model):
     movie_name = models.ForeignKey(Movie, on_delete=models.CASCADE)
     end_date = models.DateField()
     screen_number = models.ForeignKey(Showroom, on_delete=models.CASCADE)
+    end_time = start_time + Movie.movie_duration
 
 #class ShowRoom(models.Model):
 #    showroom_name = models.CharField(max_length=200)
