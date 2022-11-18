@@ -1,4 +1,7 @@
 from django.db import models
+from showroom.models import Showroom
+from movie.models import Movie
+
 
 # Create your models here.
 
@@ -18,5 +21,7 @@ class Show(models.Model):
     #// first movie runs at 9:00 AM
     #// last movie runs at 10:00 PM
 
-    movie_id = models.CharField()
+    movie_id = models.ForeignKey(Movie)
     #//foreign key from movie table
+
+    showroom_id = models.ForeignKey(Showroom)
