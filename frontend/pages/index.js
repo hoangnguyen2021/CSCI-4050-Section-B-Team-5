@@ -304,7 +304,7 @@ export default function Homepage() {
 
                     <div className="flex flex-1 items-center justify-end">
                       <a
-                        href="#"
+                        href="search/index.html"
                         className="hidden text-sm font-medium text-on-primary lg:block"
                       >
                         <svg

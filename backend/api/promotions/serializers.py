@@ -5,4 +5,12 @@ class PromotionSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Promotions
-        exclude = ['is_active']
+        #exclude = ['is_active']
+        fields = '__all__'
+
+class InsertDataSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Promotions
+        fields = '__all__'
+        #fields = ['promoInfo']

@@ -10,21 +10,26 @@ import DateField from "../../components/DateField";
 import InputArea from "../../components/InputArea";
 import NumberField from "../../components/NumberField";
 import SubmitButton from "../../components/SubmitButton";
+import { ratings } from "../../utils/config";
 
-const categories = [{ id: 0, name: "Action" }];
-const ratings = [
-  { id: 0, name: "G" },
-  { id: 1, name: "PG" },
-  { id: 2, name: "PG-13" },
-  { id: 3, name: "R" },
-  { id: 4, name: "NC-17" },
+const categories = [
+  { id: 0, name: "Action" },
+  { id: 1, name: "Sci-Fi" },
+  { id: 2, name: "Horror" },
+  { id: 3, name: "Drama" },
+  { id: 4, name: "Fantasy" },
+  { id: 5, name: "Animation" },
+  { id: 6, name: "Comedy" },
+  { id: 7, name: "Family" },
+  { id: 8, name: "Western" },
+  { id: 9, name: "Documentary" }
 ];
 
 const MovieForm = () => {
   const { post } = useFetch();
   const router = useRouter();
 
-  const [title, setTitle] = useState();
+  const [title, setTitle] = useState("");
   const [category, setCategory] = useState(categories[0]);
   const [rating, setRating] = useState(ratings[0]);
   const [duration, setDuration] = useState("");
@@ -78,7 +83,7 @@ const MovieForm = () => {
 
   return (
     <div className="bg-background">
-      <BackToHomeNavigation text="Back to Manage Movies" href="/manageMovies" />
+      <BackToHomeNavigation text="Back to Manage Movies" href="/manage-movies" />
       <div className="relative">
         <BackgroundOverlay
           src="https://wallpaper.dog/large/20493433.jpg"
