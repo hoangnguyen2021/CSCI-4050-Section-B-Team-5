@@ -4,10 +4,20 @@ from movie.models import Movie
 
 
 # Create your models here.
+def calc_end_time(start_time, duration):
+    end_time = start_time + duration
+    if not (end_time.minute == 30 or end_time.minute == 0):
+        if (end_time.minute + 15) <= 30:
+            end_time.minute = 30
+        else:
+            end_time.hour = end_time.hour + 1
+            end_time.minute, end_time.second= 0
+    return end_time
 
 class Show(models.Model):
+
     start_time = models.TimeField()
-    end_time = start_time + Movie.movie_duration
+    end_time = calc_end_time(start_time, Movie.movie_duration)
     #//movie table, calculate show_time + duration rounded to nearest
     #//30 mins
 
