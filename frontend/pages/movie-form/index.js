@@ -92,7 +92,7 @@ const MovieForm = () => {
         <div className="relative flex justify-center items-center py-20">
           <form className="basis-1/2 flex flex-col gap-y-3 bg-background-variant rounded-lg shadow-md px-8 py-10"
             onSubmit={addMovie}>
-            <h3 className="text-xl font-semibold text-center">Add Movies</h3>
+            <h3 className="text-xl text-on-primary font-semibold text-center">Add Movies</h3>
             <InputField label="Title" input={title} setInput={setTitle} />
             <div className="grid grid-cols-2 gap-x-10">
               <SelectMenu
