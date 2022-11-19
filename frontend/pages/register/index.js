@@ -72,7 +72,7 @@ const RegisterPage = () => {
             </h2>
 
             <form className="w-full flex flex-col items-center gap-y-3" onSubmit={registerUser}>
-              <h3 className="text-xl font-semibold text-center">Sign Up</h3>
+              <h3 className="text-xl text-on-primary font-semibold text-center">Sign Up</h3>
               <InputField placeholder="Name" input={name} setInput={setName} />
               <PhoneNumberField
                 placeholder="Phone Number"

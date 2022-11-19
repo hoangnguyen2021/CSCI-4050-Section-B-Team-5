@@ -62,7 +62,7 @@ const ChangePasswordPage = () => {
             </h2>
 
             <form className="w-full flex flex-col items-center gap-y-3" onSubmit={changePassword}>
-              <h3 className="text-xl font-semibold text-center">
+              <h3 className="text-xl text-on-primary font-semibold text-center">
                 Reset Password
               </h3>
               <PasswordField placeholder="New Password" password={newPassword}
