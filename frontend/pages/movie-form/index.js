@@ -90,71 +90,70 @@ const MovieForm = () => {
           opacity={70}
         />
         <div className="relative flex justify-center items-center py-20">
-          <div className="basis-1/2 flex flex-col items-center bg-background-variant rounded-lg shadow-md px-8 py-10">
-            <form className="w-full flex flex-col gap-y-3" onSubmit={addMovie}>
-              <h3 className="text-xl font-semibold text-center">Add Movies</h3>
-              <InputField label="Title" input={title} setInput={setTitle} />
-              <div className="grid grid-cols-2 gap-x-10">
-                <SelectMenu
-                  label="Category"
-                  options={categories}
-                  selected={category}
-                  setSelected={setCategory}
-                />
-                <SelectMenu
-                  label="Rating"
-                  options={ratings}
-                  selected={rating}
-                  setSelected={setRating}
-                />
-              </div>
-              <NumberField
-                label="Duration (in minutes)"
-                min={0}
-                max={300}
-                input={duration}
-                setInput={setDuration}
+          <form className="basis-1/2 flex flex-col gap-y-3 bg-background-variant rounded-lg shadow-md px-8 py-10"
+            onSubmit={addMovie}>
+            <h3 className="text-xl font-semibold text-center">Add Movies</h3>
+            <InputField label="Title" input={title} setInput={setTitle} />
+            <div className="grid grid-cols-2 gap-x-10">
+              <SelectMenu
+                label="Category"
+                options={categories}
+                selected={category}
+                setSelected={setCategory}
               />
-              <InputField
-                label="Director"
-                input={director}
-                setInput={setDirector}
+              <SelectMenu
+                label="Rating"
+                options={ratings}
+                selected={rating}
+                setSelected={setRating}
               />
-              <InputField
-                label="Producer"
-                input={producer}
-                setInput={setProducer}
-              />
-              <InputField label="Cast" input={cast} setInput={setCast} />
-              <InputArea
-                label="Synopsis"
-                input={synopsis}
-                setInput={setSynopsis}
-              />
-              <DateField
-                label="Released Date"
-                month={month}
-                day={day}
-                year={year}
-                setMonth={setMonth}
-                setDay={setDay}
-                setYear={setYear}
-              />
-              <InputField
-                label="Poster URL"
-                input={posterUrl}
-                setInput={setPosterUrl}
-              />
-              <InputField
-                label="Trailer URL"
-                input={trailerUrl}
-                setInput={setTrailerUrl}
-              />
-              <div className="pt-10 pb-5 flex justify-center">
-                <SubmitButton text="Add movie" />
-              </div>
-            </form>
-          </div>
+            </div>
+            <NumberField
+              label="Duration (in minutes)"
+              min={0}
+              max={300}
+              input={duration}
+              setInput={setDuration}
+            />
+            <InputField
+              label="Director"
+              input={director}
+              setInput={setDirector}
+            />
+            <InputField
+              label="Producer"
+              input={producer}
+              setInput={setProducer}
+            />
+            <InputField label="Cast" input={cast} setInput={setCast} />
+            <InputArea
+              label="Synopsis"
+              input={synopsis}
+              setInput={setSynopsis}
+            />
+            <DateField
+              label="Released Date"
+              month={month}
+              day={day}
+              year={year}
+              setMonth={setMonth}
+              setDay={setDay}
+              setYear={setYear}
+            />
+            <InputField
+              label="Poster URL"
+              input={posterUrl}
+              setInput={setPosterUrl}
+            />
+            <InputField
+              label="Trailer URL"
+              input={trailerUrl}
+              setInput={setTrailerUrl}
+            />
+            <div className="pt-10 pb-5 flex justify-center">
+              <SubmitButton text="Add movie" />
+            </div>
+          </form>
         </div>
       </div>
     </div>
