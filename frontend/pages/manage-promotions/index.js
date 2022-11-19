@@ -8,25 +8,26 @@ import Modal from "../../components/Modal";
 import InputField from "../../components/InputField";
 import NumberField from "../../components/NumberField";
 import DateField from "../../components/DateField";
+import SubmitButton from "../../components/SubmitButton";
 import { navs } from "../../utils/config";
 
 const ManagePromotionsPage = () => {
-    const [promotions, setPromotions] = useState([]);
+    const [promos, setPromos] = useState([]);
     const [open, setOpen] = useState(false);
     const [promoName, setPromoName] = useState("");
     const [month, setMonth] = useState({ id: 1, name: "Jan" });
     const [day, setDay] = useState({ id: 1, name: "1" });
     const [year, setYear] = useState({ id: 1, name: 2004 });
     const [promoCode, setPromoCode] = useState("");
-    const [percentage, setPercentage] = useState("");
+    const [promoPct, setPromoPct] = useState("");
 
-    const { get } = useFetch();
+    const { get, post } = useFetch();
 
     useEffect(() => {
-        getPromotions();
+        getPromos();
     }, []);
 
-    const getPromotions = async () => {
+    const getPromos = async () => {
         try {
             const response = await get("api/movie/list");
             //const responseData = response.data;
@@ -61,11 +62,43 @@ const ManagePromotionsPage = () => {
                 },
             ];
             if (responseData) {
-                setPromotions(responseData);
+                setPromos(responseData);
                 console.log(responseData);
             }
         } catch (e) {
-            toast.error("Failed to get movies!");
+            toast.error("Failed to get promotions!");
+        }
+    };
+
+    const addPromo = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await post(
+                "api/promo/create",
+                {
+                    promo_name: promoName,
+                    promo_code: promoCode,
+                    promo_expiration: `${month.id}/${day.name}/${year.name}`,
+                    promo_percentage: promoPct
+                },
+                {
+                    headers: {
+                        Authorization: "JWT " + localStorage.getItem("access"),
+                    },
+                }
+            );
+            toast.success("Promo added successfully!");
+            router.push("/manage-promotions");
+            console.log(response.data);
+        } catch (error) {
+            const responseData = error.response?.data;
+            if (responseData) {
+                toast.error("Cannot add promotion!");
+            } else {
+                toast.error("Cannot add promotion!");
+            }
+            console.error(error);
         }
     };
 
@@ -90,20 +123,20 @@ const ManagePromotionsPage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {promotions && promotions.map(promotion => {
+                                {promos && promos.map(promo => {
                                     return (
-                                        <tr key={promotion.id}>
-                                            <td className="border border-slate-700">{promotion.name}</td>
-                                            <td className="border border-slate-700">{promotion.code}</td>
-                                            <td className="border border-slate-700">{promotion.expiration_date}</td>
-                                            <td className="border border-slate-700">{promotion.percentage}</td>
+                                        <tr key={promo.id}>
+                                            <td className="border border-slate-700">{promo.name}</td>
+                                            <td className="border border-slate-700">{promo.code}</td>
+                                            <td className="border border-slate-700">{promo.expiration_date}</td>
+                                            <td className="border border-slate-700">{promo.percentage}</td>
                                         </tr>);
                                 })}
                             </tbody>
                         </table>
                         <AddButton text="Add Promotion" open={open} setOpen={setOpen} />
                         <Modal open={open} setOpen={setOpen} title="Add Promotion">
-                            <div className="flex flex-col gap-y-5">
+                            <form className="flex flex-col gap-y-3" onSubmit={addPromo}>
                                 <InputField label="Promo Name" input={promoName} setInput={setPromoName} />
                                 <DateField label="Expiration Date" month={month}
                                     day={day}
@@ -112,8 +145,11 @@ const ManagePromotionsPage = () => {
                                     setDay={setDay}
                                     setYear={setYear} />
                                 <InputField label="Promo Code" input={promoCode} setInput={setPromoCode} />
-                                <NumberField label="Percentage" input={percentage} setInput={setPercentage} />
-                            </div>
+                                <NumberField label="Promo Percentage" input={promoPct} setInput={setPromoPct} />
+                                <div className="pt-10 pb-5 flex justify-center">
+                                    <SubmitButton text="Add promo" />
+                                </div>
+                            </form>
                         </Modal>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ const months = [
   { id: 1, name: "Jan" },
   { id: 2, name: "Feb" },
   { id: 3, name: "Mar" },
-  { id: 4, name: "April" },
+  { id: 4, name: "Apr" },
   { id: 5, name: "May" },
   { id: 6, name: "Jun" },
   { id: 7, name: "Jul" },
@@ -73,29 +73,26 @@ const years = [
 
 const DateField = ({ label, month, day, year, setMonth, setDay, setYear }) => {
   return (
-    <label className="relative w-full flex flex-col">
-      <span className="text-on-primary text-base font-medium">{label}</span>
-      <div className="grid grid-cols-3 gap-x-10">
-        <SelectMenu
-          label="Month"
-          options={months}
-          selected={month}
-          setSelected={setMonth}
-        />
-        <SelectMenu
-          label="Day"
-          options={days}
-          selected={day}
-          setSelected={setDay}
-        />
-        <SelectMenu
-          label="Year"
-          options={years}
-          selected={year}
-          setSelected={setYear}
-        />
-      </div>
-    </label>
+    <div className="grid grid-cols-3 gap-x-10">
+      <SelectMenu
+        label="Month"
+        options={months}
+        selected={month}
+        setSelected={setMonth}
+      />
+      <SelectMenu
+        label="Day"
+        options={days}
+        selected={day}
+        setSelected={setDay}
+      />
+      <SelectMenu
+        label="Year"
+        options={years}
+        selected={year}
+        setSelected={setYear}
+      />
+    </div>
   );
 };
 
