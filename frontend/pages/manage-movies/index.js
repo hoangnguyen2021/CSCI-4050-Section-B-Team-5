@@ -37,7 +37,7 @@ const ManageMoviesPage = () => {
         />
         <div className="relative flex justify-center items-center py-20">
           <div className="basis-5/6 flex flex-col gap-y-3 bg-background-variant rounded-lg shadow-md px-8 py-10">
-            <h3 className="text-xl font-semibold text-center">Manage Movies</h3>
+            <h3 className="text-xl text-on-primary font-semibold text-center">Manage Movies</h3>
             <table className="table-auto border-collapse border border-slate-500">
               <thead>
                 <tr>

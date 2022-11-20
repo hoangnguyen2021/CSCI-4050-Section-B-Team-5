@@ -21,7 +21,7 @@ const CardNumberField = () => {
     <label className="relative w-full flex flex-col">
       <span className="text-on-primary text-base font-medium">Card Number</span>
       <input
-        className="pl-12 pr-2 py-2 bg-transparent border-0 border-b border-on-primary placeholder-gray-300 text-base focus:ring-0 focus:border-0 focus:border-b-2 focus:border-on-primary"
+        className="pl-12 pr-2 py-2 bg-transparent border-0 border-b border-on-primary placeholder-gray-300 text-on-primary text-base focus:ring-0 focus:border-0 focus:border-b-2 focus:border-on-primary"
         type="text"
         name="card_number"
         placeholder="0000 0000 0000 0000"

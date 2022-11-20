@@ -62,7 +62,7 @@ const AdminLoginPage = () => {
               className="w-full flex flex-col items-center gap-y-3"
               onSubmit={loginAdmin}
             >
-              <h3 className="text-xl font-semibold text-center">Admin Login</h3>
+              <h3 className="text-xl text-on-primary font-semibold text-center">Admin Login</h3>
               <EmailField
                 placeholder="Email"
                 email={email}

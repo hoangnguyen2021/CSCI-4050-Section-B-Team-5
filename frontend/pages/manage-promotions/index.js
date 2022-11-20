@@ -116,24 +116,24 @@ const ManagePromotionsPage = () => {
                 />
                 <div className="relative flex justify-center items-center py-20">
                     <div className="basis-5/6 flex flex-col gap-y-3 bg-background-variant rounded-lg shadow-md px-8 py-10">
-                        <h3 className="text-xl font-semibold text-center">Manage Promotions</h3>
+                        <h3 className="text-xl text-on-primary font-semibold text-center">Manage Promotions</h3>
                         <table className="table-auto border-collapse border border-slate-500">
                             <thead>
                                 <tr>
-                                    <th className="border border-slate-600">Promotion</th>
-                                    <th className="border border-slate-600">Code</th>
-                                    <th className="border border-slate-600">Expiration Date</th>
-                                    <th className="border border-slate-600">Percentage</th>
+                                    <th className="border border-slate-600 text-on-primary">Promotion</th>
+                                    <th className="border border-slate-600 text-on-primary">Code</th>
+                                    <th className="border border-slate-600 text-on-primary">Expiration Date</th>
+                                    <th className="border border-slate-600 text-on-primary">Percentage</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {promos && promos.map(promo => {
                                     return (
                                         <tr key={promo.id}>
-                                            <td className="border border-slate-700">{promo.name}</td>
-                                            <td className="border border-slate-700">{promo.code}</td>
-                                            <td className="border border-slate-700">{promo.expiration_date}</td>
-                                            <td className="border border-slate-700">{promo.percentage}</td>
+                                            <td className="border border-slate-700 text-on-primary">{promo.name}</td>
+                                            <td className="border border-slate-700 text-on-primary">{promo.code}</td>
+                                            <td className="border border-slate-700 text-on-primary">{promo.expiration_date}</td>
+                                            <td className="border border-slate-700 text-on-primary">{promo.percentage}</td>
                                         </tr>);
                                 })}
                             </tbody>
