@@ -45,7 +45,10 @@ INSTALLED_APPS = [
     'djoser',
     'api',
     'api.movie',
+    'api.show',
+    'api.showroom',
     'api.promotions'
+
 ]
 
 MIDDLEWARE = [
