@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'api',
     'api.movie',
     'api.show',
-    'api.showroom'
+    'api.showroom',
+    'api.promotions'
+
 ]
 
 MIDDLEWARE = [

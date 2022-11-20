@@ -40,13 +40,30 @@ class MovieViewSet(viewsets.ModelViewSet):
 class MovieReadSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
     def list(self, request):
-        queryset = movie.objects.filter(is_active = True)
+        queryset = movie.objects.filter(is_active = False)
         serializer = MovieSerializers(queryset , many = True)
         return Response(serializer.data , status = status.HTTP_200_OK)
     
+class MovieSearchSet(viewsets.ViewSet):
+    def get_movie_list(self, request):
+        queryset = movie.objects.filter(is_active = True)
+        serializer = MovieSerializers(queryset, many = True)
+        return Response(serializer.data, status = status.HTTP_200_OK)
 
-     
+    def search_movie_title(self, request, input):
+        queryset = movie.objects.filter(is_active = True, movie_title__icontains = input)
+        serializer = MovieSerializers(queryset, many = True)
+        return Response(serializer.data, status = status.HTTP_200_OK)
 
+    def search_movie_category(self, request, input):
+        queryset = movie.objects.filter(is_active = True, movie_category__icontains = input)
+        serializer = MovieSerializers(queryset, many = True)
+        return Response(serializer.data, status = status.HTTP_200_OK)
+
+    def search_movie_director(self, request, input):
+        queryset = movie.objects.filter(is_active = True, director__icontains = input)
+        serializer = MovieSerializers(queryset, many = True)
+        return Response(serializer.data, status = status.HTTP_200_OK)
 
 
 

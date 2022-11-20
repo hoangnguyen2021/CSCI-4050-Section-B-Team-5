@@ -6,4 +6,4 @@ class UserCreateSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
         model = User
         fields = ('id', 'name','email','phonenumber', 'password',
-        'cardnum', 'cvv', 'expiration_year', 'zip_code')
+        'cardnum', 'cvv', 'expiration_year', 'zip_code', 'promotion_subscription')
