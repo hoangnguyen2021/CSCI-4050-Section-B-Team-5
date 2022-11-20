@@ -50,7 +50,7 @@ const ResetPasswordPage = () => {
               <span className="text-on-primary">Cinema</span>
             </h2>
             <form className="w-full flex flex-col items-center gap-y-3" onSubmit={sendVerificationEmail}>
-              <h3 className="text-xl font-semibold text-center">
+              <h3 className="text-xl text-on-primary font-semibold text-center">
                 Reset Password
               </h3>
               <EmailField placeholder="Email" email={email} setEmail={setEmail} />
