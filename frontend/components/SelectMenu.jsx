@@ -50,7 +50,7 @@ const SelectMenu = ({ label, options, selected, setSelected }) => {
                         <span
                           className={classNames(
                             selected ? "font-semibold" : "font-normal",
-                            "block truncate text-base"
+                            "block truncate text-base text-on-primary"
                           )}
                         >
                           {option.name}

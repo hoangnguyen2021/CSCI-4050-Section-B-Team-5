@@ -1,7 +1,9 @@
 const Checkbox = ({ label, value, setValue }) => {
   return (
     <div>
-      <span className="text-base font-normal text-center">{label} </span>
+      <span className="text-base text-on-primary font-normal text-center">
+        {label}{" "}
+      </span>
       <input
         type="checkbox"
         value={value}
