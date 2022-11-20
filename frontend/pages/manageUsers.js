@@ -1,15 +1,26 @@
 import { Navbar } from "../components/AdminBar";
+import { useEffect, useState } from "react";
 import React from 'react';
-//import Dropdown from "../components/Dropdown";
+import Modal from "../components/Modal";
+import AddAdminForm from "../components/AddAdminForm";
 
 export default function ManageUsers() {
+  const [open, setOpen] = useState(false);
           return (
             <div className="adminNav-users">
 
         <Navbar />
         
 <div className="text-center">Users/Admins</div>
-
+<div
+            onClick={() => setOpen(true)}
+            className="text-sm text-center font-medium text-on-primary cursor-pointer hover:text-gray-100"
+          >
+            Add Admin
+          </div>
+          <Modal open={open} setOpen={setOpen} title="Add Admin">
+            <AddAdminForm />
+          </Modal>
 <table>
 <tbody>
   <tr>
@@ -63,20 +74,6 @@ export default function ManageUsers() {
   </tr>
   </tbody>
 </table>
-<form id="addPromo">
-        <div className="promo-container">
-          <div className="newPromoLabel">
-          <label>Add new Admin?</label>
-          </div>
-          <input type="text" placeholder = "Admin Name" name="adminName" required />
-        </div>
-        <div className="promo-container">
-          <input type="text" placeholder = "Admin Email" name="adminEmail" required />
-        </div>
-        <div className="promoButton-container">
-          <input type="submit"/>
-        </div>
-      </form>
           </div>
         );
       };
