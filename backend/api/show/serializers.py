@@ -4,4 +4,4 @@ from .models import Show
 class ShowSerializers(serializers.ModelSerializer):
     class Meta:
         model = Show
-        exclude = ["end_time"]
+        fields= '__all__'
