@@ -19,7 +19,7 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
-  const [promotion, setPromotion] = useState(0);
+  const [promotion, setPromotion] = useState(false);
   const router = useRouter();
 
   const registerUser = async (e) => {
@@ -34,7 +34,8 @@ const RegisterPage = () => {
         cardnum: "",
         cvv: "",
         expiration_year: "",
-        zip_code: ""
+        zip_code: "", 
+        promotion_subscription: promotion
       });
       toast.success("You are registered!");
       router.push('/login');

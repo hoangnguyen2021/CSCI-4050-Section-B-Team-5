@@ -10,6 +10,7 @@ import NumberField from "../../components/NumberField";
 import DateField from "../../components/DateField";
 import SubmitButton from "../../components/SubmitButton";
 import { navs } from "../../utils/config";
+import { useRouter } from "next/router";
 
 const ManagePromotionsPage = () => {
     const [promos, setPromos] = useState([]);
@@ -20,7 +21,8 @@ const ManagePromotionsPage = () => {
     const [year, setYear] = useState({ id: 1, name: 2004 });
     const [promoCode, setPromoCode] = useState("");
     const [promoPct, setPromoPct] = useState("");
-
+    const router = useRouter();
+    const [visibility, setVisibility] = useState(true);
     const { get, post } = useFetch();
 
     useEffect(() => {
@@ -75,20 +77,22 @@ const ManagePromotionsPage = () => {
 
         try {
             const response = await post(
-                "api/promo/create",
+                "api/promotions/create",
                 {
-                    promo_name: promoName,
-                    promo_code: promoCode,
-                    promo_expiration: `${month.id}/${day.name}/${year.name}`,
-                    promo_percentage: promoPct
-                },
-                {
+                    promotion_name: promoName,
+                    promotion_code: promoCode,
+                    promotion_expiration: `${year.name}-${month.id}-${day.name}`,
+                    promotion_percentage: promoPct
+                }
+                /*{
                     headers: {
                         Authorization: "JWT " + localStorage.getItem("access"),
                     },
-                }
+                }*/
             );
             toast.success("Promo added successfully!");
+            setVisibility(false);
+            setOpen(false);
             router.push("/manage-promotions");
             console.log(response.data);
         } catch (error) {
@@ -135,7 +139,7 @@ const ManagePromotionsPage = () => {
                             </tbody>
                         </table>
                         <AddButton text="Add Promotion" open={open} setOpen={setOpen} />
-                        <Modal open={open} setOpen={setOpen} title="Add Promotion">
+                        <Modal open={open} setOpen={setOpen} visible = {visibility} title="Add Promotion">
                             <form className="flex flex-col gap-y-3" onSubmit={addPromo}>
                                 <InputField label="Promo Name" input={promoName} setInput={setPromoName} />
                                 <DateField label="Expiration Date" month={month}
