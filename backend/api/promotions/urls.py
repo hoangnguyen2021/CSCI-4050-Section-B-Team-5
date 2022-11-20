@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
     path('savePromo/' , views.saveEmp),
-    path('addpromotion', views.insertEmp),
+    path('create', views.PromotionsReadSet.as_view({"post":"insertEmp"})),
     
 ]
