@@ -35,5 +35,11 @@
   color: red;
   position: fixed;
   top: 40px;
-  left: 35px;
+  left:580px;
+}
+.scheduleTag {
+  color: red;
+  position: fixed;
+  top: 60px;
+  left:580px;
 }
