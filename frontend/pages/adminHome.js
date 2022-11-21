@@ -1,10 +1,9 @@
-import { Navbar } from "../components/AdminBar";
-import React from 'react';
+import AdminPortalNav from "../components/AdminPortalNav";
 
 export default function AdminHome() {
     return (
         <div className="dark:bg-gray-800 bg-black relative overflow-hidden h-screen">
-            <Navbar />
+            <AdminPortalNav />
             <div className="h-24 sm:h-32 flex items-center z-30 w-full">
                 <div className="container mx-auto px-6 flex items-center justify-between">
 
