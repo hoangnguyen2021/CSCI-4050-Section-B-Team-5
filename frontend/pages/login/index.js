@@ -107,7 +107,7 @@ const LoginPage = () => {
               </div>
             </form>
             <div className="text-base font-medium text-center">
-              <span className="text-on-primary">Don't have an account? </span>
+              <span className="text-on-primary">Don&apos;t have an account? </span>
               <Link href="/register">
                 <span className="text-primary cursor-pointer">Join</span>
               </Link>
