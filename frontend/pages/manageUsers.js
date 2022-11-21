@@ -2,12 +2,13 @@ import { useState } from "react";
 import Modal from "../components/Modal";
 import AddAdminForm from "../components/AddAdminForm";
 import AdminPortalNav from "../components/AdminPortalNav";
+import { navs } from "../../utils/config";
 
 export default function ManageUsers() {
   const [open, setOpen] = useState(false);
   return (
     <div className="adminNav-users">
-      <AdminPortalNav />
+      <AdminPortalNav navs={navs} />
       <div className="text-center">Users/Admins</div>
       <div
         onClick={() => setOpen(true)}

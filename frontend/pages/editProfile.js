@@ -58,55 +58,55 @@ const EditProfilePage = () => {
 
   return (
     <div className="edit-profiles">
-                    <div className="back-to-home">
+      <div className="back-to-home">
         <Link href="/">
-    <button className="home"> Back to Home</button>
-    </Link>
-    </div>
-        <div id="editprofile">
-            <form>
-              <div className="form1">
-              <h1 className="text-center">Update your Information</h1>
-              <h3>Profile Info</h3>
-              <div>
-              <input className="fields" type="text" placeholder="Team B5" name={newName} 
-              setNewName={setNewName} />
-              </div>
-              <div>
-              <input className="fields" type="text" placeholder="4044440004" phonenumber={newPhonenumber} 
-              setNewPhone={setNewPhone} />
-              </div>
-              <div>
-              <input className="fields" type="text" placeholder="Card Number" cardnum={newCardNum} 
-              setNewCardNum={setNewCardNum} />
-              </div>
-              <div>
-              <input className="fields" type="text" placeholder="Expiration Date" expiration_year={newExpiration} 
-              setNewExpirationDate={setNewExpirationDate} />
-              </div>
-              <div>
-              <input className="fields" type="text" placeholder="CVV" cvv={newCVV} 
-              setCVV={setCVV} />
-              </div>
-              <div>
-              <input className="fields" type="text" placeholder="Zipcode" zip_code={newZipCode} 
-              setNewZip={setNewZip} />
-              </div>
-              <div className="createSpan text-center">
-          <Link href="/changePassword">
-          <button className="text-primary"> Change Password </button>
-          </Link>
-        </div>
-              <div>
+          <button className="home"> Back to Home</button>
+        </Link>
+      </div>
+      <div id="editprofile">
+        <form>
+          <div className="form1">
+            <h1 className="text-center">Update your Information</h1>
+            <h3>Profile Info</h3>
+            <div>
+              <input className="fields" type="text" placeholder="Team B5" name={newName}
+                setNewName={setNewName} />
+            </div>
+            <div>
+              <input className="fields" type="text" placeholder="4044440004" phonenumber={newPhonenumber}
+                setNewPhone={setNewPhone} />
+            </div>
+            <div>
+              <input className="fields" type="text" placeholder="Card Number" cardnum={newCardNum}
+                setNewCardNum={setNewCardNum} />
+            </div>
+            <div>
+              <input className="fields" type="text" placeholder="Expiration Date" expiration_year={newExpiration}
+                setNewExpirationDate={setNewExpirationDate} />
+            </div>
+            <div>
+              <input className="fields" type="text" placeholder="CVV" cvv={newCVV}
+                setCVV={setCVV} />
+            </div>
+            <div>
+              <input className="fields" type="text" placeholder="Zipcode" zip_code={newZipCode}
+                setNewZip={setNewZip} />
+            </div>
+            <div className="createSpan text-center">
+              <Link href="/changePassword">
+                <button className="text-primary"> Change Password </button>
+              </Link>
+            </div>
+            <div>
               <span>Subscribe to Promotions</span>
-              <input  type="checkbox" onChange={handleCheckbox}/>
-              </div>
-              <h3 id="incorrect-credentials" style={{color: 'red'}}></h3>
-              <button id="buttonstyle" type="submit" onSubmit={updateUser}>Update account information</button>
-              </div>
-            </form>
+              <input type="checkbox" onChange={handleCheckbox} />
+            </div>
+            <h3 id="incorrect-credentials" style={{ color: 'red' }}></h3>
+            <button id="buttonstyle" type="submit" onSubmit={updateUser}>Update account information</button>
           </div>
-          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 
