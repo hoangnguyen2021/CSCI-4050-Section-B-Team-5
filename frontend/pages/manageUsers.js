@@ -2,7 +2,7 @@ import { useState } from "react";
 import Modal from "../components/Modal";
 import AddAdminForm from "../components/AddAdminForm";
 import AdminPortalNav from "../components/AdminPortalNav";
-import { navs } from "../../utils/config";
+import { navs } from "../utils/config";
 
 export default function ManageUsers() {
   const [open, setOpen] = useState(false);

@@ -1,5 +1,5 @@
 import AdminPortalNav from "../components/AdminPortalNav";
-import { navs } from "../../utils/config";
+import { navs } from "../utils/config";
 
 export default function AdminHome() {
     return (
