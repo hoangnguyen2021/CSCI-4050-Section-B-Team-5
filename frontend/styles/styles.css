@@ -1,0 +1,45 @@
+#addPromo {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 8px;
+  margin: 10px;
+  
+}
+#movieTable {
+    /*font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 700px;
+    height: 500px;
+    float: left;*/
+    font-family: arial, sans-serif;
+            width:1400px;
+            height:200px;
+            position: fixed;
+            background-color: white;
+            top: 40%;
+            left: 18%;
+            margin-top: -250px;
+            margin-left: -250px;
+            border-radius: 20px;
+}
+#manageMovies {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  gap: 8px;
+  margin: 10px;
+  
+}
+.newMovieTag {
+  color: red;
+  position: fixed;
+  top: 40px;
+  left:580px;
+}
+.scheduleTag {
+  color: red;
+  position: fixed;
+  top: 60px;
+  left:580px;
+}
