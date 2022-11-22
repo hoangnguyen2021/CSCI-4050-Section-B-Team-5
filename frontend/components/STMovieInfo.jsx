@@ -1,7 +1,9 @@
+import { ratings } from "../utils/config";
 import { classNames, convertHhmmssToMinutes } from "../utils/utils";
 
 const STMovieInfo = ({ movieMeta, textCenter = false, long = false }) => {
-  const { movie_duration, rating, producer, director, movie_cast } = movieMeta;
+  const { movie_duration, rating, producer, director, movie_cast, synopsis } =
+    movieMeta;
   const durationInMin = convertHhmmssToMinutes(movie_duration);
   const hours = Math.floor(durationInMin / 60);
   const minutes = durationInMin % 60;
@@ -14,10 +16,10 @@ const STMovieInfo = ({ movieMeta, textCenter = false, long = false }) => {
           "text-md font-light text-on-primary"
         )}
       >
-        {hours} HRS {minutes} MIN | {rating}
+        {hours} HRS {minutes} MIN | {ratings.find((r) => r.id === rating)?.name}
       </div>
       {long && (
-        <div className="space-y-1">
+        <div className="space-y-2">
           <p className="text-on-primary text-md font-light">
             <span className="font-semibold">Producer: </span>
             <span>{producer}</span>
@@ -30,6 +32,10 @@ const STMovieInfo = ({ movieMeta, textCenter = false, long = false }) => {
             <span className="font-semibold">Cast: </span>
             <span>{movie_cast}</span>
           </p>
+          <div>
+            <p className="text-on-primary text-md font-semibold">Synopsis: </p>
+            <p className="text-on-primary text-md font-light">{synopsis}</p>
+          </div>
         </div>
       )}
     </div>
