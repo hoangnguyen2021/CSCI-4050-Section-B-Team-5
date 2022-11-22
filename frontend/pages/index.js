@@ -139,10 +139,10 @@ const Homepage = () => {
   const { get } = useFetch();
 
   useEffect(() => {
-    getMovies();
+    getNowPlayingMovies();
   }, []);
 
-  const getMovies = async () => {
+  const getNowPlayingMovies = async () => {
     try {
       const response = await get("api/movie/list");
       const responseData = response.data;
