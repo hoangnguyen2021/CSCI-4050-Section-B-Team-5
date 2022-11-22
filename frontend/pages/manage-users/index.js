@@ -38,20 +38,6 @@ const ManageUsersPage = () => {
                 </tr>
               </thead>
               <tbody>{/*}
-                {movies && movies.map(movie => {
-                  return (
-                    <tr key={movie.id}>
-                      <td className="border border-slate-700">{movie.id}</td>
-                      <td className="border border-slate-700">{movie.movie_title}</td>
-                      <td className="border border-slate-700">{movie.movie_category}</td>
-                      <td className="border border-slate-700">{ratings.find(r => r.id === movie.rating).name}</td>
-                      <td className="border border-slate-700">{movie.movie_duration}</td>
-                      <td className="border border-slate-700">{movie.director}</td>
-                      <td className="border border-slate-700">{movie.producer}</td>
-                      <td className="border border-slate-700">{movie.movie_cast}</td>
-                      <td className="border border-slate-700">{movie.synopsis}</td>
-                    </tr>);
-                })}
             */}
               </tbody>
             </table>
