@@ -16,7 +16,8 @@ class Show(models.Model):
     #//interval. There must be at least 10 minutes between the end_time
     #// of one movie and the show_time of the next movie.
 
-    show_date = models.DateField()
+    start_date = models.DateField()
+    end_date = models.DateField()
 
     #// first movie runs at 9:00 AM
     #// last movie runs at 10:00 PM
