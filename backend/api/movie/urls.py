@@ -9,5 +9,6 @@ urlpatterns = [
     path('filter_title', views.MovieSearchSet.as_view({"get":"title"})),
     path('filter_category', views.MovieSearchSet.as_view({"get":"category"})),
     path('filter_director', views.MovieSearchSet.as_view({"get":"director"})),
+    path('get_movie_by_id' , views.MovieSearchSet.as_view({"get":"get_movie_by_id"})),
 
 ]
