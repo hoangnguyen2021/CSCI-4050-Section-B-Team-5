@@ -4,6 +4,7 @@ import { useFetch } from "../../hooks/useFetch";
 import AdminPortalNav from "../../components/AdminPortalNav";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
 import { navs, ratings } from "../../utils/config";
+import { getHhmmFromHhmmss } from "../../utils/utils";
 
 const ManageMoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -60,11 +61,17 @@ const ManageMoviesPage = () => {
                       <td className="border border-slate-700">{movie.movie_title}</td>
                       <td className="border border-slate-700">{movie.movie_category}</td>
                       <td className="border border-slate-700">{ratings.find(r => r.id === movie.rating).name}</td>
-                      <td className="border border-slate-700">{movie.movie_duration}</td>
+                      <td className="border border-slate-700">{getHhmmFromHhmmss(movie.movie_duration)}</td>
                       <td className="border border-slate-700">{movie.director}</td>
                       <td className="border border-slate-700">{movie.producer}</td>
-                      <td className="border border-slate-700">{movie.movie_cast}</td>
-                      <td className="border border-slate-700">{movie.synopsis}</td>
+                      <td className="border border-slate-700">
+                        <p className="line-clamp-5">{movie.movie_cast}</p>
+
+                      </td>
+                      <td className="border border-slate-700">
+                        <p className="line-clamp-5">{movie.synopsis}</p>
+
+                      </td>
                     </tr>);
                 })}
               </tbody>
