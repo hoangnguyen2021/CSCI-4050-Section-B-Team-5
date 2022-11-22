@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { useFetch } from "../../hooks/useFetch";
@@ -8,13 +8,6 @@ import SelectMenu from "../../components/SelectMenu";
 import DateField from "../../components/DateField";
 import SubmitButton from "../../components/SubmitButton";
 import ComboBox from "../../components/ComboBox";
-
-const options = [
-    { id: 1, name: "Movie 1" },
-    { id: 2, name: "Movie 2" },
-    { id: 3, name: "Movie 3" },
-    { id: 4, name: "Movie 4" }
-];
 
 const screenNumbers = [
     { id: 0, name: "Screen 1" },
@@ -26,33 +19,70 @@ const screenNumbers = [
 
 const startTimes = [
     { id: 0, name: "1:00" },
-    { id: 1, name: "2:00" },
-    { id: 2, name: "3:00" },
-    { id: 3, name: "4:00" },
-    { id: 4, name: "5:00" },
+    { id: 1, name: "1:30" },
+    { id: 2, name: "2:00" },
+    { id: 3, name: "2:30" },
+    { id: 4, name: "3:00" },
+    { id: 5, name: "3:30" },
+    { id: 6, name: "4:00" },
+    { id: 7, name: "4:30" },
+    { id: 8, name: "5:00" },
+    { id: 9, name: "5:30" },
+    { id: 10, name: "6:00" },
+    { id: 11, name: "6:30" },
+    { id: 12, name: "7:00" },
 ];
 
 const ScheduleMoviePage = () => {
-    const { post } = useFetch();
+    const { get, post } = useFetch();
     const router = useRouter();
 
-    const [movieTitle, setMovieTitle] = useState({ id: 1, name: "Movie 1" });
-    const [screenNumber, setScreenNumber] = useState({ id: 0, name: "Screen 1" });
+    const [movies, setMovies] = useState([]);
+    const [movie, setMovie] = useState({ id: 0, name: "", imageUrl: "" });
+    const [showroom, setShowroom] = useState({ id: 0, name: "Screen 1" });
     const [startTime, setStartTime] = useState({ id: 0, name: "1:00" });
     const [startMonth, setStartMonth] = useState({ id: 1, name: "Jan" });
     const [startDay, setStartDay] = useState({ id: 1, name: "1" });
-    const [startYear, setStartYear] = useState({ id: 1, name: 2004 });
+    const [startYear, setStartYear] = useState({ id: 22, name: 2022 });
     const [endMonth, setEndMonth] = useState({ id: 1, name: "Jan" });
     const [endDay, setEndDay] = useState({ id: 1, name: "1" });
-    const [endYear, setEndYear] = useState({ id: 1, name: 2004 });
+    const [endYear, setEndYear] = useState({ id: 22, name: 2022 });
+
+    useEffect(() => {
+        getMovies();
+    }, []);
+
+    const getMovies = async () => {
+        try {
+            const response = await get("api/movie/list");
+            const responseData = response.data;
+            if (responseData) {
+                setMovies(responseData.map(movie => {
+                    return {
+                        id: movie.id,
+                        name: movie.movie_title,
+                        imageUrl: movie.trailer_pic_url
+                    };
+                }));
+                console.log(responseData);
+            }
+        } catch (e) {
+            toast.error("Failed to get movies!");
+        }
+    };
 
     const scheduleMovie = async (e) => {
         e.preventDefault();
 
         try {
             const response = await post(
-                "api/movie/create",
+                "api/show/schedule",
                 {
+                    movie_id: movie.id,
+                    start_time: `${startTime.name}:00`,
+                    showroom_id: showroom.id,
+                    start_date: `${startYear.name}-${startMonth.id}-${startDay.name}`,
+                    end_date: `${endYear.name}-${endMonth.id}-${endDay.name}`
                 },
                 {
                     headers: {
@@ -86,9 +116,9 @@ const ScheduleMoviePage = () => {
                     <form className="basis-1/2 flex flex-col gap-y-3 bg-background-variant rounded-lg shadow-md px-8 py-10"
                         onSubmit={scheduleMovie}>
                         <h3 className="text-xl text-on-primary font-semibold text-center">Schedule Movies</h3>
-                        <ComboBox selected={movieTitle} setSelected={setMovieTitle} options={options} />
-                        <SelectMenu label="Screen Number" selected={screenNumber} setSelected={setScreenNumber} options={screenNumbers} />
-                        <SelectMenu label="Screen Number" selected={startTime} setSelected={setStartTime} options={startTimes} />
+                        <ComboBox selected={movie} setSelected={setMovie} options={movies} />
+                        <SelectMenu label="Screen Number" selected={showroom} setSelected={setShowroom} options={screenNumbers} />
+                        <SelectMenu label="Time" selected={startTime} setSelected={setStartTime} options={startTimes} />
                         <DateField label="Start Date"
                             month={startMonth}
                             day={startDay}
