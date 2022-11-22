@@ -5,7 +5,7 @@ export default function AdminHome() {
 
     const get_admin_name = async () => {
         const response = await get("account/return_user_name");
-        return response
+        return response.username
     }
 
 
