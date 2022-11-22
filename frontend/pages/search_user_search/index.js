@@ -14,10 +14,10 @@ const Search = () => {
     const [movie, setMovie] = useState({ id: 0, name: "", imageUrl: "" });
 
     useEffect(() => {
-        getMovies();
+        getMovies__filtertitle();
     }, []);
 
-    const getMovies = async () => {
+    const getMovies__filtertitle = async () => {
         try {
             const response = await get("api/movie/filter_title");
             const responseData = response.data;
@@ -35,6 +35,25 @@ const Search = () => {
             toast.error("Failed to get movies!");
         }
     };
+
+    const getMovies_filtercategory = async () => {
+        try {
+            const response = await get("api/movie/filter_category");
+            const responseData = response.data;
+            if (responseData) {
+                setMovies(responseData.map(movie => {
+                    return {
+                        id: movie.id,
+                        name: movie.movie_title,
+                        imageUrl: movie.trailer_pic_url
+                    };
+                }));
+                console.log(responseData);
+            }
+        } catch (e) {
+            toast.error("Failed to get movies!");
+        }
+    }; 
  
     return (
         <div className="bg-background">
