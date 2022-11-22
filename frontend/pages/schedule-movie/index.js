@@ -4,13 +4,9 @@ import toast from "react-hot-toast";
 import { useFetch } from "../../hooks/useFetch";
 import BackToHomeNavigation from "../../components/BackToHomeNavigation";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
-import InputField from "../../components/InputField";
 import SelectMenu from "../../components/SelectMenu";
 import DateField from "../../components/DateField";
-import InputArea from "../../components/InputArea";
-import NumberField from "../../components/NumberField";
 import SubmitButton from "../../components/SubmitButton";
-import ScheduleMovieForm from "../../components/ScheduleMovieForm";
 import ComboBox from "../../components/ComboBox";
 
 const options = [
@@ -20,12 +16,35 @@ const options = [
     { id: 4, name: "Movie 4" }
 ];
 
+const screenNumbers = [
+    { id: 0, name: "Screen 1" },
+    { id: 1, name: "Screen 2" },
+    { id: 2, name: "Screen 3" },
+    { id: 3, name: "Screen 4" },
+    { id: 4, name: "Screen 5" },
+];
+
+const startTimes = [
+    { id: 0, name: "1:00" },
+    { id: 1, name: "2:00" },
+    { id: 2, name: "3:00" },
+    { id: 3, name: "4:00" },
+    { id: 4, name: "5:00" },
+];
 
 const ScheduleMoviePage = () => {
     const { post } = useFetch();
     const router = useRouter();
 
     const [movieTitle, setMovieTitle] = useState({ id: 1, name: "Movie 1" });
+    const [screenNumber, setScreenNumber] = useState({ id: 0, name: "Screen 1" });
+    const [startTime, setStartTime] = useState({ id: 0, name: "1:00" });
+    const [startMonth, setStartMonth] = useState({ id: 1, name: "Jan" });
+    const [startDay, setStartDay] = useState({ id: 1, name: "1" });
+    const [startYear, setStartYear] = useState({ id: 1, name: 2004 });
+    const [endMonth, setEndMonth] = useState({ id: 1, name: "Jan" });
+    const [endDay, setEndDay] = useState({ id: 1, name: "1" });
+    const [endYear, setEndYear] = useState({ id: 1, name: 2004 });
 
     const scheduleMovie = async (e) => {
         e.preventDefault();
@@ -68,7 +87,22 @@ const ScheduleMoviePage = () => {
                         onSubmit={scheduleMovie}>
                         <h3 className="text-xl text-on-primary font-semibold text-center">Schedule Movies</h3>
                         <ComboBox selected={movieTitle} setSelected={setMovieTitle} options={options} />
-                        <ScheduleMovieForm />
+                        <SelectMenu label="Screen Number" selected={screenNumber} setSelected={setScreenNumber} options={screenNumbers} />
+                        <SelectMenu label="Screen Number" selected={startTime} setSelected={setStartTime} options={startTimes} />
+                        <DateField label="Start Date"
+                            month={startMonth}
+                            day={startDay}
+                            year={startYear}
+                            setMonth={setStartMonth}
+                            setDay={setStartDay}
+                            setYear={setStartYear} />
+                        <DateField label="End Date"
+                            month={endMonth}
+                            day={endDay}
+                            year={endYear}
+                            setMonth={setEndMonth}
+                            setDay={setEndDay}
+                            setYear={setEndYear} />
                         <div className="pt-10 pb-5 flex justify-center">
                             <SubmitButton text="Schedule movie" />
                         </div>
