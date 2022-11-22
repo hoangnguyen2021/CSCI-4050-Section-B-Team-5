@@ -71,7 +71,8 @@ class UserViewSet(viewsets.ViewSet):
     def is_admin(self , request ):
         return Response({"Admin": True} , status = status.HTTP_200_OK)
 
-
+    def return_user_name(self, request):
+        return Response({"username": request.user.name}, status = status.HTTP_200_OK)
 
 
 
