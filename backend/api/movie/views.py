@@ -56,14 +56,20 @@ class MovieSearchSet(viewsets.ViewSet):
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def search_movie_title(self, request, input):
-        queryset = movie.objects.filter(is_active = True, movie_title__icontains = input)
+        queryset = movie.objects.filter(movie_title__icontains = input)
         serializer = MovieSerializers(queryset, many = True)
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def search_movie_category(self, request, input):
-        queryset = movie.objects.filter(is_active = True, movie_category__icontains = input)
+        queryset = movie.objects.filter(movie_category__icontains = input)
         serializer = MovieSerializers(queryset, many = True)
         return Response(serializer.data, status = status.HTTP_200_OK)
+
+    def search_movie_category_alt(self, request):
+        queryset = movie.objects.filter(movie_category = request.GET.get("movie_category"))
+        serializer = MovieSerializers(queryset, many = True)
+        return Response(serializer.data, status = status.HTTP_200_OK)
+    
 
     def search_movie_director(self, request, input):
         queryset = movie.objects.filter(is_active = True, director__icontains = input)
