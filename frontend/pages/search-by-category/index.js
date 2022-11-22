@@ -27,6 +27,7 @@ const SearchByCategory = () => {
                     return {
                         id: movie.id,
                         name: movie.movie_title,
+                        genre: movie.movie_category,
                         imageUrl: movie.trailer_pic_url
                     };
                 }));
