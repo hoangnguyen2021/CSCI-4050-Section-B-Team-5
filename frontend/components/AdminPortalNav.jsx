@@ -8,7 +8,7 @@ const AdminPortalNav = ({ navs }) => {
         return (
           <span key={item.id}>
             <Link href={item.href}>
-              <div className="text-sm font-medium text-on-primary cursor-pointer hover:text-gray-100">
+              <div className="text-sm font-medium text-on-primary cursor-pointer hover:text-primary">
                 {item.text}
               </div>
             </Link>
