@@ -20,13 +20,14 @@ const SearchByCategory = () => {
 
     const getMovies = async () => {
         try {
-            const response = await get("api/movie/filter_category");
+            const response = await get("api/movie/list");
             const responseData = response.data;
             if (responseData) {
                 setMovies(responseData.map(movie => {
                     return {
                         id: movie.id,
                         name: movie.movie_title,
+                        genre: movie.movie_category,
                         imageUrl: movie.trailer_pic_url
                     };
                 }));
