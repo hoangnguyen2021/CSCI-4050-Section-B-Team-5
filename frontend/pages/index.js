@@ -10,8 +10,6 @@ import TopNavigation from "../components/TopNavigation";
 import MovieCarousel from "../components/MovieCarousel";
 import BackgroundOverlay from "../components/BackgroundOverlay";
 import Link from "next/link";
-import { ratings } from "../utils/config";
-import { convertHhmmssToMinutes } from "../utils/utils";
 
 const footerNavigation = {
   shop: [
