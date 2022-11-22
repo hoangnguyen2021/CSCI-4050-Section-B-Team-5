@@ -39,7 +39,7 @@ const MovieForm = () => {
   const [synopsis, setSynopsis] = useState("");
   const [month, setMonth] = useState({ id: 1, name: "Jan" });
   const [day, setDay] = useState({ id: 1, name: "1" });
-  const [year, setYear] = useState({ id: 1, name: 2004 });
+  const [year, setYear] = useState({ id: 22, name: 2022 });
   const [posterUrl, setPosterUrl] = useState("");
   const [trailerUrl, setTrailerUrl] = useState("");
 
