@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { useFetch } from "../../hooks/useFetch";
-import BackToHomeNavigation from "../../components/BackToHomeNavigation";
+import AdminPortalNav from "../../components/AdminPortalNav";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
 import InputField from "../../components/InputField";
 import SelectMenu from "../../components/SelectMenu";
@@ -10,23 +10,10 @@ import DateField from "../../components/DateField";
 import InputArea from "../../components/InputArea";
 import NumberField from "../../components/NumberField";
 import SubmitButton from "../../components/SubmitButton";
-import { ratings } from "../../utils/config";
+import { navs, categories, ratings } from "../../utils/config";
+import { convertMinutesToHhmmss } from "../../utils/utils";
 
-const categories = [
-  { id: 0, name: "Action" },
-  { id: 1, name: "Sci-Fi" },
-  { id: 2, name: "Horror" },
-  { id: 3, name: "Drama" },
-  { id: 4, name: "Fantasy" },
-  { id: 5, name: "Animation" },
-  { id: 6, name: "Comedy" },
-  { id: 7, name: "Family" },
-  { id: 8, name: "Western" },
-  { id: 9, name: "Documentary" },
-  { id: 10, name: "Suspense" }
-];
-
-const MovieForm = () => {
+const AddMoviePage = () => {
   const { post } = useFetch();
   const router = useRouter();
 
@@ -58,7 +45,7 @@ const MovieForm = () => {
         trailer_pic_url: posterUrl,
         trailer_video_url: trailerUrl,
         rating: ratings.find((r) => r.name === rating.name).id,
-        movie_duration: `${Math.floor(duration / 60)}:${duration % 60}:00`,
+        movie_duration: convertMinutesToHhmmss(duration),
       };
       console.log(body);
       const response = await post(
@@ -74,19 +61,15 @@ const MovieForm = () => {
       router.push("/manage-movies");
       console.log(response.data);
     } catch (error) {
-      const responseData = error.response?.data;
-      if (responseData) {
-        toast.error("Cannot add movie!");
-      } else {
-        toast.error("Cannot add movie!");
-      }
+      // const responseData = error.response?.data;
+      toast.error("Cannot add movie!");
       console.error(error);
     }
   };
 
   return (
     <div className="bg-background">
-      <BackToHomeNavigation text="Back to Manage Movies" href="/manage-movies" />
+      <AdminPortalNav navs={navs} />
       <div className="relative">
         <BackgroundOverlay
           src="https://wallpaper.dog/large/20493433.jpg"
@@ -163,4 +146,4 @@ const MovieForm = () => {
   );
 };
 
-export default MovieForm;
+export default AddMoviePage;
