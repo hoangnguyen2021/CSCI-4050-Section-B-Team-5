@@ -22,7 +22,8 @@ const categories = [
   { id: 6, name: "Comedy" },
   { id: 7, name: "Family" },
   { id: 8, name: "Western" },
-  { id: 9, name: "Documentary" }
+  { id: 9, name: "Documentary" },
+  { id: 10, name: "Suspense" }
 ];
 
 const MovieForm = () => {
@@ -47,20 +48,22 @@ const MovieForm = () => {
     e.preventDefault();
 
     try {
+      const body = {
+        movie_title: title,
+        movie_category: category.name,
+        movie_cast: cast,
+        director: director,
+        producer: producer,
+        synopsis: synopsis,
+        trailer_pic_url: posterUrl,
+        trailer_video_url: trailerUrl,
+        rating: ratings.find((r) => r.name === rating.name).id,
+        movie_duration: `${Math.floor(duration / 60)}:${duration % 60}:00`,
+      };
+      console.log(body);
       const response = await post(
         "api/movie/create",
-        {
-          movie_title: title,
-          movie_category: category.name,
-          movie_cast: cast,
-          director: director,
-          producer: producer,
-          synopsis: synopsis,
-          trailer_pic_url: posterUrl,
-          trailer_video_url: trailerUrl,
-          rating: ratings.find((r) => r.name === rating.name).id,
-          movie_duration: duration,
-        },
+        body,
         {
           headers: {
             Authorization: "JWT " + localStorage.getItem("access"),
