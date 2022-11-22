@@ -32,6 +32,12 @@ def saveEmp(request):
 
 class PromotionsReadSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
+
+    def get_promtion_list(self, request):
+        queryset = Promotions.objects.all()
+        serializer = PromotionSerializers(queryset, many = True)
+        return Response(serializer.data, status = status.HTTP_200_OK)
+
     def insertEmp(self, request):
         
         if request.method == 'POST':
