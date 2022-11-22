@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { useFetch } from "../../hooks/useFetch";
-import BackToHomeNavigation from "../../components/BackToHomeNavigation";
+import SearchNavigation from "../../components/SearchNavigation";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
 import ComboBox from "../../components/ComboBox";
+import Link from 'next/link';
 
 const Search = () => {
     const { get, post } = useFetch();
@@ -39,15 +40,16 @@ const Search = () => {
  
     return (
         <div className="bg-background">
-            <BackToHomeNavigation text="Back to Manage Movies" href="/manage-movies" />
+            <SearchNavigation text="Back to Manage Movies" href="/manage-movies" />
             <div className="relative">
                 <BackgroundOverlay
                     src="https://wallpaper.dog/large/20493433.jpg"
                     opacity={70}
                 />
+                
                 <div className="relative flex justify-center items-center py-20">
                     <form className="basis-1/2 flex flex-col gap-y-3 bg-background-variant rounded-lg shadow-md px-8 py-10">
-                        <h3 className="text-xl text-on-primary font-semibold text-center">Search</h3>
+                        <h3 className="text-xl text-on-primary font-semibold text-center">Search By Title</h3>
                         <ComboBox selected={movie} setSelected={setMovie} options={movies} />
                     </form>
                 </div>
