@@ -7,7 +7,8 @@ from django.utils.dateparse import parse_time
 import datetime
 from .models import Show
 from api.movie.models import movie
-from .serializers import ShowSerializers
+from .serializers import ShowSerializers , ShowTimeSerializers
+from api.showroom.models import Showroom
 import json
 from .models import Show
 # Create your views here.
@@ -30,8 +31,8 @@ def round_end_time_to_near_zero(end_time):
 @permission_classes([AllowAny])
 def show(request):
     if request.method == "GET":
-        obj = Show.objects.all()
-        serializer = ShowSerializers(obj, many = True)
+        obj = Show.objects.filter(movie_id = int(request.GET.get("movie_id")) ,  start_date__lte = datetime.date.today() , end_date__gte = datetime.date.today())
+        serializer = ShowTimeSerializers(obj, many = True)
         return Response(serializer.data)
 
     elif request.method == "POST":
