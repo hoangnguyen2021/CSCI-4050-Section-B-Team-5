@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { useFetch } from "../../hooks/useFetch";
-import BackToHomeNavigation from "../../components/BackToHomeNavigation";
+import AdminPortalNav from "../../components/AdminPortalNav";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
 import SelectMenu from "../../components/SelectMenu";
 import DateField from "../../components/DateField";
 import SubmitButton from "../../components/SubmitButton";
 import ComboBox from "../../components/ComboBox";
+import { navs, startTimes } from "../../utils/config";
 
 const screenNumbers = [
     { id: 0, name: "Screen 1" },
@@ -15,22 +16,6 @@ const screenNumbers = [
     { id: 2, name: "Screen 3" },
     { id: 3, name: "Screen 4" },
     { id: 4, name: "Screen 5" },
-];
-
-const startTimes = [
-    { id: 0, name: "1:00" },
-    { id: 1, name: "1:30" },
-    { id: 2, name: "2:00" },
-    { id: 3, name: "2:30" },
-    { id: 4, name: "3:00" },
-    { id: 5, name: "3:30" },
-    { id: 6, name: "4:00" },
-    { id: 7, name: "4:30" },
-    { id: 8, name: "5:00" },
-    { id: 9, name: "5:30" },
-    { id: 10, name: "6:00" },
-    { id: 11, name: "6:30" },
-    { id: 12, name: "7:00" },
 ];
 
 const ScheduleMoviePage = () => {
@@ -101,7 +86,7 @@ const ScheduleMoviePage = () => {
 
     return (
         <div className="bg-background">
-            <BackToHomeNavigation text="Back to Manage Movies" href="/manage-movies" />
+            <AdminPortalNav navs={navs} />
             <div className="relative">
                 <BackgroundOverlay
                     src="https://wallpaper.dog/large/20493433.jpg"
