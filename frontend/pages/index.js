@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  Bars3Icon,
-  MagnifyingGlassIcon,
   QuestionMarkCircleIcon,
   ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
+import { useFetch } from "../hooks/useFetch";
 import "react-multi-carousel/lib/styles.css";
 import TopNavigation from "../components/TopNavigation";
 import MovieCarousel from "../components/MovieCarousel";
-import { classNames } from "../utils/utils";
 import BackgroundOverlay from "../components/BackgroundOverlay";
 import Link from "next/link";
+import { ratings } from "../utils/config";
+import { convertHhmmssToMinutes } from "../utils/utils";
 
 const footerNavigation = {
   shop: [
@@ -226,8 +226,35 @@ const comingSoonMovies = [
   },
 ];
 
-export default function Homepage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const Homepage = () => {
+  const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
+  const { get } = useFetch();
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
+  const getMovies = async () => {
+    try {
+      const response = await get("api/movie/list");
+      const responseData = response.data;
+      if (responseData) {
+        setNowPlayingMovies(responseData.map(movie => {
+          return {
+            key: movie.id,
+            title: movie.movie_title,
+            durationInMin: convertHhmmssToMinutes(movie.movie_duration),
+            rating: ratings.find(r => r.id === movie.rating)?.name,
+            releasedDate: "Sep 16, 2022",
+            posterSrc: movie.trailer_pic_url,
+          };
+        }));
+        console.log(responseData);
+      }
+    } catch (e) {
+      toast.error("Failed to get movies!");
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -520,3 +547,5 @@ export default function Homepage() {
     </div>
   );
 }
+
+export default Homepage;

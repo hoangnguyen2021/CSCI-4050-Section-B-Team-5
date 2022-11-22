@@ -11,7 +11,7 @@ import Checkbox from "../../components/Checkbox";
 import SubmitButton from "../../components/SubmitButton";
 
 const LoginPage = () => {
-  const { post } = useFetch();
+  const { get, post } = useFetch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(0);
@@ -49,18 +49,29 @@ const LoginPage = () => {
   const loginUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await post("auth/jwt/create/", {
+      const response1 = await post("auth/jwt/create/", {
         email: email,
         password: password,
       });
-      toast.success("You are logged in!");
-      router.push('/');
-      const responseData = response.data;
-      if (responseData) {
-        localStorage.setItem("refresh", responseData.refresh);
-        localStorage.setItem("access", responseData.access);
+      const responseData1 = response1.data;
+      if (responseData1) {
+        localStorage.setItem("refresh", responseData1.refresh);
+        localStorage.setItem("access", responseData1.access);
       }
-      console.log(responseData);
+      toast.success("You are logged in!");
+
+      const response2 = await get("users/isadmin", {
+        headers: {
+          Authorization: "JWT " + localStorage.getItem("access"),
+        },
+      });
+      if (response2.data.status === 200) {
+        router.push('/adminHome');
+      } else {
+        router.push('/');
+      }
+
+      console.log(responseData1);
     } catch (error) {
       const responseData = error.response?.data;
       if (responseData) {
