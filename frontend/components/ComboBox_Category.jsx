@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { classNames } from "../utils/utils";
+import Link from "next/link";
 
 const ComboBox_Category = ({ label, options, selected, setSelected }) => {
   const [query, setQuery] = useState("");
@@ -59,7 +60,8 @@ const ComboBox_Category = ({ label, options, selected, setSelected }) => {
                   >
                     {({ active, selected }) => (
                       <>
-                        <div className="flex items-center">
+                         <Link href={`/${option.id}`}>
+                        <div  className="flex items-center">
                           <img
                             src={option.imageUrl}
                             alt=""
@@ -74,6 +76,7 @@ const ComboBox_Category = ({ label, options, selected, setSelected }) => {
                             {option.name}
                           </span>
                         </div>
+                        </Link>
 
                         {selected && (
                           <span
