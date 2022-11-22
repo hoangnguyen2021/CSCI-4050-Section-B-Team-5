@@ -3,9 +3,12 @@ export const classNames = (...classes) => {
 };
 
 export const convertHhmmssToMinutes = (hhmmss) => {
+  if (!hhmmss) return 0;
+
   const arr = hhmmss.split(":");
   const hours = Number.parseInt(arr[0]);
   const minutes = Number.parseInt(arr[1]);
+
   return hours * 60 + minutes;
 }
 

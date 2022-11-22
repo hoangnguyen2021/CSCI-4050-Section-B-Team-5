@@ -10,7 +10,6 @@ import NumberField from "../../components/NumberField";
 import DateField from "../../components/DateField";
 import SubmitButton from "../../components/SubmitButton";
 import { navs } from "../../utils/config";
-import { useRouter } from "next/router";
 
 const ManagePromotionsPage = () => {
     const [promos, setPromos] = useState([]);
@@ -18,11 +17,9 @@ const ManagePromotionsPage = () => {
     const [promoName, setPromoName] = useState("");
     const [month, setMonth] = useState({ id: 1, name: "Jan" });
     const [day, setDay] = useState({ id: 1, name: "1" });
-    const [year, setYear] = useState({ id: 1, name: 2004 });
+    const [year, setYear] = useState({ id: 22, name: 2022 });
     const [promoCode, setPromoCode] = useState("");
     const [promoPct, setPromoPct] = useState("");
-    const router = useRouter();
-    const [visibility, setVisibility] = useState(true);
     const { get, post } = useFetch();
 
     useEffect(() => {
@@ -31,38 +28,8 @@ const ManagePromotionsPage = () => {
 
     const getPromos = async () => {
         try {
-            const response = await get("api/movie/list");
-            //const responseData = response.data;
-            const responseData = [
-                {
-                    id: 1,
-                    name: "BOGO 10%",
-                    code: "EXG62FG",
-                    expiration_date: "10/20/2022",
-                    percentage: "10%"
-                },
-                {
-                    id: 2,
-                    name: "20% off children's ticket",
-                    code: "20KIDS",
-                    expiration_date: "10/20/2022",
-                    percentage: "20%"
-                },
-                {
-                    id: 3,
-                    name: "15% off Military Discount",
-                    code: "15MILITARY",
-                    expiration_date: "10/20/2022",
-                    percentage: "15%"
-                },
-                {
-                    id: 4,
-                    name: "25% Valentines Day",
-                    code: "BEMINEFOR25",
-                    expiration_date: "02/15/2023",
-                    percentage: "25%"
-                },
-            ];
+            const response = await get("api/promotions/promotion-list");
+            const responseData = response.data;
             if (responseData) {
                 setPromos(responseData);
                 console.log(responseData);
@@ -75,6 +42,7 @@ const ManagePromotionsPage = () => {
     const addPromo = async (e) => {
         e.preventDefault();
 
+        setOpen(false);
         try {
             const response = await post(
                 "api/promotions/create",
@@ -84,16 +52,8 @@ const ManagePromotionsPage = () => {
                     promotion_expiration: `${year.name}-${month.id}-${day.name}`,
                     promotion_percentage: promoPct
                 }
-                /*{
-                    headers: {
-                        Authorization: "JWT " + localStorage.getItem("access"),
-                    },
-                }*/
             );
             toast.success("Promo added successfully!");
-            setVisibility(false);
-            setOpen(false);
-            router.push("/manage-promotions");
             console.log(response.data);
         } catch (error) {
             const responseData = error.response?.data;
@@ -130,16 +90,16 @@ const ManagePromotionsPage = () => {
                                 {promos && promos.map(promo => {
                                     return (
                                         <tr key={promo.id}>
-                                            <td className="border border-slate-700 text-on-primary">{promo.name}</td>
-                                            <td className="border border-slate-700 text-on-primary">{promo.code}</td>
-                                            <td className="border border-slate-700 text-on-primary">{promo.expiration_date}</td>
-                                            <td className="border border-slate-700 text-on-primary">{promo.percentage}</td>
+                                            <td className="border border-slate-700 text-on-primary">{promo.promotion_name}</td>
+                                            <td className="border border-slate-700 text-on-primary">{promo.promotion_code}</td>
+                                            <td className="border border-slate-700 text-on-primary">{promo.promotion_expiration}</td>
+                                            <td className="border border-slate-700 text-on-primary">{promo.promotion_percentage}%</td>
                                         </tr>);
                                 })}
                             </tbody>
                         </table>
                         <AddButton text="Add Promotion" open={open} setOpen={setOpen} />
-                        <Modal open={open} setOpen={setOpen} visible = {visibility} title="Add Promotion">
+                        <Modal open={open} setOpen={setOpen} title="Add Promotion">
                             <form className="flex flex-col gap-y-3" onSubmit={addPromo}>
                                 <InputField label="Promo Name" input={promoName} setInput={setPromoName} />
                                 <DateField label="Expiration Date" month={month}
