@@ -1,18 +1,57 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
+import { useFetch } from "../../hooks/useFetch";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
 import ShowtimeSection from "../../components/ShowtimeSection";
 import TopNavigation from "../../components/TopNavigation";
 import TrailerSection from "../../components/TrailerSection";
+import { ratings } from "../../utils/config";
+import { convertHhmmssToMinutes } from "../../utils/utils";
 
 const movieMeta = {
-  title: "The Woman King",
-  durationInMin: 135,
-  rating: "PG-13",
+  title: "",
+  durationInMin: 0,
+  rating: "",
   posterUrl:
-    "https://amc-theatres-res.cloudinary.com/image/upload/c_thumb,f_auto,fl_preserve_transparency,g_face,h_120,q_auto,r_max,w_120/e_trim/v1662739107/amc-cdn/production/2/movies/68200/68219/PosterDynamic/142758.jpg",
-  trailerUrl: "https://www.youtube.com/embed/3RDaPV_rJ1Y",
+    "",
+  trailerUrl: "",
 };
 
-export default function ShowtimePage() {
+const ShowtimePage = () => {
+  const [movie, setMovie] = useState(movieMeta);
+  const { get } = useFetch();
+  const router = useRouter();
+  const { movieId } = router.query;
+
+  useEffect(() => {
+    if (movieId) {
+      getMovie();
+    }
+  }, [movieId]);
+
+  const getMovie = async () => {
+    try {
+      const response = await get("api/movie/get_movie_by_id", {
+        params: { id: movieId }
+      });
+      const responseData = response.data;
+      if (responseData) {
+        const movie = {
+          title: responseData.movie_title,
+          durationInMin: convertHhmmssToMinutes(responseData.movie_duration),
+          rating: ratings.find(r => r.id === responseData.rating)?.name,
+          posterUrl: responseData.trailer_pic_url,
+          trailerUrl: responseData.trailer_video_url,
+        };
+        setMovie(movie);
+        console.log(movie);
+      }
+    } catch (e) {
+      toast.error("Failed to get movie!");
+    }
+  };
+
   return (
     <div className="bg-background">
       <div className="relative">
@@ -42,13 +81,15 @@ export default function ShowtimePage() {
         />
         <div className="relative grid grid-cols-12 gap-x-28 max-w-7xl maxh-screen h-screen mx-auto py-10">
           <section className="col-span-5">
-            <TrailerSection movieMeta={movieMeta} />
+            <TrailerSection movieMeta={movie} />
           </section>
           <section className="col-span-7">
-            <ShowtimeSection movieMeta={movieMeta} />
+            <ShowtimeSection movieMeta={movie} />
           </section>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default ShowtimePage;
