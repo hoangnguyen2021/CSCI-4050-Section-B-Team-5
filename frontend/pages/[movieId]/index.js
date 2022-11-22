@@ -7,7 +7,7 @@ import ShowtimeSection from "../../components/ShowtimeSection";
 import TopNavigation from "../../components/TopNavigation";
 import TrailerSection from "../../components/TrailerSection";
 import { ratings } from "../../utils/config";
-import { convertHhmmssToMinutes } from "../../utils/utils";
+import { convertHhmmssToMinutes, groupBy } from "../../utils/utils";
 
 const movieMeta = {
   title: "",
@@ -20,6 +20,7 @@ const movieMeta = {
 
 const ShowtimePage = () => {
   const [movie, setMovie] = useState(movieMeta);
+  const [showtimeLL, setShowtimeLL] = useState([]);
   const { get } = useFetch();
   const router = useRouter();
   const { movieId } = router.query;
@@ -27,6 +28,7 @@ const ShowtimePage = () => {
   useEffect(() => {
     if (movieId) {
       getMovie();
+      getShowtime();
     }
   }, [movieId]);
 
@@ -49,6 +51,22 @@ const ShowtimePage = () => {
       }
     } catch (e) {
       toast.error("Failed to get movie!");
+    }
+  };
+
+  const getShowtime = async () => {
+    try {
+      const response = await get("api/show/getshowtimes", {
+        params: { movie_id: movieId }
+      });
+      const responseData = response.data;
+      if (responseData) {
+        const list = Object.values(groupBy(responseData, "showroom_id"));
+        setShowtimeLL(list);
+        console.log(list);
+      }
+    } catch (e) {
+      toast.error("Failed to get showtime!");
     }
   };
 
@@ -84,7 +102,7 @@ const ShowtimePage = () => {
             <TrailerSection movieMeta={movie} />
           </section>
           <section className="col-span-7">
-            <ShowtimeSection movieMeta={movie} />
+            <ShowtimeSection movieMeta={movie} showtimeLL={showtimeLL} />
           </section>
         </div>
       </div>

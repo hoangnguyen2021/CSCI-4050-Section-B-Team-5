@@ -8,3 +8,10 @@ export const convertHhmmssToMinutes = (hhmmss) => {
   const minutes = Number.parseInt(arr[1]);
   return hours * 60 + minutes;
 }
+
+export const groupBy = (xs, key) => {
+  return xs.reduce((rv, x) => {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};
