@@ -6,5 +6,5 @@ from . import views
 urlpatterns = [
     path('savePromo/' , views.saveEmp),
     path('create', views.PromotionsReadSet.as_view({"post":"insertEmp"})),
-    path('promotion-list', views.PromotionsReadSet.as_view({"post":"get_promtion_list"})),
+    path('promotion-list', views.PromotionsReadSet.as_view({"get":"get_promtion_list"})),
 ]
