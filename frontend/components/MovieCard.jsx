@@ -4,7 +4,7 @@ import PillButton from "./PillButton";
 import Link from "next/link";
 
 const MovieCard = ({ movie, buttonText }) => {
-  const { posterSrc, title, durationInMin, rating, releasedDate } = movie;
+  const { key, posterSrc, title, durationInMin, rating, releasedDate } = movie;
 
   return (
     <div className="group max-w-sm bg-transparent rounded-t-lg px-8 hover:bg-primary/50">
@@ -16,7 +16,7 @@ const MovieCard = ({ movie, buttonText }) => {
           rating={rating}
           releasedDate={releasedDate}
         />
-        <Link href="/1">
+        <Link href={`/${key}`}>
           <a className="block">
             <PillButton text={buttonText} />
           </a>
