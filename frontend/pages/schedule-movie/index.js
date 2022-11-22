@@ -83,11 +83,6 @@ const ScheduleMoviePage = () => {
                     showroom_id: showroom.id,
                     start_date: `${startYear.name}-${startMonth.id}-${startDay.name}`,
                     end_date: `${endYear.name}-${endMonth.id}-${endDay.name}`
-                },
-                {
-                    headers: {
-                        Authorization: "JWT " + localStorage.getItem("access"),
-                    },
                 }
             );
             toast.success("Movie scheduled successfully!");
