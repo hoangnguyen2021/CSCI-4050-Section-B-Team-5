@@ -4,4 +4,4 @@ from .models import Showroom
 class ShowroomSerializers(serializers.ModelSerializer):
     class Meta:
         model = Showroom
-        field = '__all__'
+        fields = '__all__'
