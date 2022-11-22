@@ -3,6 +3,7 @@ import MovieCard from "./MovieCard";
 import Heading from "./Heading";
 import CustomRightArrow from "./CustomRightArrow";
 import CustomLeftArrow from "./CustomLeftArrow";
+import Link from "next/link";
 
 const responsive = {
   desktop: {

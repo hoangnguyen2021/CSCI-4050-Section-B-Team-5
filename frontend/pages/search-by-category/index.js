@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { useFetch } from "../../hooks/useFetch";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
@@ -49,7 +49,7 @@ const SearchByCategory = () => {
                 <div className="relative flex justify-center items-center py-20">
                     <form className="basis-1/2 flex flex-col gap-y-3 bg-background-variant rounded-lg shadow-md px-8 py-10">
                         <h3 className="text-xl text-on-primary font-semibold text-center">Search By Category</h3>
-                        <ComboBox_Category selected={movie} setSelected={setMovie} options={movies} onClick={<Link to="[movie.id]"/>} />
+                        <ComboBox_Category selected={movie} setSelected={setMovie} options={movies} onClick={<Link to = {`/${movie.id}`} /> } />
                     </form>
                 </div>
             </div>
