@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { useFetch } from "../../hooks/useFetch";
-import SearchNavigation from "../../components/SearchNavigation";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
 import ComboBox from "../../components/ComboBox";
 import Link from 'next/link';
+import SearchNavigation from "../../components/SearchNavigation";
 
-const Search = () => {
+const SearchByCategory = () => {
     const { get, post } = useFetch();
     const router = useRouter();
 
@@ -20,7 +20,7 @@ const Search = () => {
 
     const getMovies = async () => {
         try {
-            const response = await get("api/movie/list");
+            const response = await get("api/movie/filter_category");
             const responseData = response.data;
             if (responseData) {
                 setMovies(responseData.map(movie => {
@@ -46,10 +46,9 @@ const Search = () => {
                     src="https://wallpaper.dog/large/20493433.jpg"
                     opacity={70}
                 />
-                
                 <div className="relative flex justify-center items-center py-20">
                     <form className="basis-1/2 flex flex-col gap-y-3 bg-background-variant rounded-lg shadow-md px-8 py-10">
-                        <h3 className="text-xl text-on-primary font-semibold text-center">Search By Title</h3>
+                        <h3 className="text-xl text-on-primary font-semibold text-center">Search By Category</h3>
                         <ComboBox selected={movie} setSelected={setMovie} options={movies} />
                     </form>
                 </div>
@@ -58,4 +57,4 @@ const Search = () => {
     );
 };
 
-export default Search;
+export default SearchByCategory;
