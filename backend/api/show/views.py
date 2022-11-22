@@ -60,7 +60,7 @@ def show(request):
         for item in other_start_times:
             start_time_itr,end_time_itr = parse_time(str(item.__getattribute__("start_time"))) , parse_time(str(item.__getattribute__("end_time")))
             start_time_itr,end_time_itr = datetime.timedelta(hours = start_time_itr.hour , minutes= start_time_itr.minute , seconds= start_time_itr.second) ,datetime.timedelta(hours = end_time_itr.hour , minutes= end_time_itr.minute , seconds= end_time_itr.second)
-            if( start_time >= start_time_itr and start_time_itr <= end_time_itr):
+            if( start_time >= start_time_itr and start_time <= end_time_itr):
                 flag = 0
                 #notschedule the movie
             elif ( end_time >= start_time_itr and end_time <= end_time_itr):
