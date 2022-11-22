@@ -10,7 +10,7 @@ class movie(models.Model):
     #// csv of all cast
     director = models.CharField(max_length = 100)
     producer = models.CharField(max_length = 300)
-    synopsis = models.CharField(max_length = 300)
+    synopsis = models.CharField(max_length = 3000)
     trailer_pic_url = models.URLField()
     trailer_video_url = models.URLField()
     rating = models.IntegerField(validators=[

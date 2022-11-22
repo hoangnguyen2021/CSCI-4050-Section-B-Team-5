@@ -42,7 +42,7 @@ def show(request):
         start_time = datetime.timedelta(hours = end_time.hour , minutes=end_time.minute , seconds=end_time.second)
         duration_time = datetime.timedelta(hours = duration.hour , minutes= duration.minute , seconds= duration.second)
         end_time = round_end_time_to_near_zero(start_time+duration_time+datetime.timedelta(minutes=15))
-        other_start_times = Show.objects.filter(start_date__gte = datetime.datetime.strptime(data.get("start_date") , "%Y-%m-%d").date() , end_date__lte = datetime.datetime.strptime(data.get("end_date") , "%Y-%m-%d").date(), showroom_id  = data.get("showroom_id"))
+        other_start_times = Show.objects.filter(start_date__lte = datetime.datetime.strptime(data.get("start_date") , "%Y-%m-%d").date() , end_date__gte = datetime.datetime.strptime(data.get("end_date") , "%Y-%m-%d").date(), showroom_id  = data.get("showroom_id"))
         for item in other_start_times:
             print(item)
         flag = 0
@@ -58,6 +58,7 @@ def show(request):
             
 
         for item in other_start_times:
+            print(item.__getattribute__("start_date") , item.__getattribute__("end_date"))
             start_time_itr,end_time_itr = parse_time(str(item.__getattribute__("start_time"))) , parse_time(str(item.__getattribute__("end_time")))
             start_time_itr,end_time_itr = datetime.timedelta(hours = start_time_itr.hour , minutes= start_time_itr.minute , seconds= start_time_itr.second) ,datetime.timedelta(hours = end_time_itr.hour , minutes= end_time_itr.minute , seconds= end_time_itr.second)
             if( start_time >= start_time_itr and start_time <= end_time_itr):
