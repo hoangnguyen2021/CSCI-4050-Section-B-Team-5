@@ -65,12 +65,14 @@ const LoginPage = () => {
           Authorization: "JWT " + localStorage.getItem("access"),
         },
       });
-      if (response2.data.status === 200) {
-        router.push('/adminHome');
-      } else {
-        router.push('/');
+      const responseData2 = response2.data;
+      if (responseData2) {
+        if (responseData2.Admin === "True") {
+          router.push('/adminHome');
+        } else {
+          router.push('/');
+        }
       }
-
       console.log(responseData1);
     } catch (error) {
       const responseData = error.response?.data;
