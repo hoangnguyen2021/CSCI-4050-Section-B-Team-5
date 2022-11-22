@@ -42,7 +42,9 @@ def show(request):
         start_time = datetime.timedelta(hours = end_time.hour , minutes=end_time.minute , seconds=end_time.second)
         duration_time = datetime.timedelta(hours = duration.hour , minutes= duration.minute , seconds= duration.second)
         end_time = round_end_time_to_near_zero(start_time+duration_time+datetime.timedelta(minutes=15))
-        other_start_times = Show.objects.filter(show_date = data.get("show_date") , showroom_id  = data.get("showroom_id"))
+        other_start_times = Show.objects.filter(start_date__gte = datetime.datetime.strptime(data.get("start_date") , "%Y-%m-%d").date() , end_date__lte = datetime.datetime.strptime(data.get("end_date") , "%Y-%m-%d").date(), showroom_id  = data.get("showroom_id"))
+        for item in other_start_times:
+            print(item)
         flag = 0
         print(end_time)
         if( len(other_start_times) == 0):
