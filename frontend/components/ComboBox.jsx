@@ -14,7 +14,7 @@ const ComboBox = ({ label, options, selected, setSelected }) => {
         });
 
   return (
-    <Combobox value={selected} onChange={setSelected}>
+    <Combobox as="div" value={selected} onChange={setSelected}>
       {({ open }) => (
         <div>
           <Combobox.Label className="text-on-primary text-base font-medium">
@@ -22,7 +22,7 @@ const ComboBox = ({ label, options, selected, setSelected }) => {
           </Combobox.Label>
           <div className="relative mt-1">
             <Combobox.Input
-              className="relative bg-transparent w-full cursor-default border-0 border-b border-on-primary py-2 pl-3 pr-10 text-left focus:border-0 focus:border-b-2 focus:border-on-primary focus:outline-none sm:text-sm"
+              className="relative bg-transparent w-full cursor-default border-0 border-b border-on-primary py-2 pl-3 pr-10 text-base focus:border-0 focus:border-b-2 focus:border-on-primary focus:ring-0"
               onChange={(e) => setQuery(e.target.value)}
               displayValue={(option) => option.name}
             />
@@ -53,7 +53,7 @@ const ComboBox = ({ label, options, selected, setSelected }) => {
                         active
                           ? "bg-primary text-on-primary"
                           : "text-on-primary",
-                        "relative cursor-default select-none py-2 pl-3 pr-9"
+                        "relative cursor-default select-none text-base py-2 pl-3 pr-9"
                       )
                     }
                   >

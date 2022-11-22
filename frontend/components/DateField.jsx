@@ -73,25 +73,28 @@ const years = [
 
 const DateField = ({ label, month, day, year, setMonth, setDay, setYear }) => {
   return (
-    <div className="grid grid-cols-3 gap-x-10">
-      <SelectMenu
-        label="Month"
-        options={months}
-        selected={month}
-        setSelected={setMonth}
-      />
-      <SelectMenu
-        label="Day"
-        options={days}
-        selected={day}
-        setSelected={setDay}
-      />
-      <SelectMenu
-        label="Year"
-        options={years}
-        selected={year}
-        setSelected={setYear}
-      />
+    <div className="space-y-1">
+      <div className="text-on-primary text-base font-medium">{label}</div>
+      <div className="grid grid-cols-3 gap-x-10">
+        <SelectMenu
+          label="Month"
+          options={months}
+          selected={month}
+          setSelected={setMonth}
+        />
+        <SelectMenu
+          label="Day"
+          options={days}
+          selected={day}
+          setSelected={setDay}
+        />
+        <SelectMenu
+          label="Year"
+          options={years}
+          selected={year}
+          setSelected={setYear}
+        />
+      </div>
     </div>
   );
 };
