@@ -66,11 +66,9 @@ const ManageMoviesPage = () => {
                       <td className="border border-slate-700">{movie.producer}</td>
                       <td className="border border-slate-700">
                         <p className="line-clamp-5">{movie.movie_cast}</p>
-
                       </td>
                       <td className="border border-slate-700">
                         <p className="line-clamp-5">{movie.synopsis}</p>
-
                       </td>
                     </tr>);
                 })}

@@ -147,16 +147,7 @@ const Homepage = () => {
       const response = await get("api/movie/list");
       const responseData = response.data;
       if (responseData) {
-        setNowPlayingMovies(responseData.map(movie => {
-          return {
-            key: movie.id,
-            title: movie.movie_title,
-            durationInMin: convertHhmmssToMinutes(movie.movie_duration),
-            rating: ratings.find(r => r.id === movie.rating)?.name,
-            releasedDate: "Sep 16, 2022",
-            posterSrc: movie.trailer_pic_url,
-          };
-        }));
+        setNowPlayingMovies(responseData);
         console.log(responseData);
       }
     } catch (e) {
