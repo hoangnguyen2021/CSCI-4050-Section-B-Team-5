@@ -20,7 +20,7 @@ const SearchByCategory = () => {
 
     const getMovies = async () => {
         try {
-            const response = await get("api/movie/list");
+            const response = await get("api/movie/filter_category");
             const responseData = response.data;
             if (responseData) {
                 setMovies(responseData.map(movie => {
