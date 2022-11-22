@@ -20,7 +20,7 @@ const Search = () => {
 
     const getMovies = async () => {
         try {
-            const response = await get("api/movie/search_movie_title_alt");
+            const response = await get("api/movie/list");
             const responseData = response.data;
             if (responseData) {
                 setMovies(responseData.map(movie => {
