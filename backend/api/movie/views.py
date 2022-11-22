@@ -45,6 +45,11 @@ class MovieReadSet(viewsets.ModelViewSet):
         return Response(serializer.data , status = status.HTTP_200_OK)
     
 class MovieSearchSet(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+    def get_movie_by_id(self , request):
+        queryset = movie.objects.filter(id = int(request.GET.get("id")))
+        serializer = MovieSerializers(queryset , many= True)
+        return Response(serializer.data[0] , status = status.HTTP_200_OK)
     def get_movie_list(self, request):
         queryset = movie.objects.filter(is_active = True)
         serializer = MovieSerializers(queryset, many = True)
