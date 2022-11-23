@@ -6,20 +6,27 @@ import BackgroundOverlay from "../../components/BackgroundOverlay";
 import ShowtimeSection from "../../components/ShowtimeSection";
 import TopNavigation from "../../components/TopNavigation";
 import TrailerSection from "../../components/TrailerSection";
-import { ratings } from "../../utils/config";
-import { convertHhmmssToMinutes, groupBy } from "../../utils/utils";
+import { groupBy } from "../../utils/utils";
 
-const movieMeta = {
-  title: "",
-  durationInMin: 0,
-  rating: "",
-  posterUrl:
-    "",
-  trailerUrl: "",
+const movieMetaInit = {
+  id: 0,
+  movie_title: "",
+  movie_category: "",
+  movie_cast: "",
+  director: "",
+  producer: "",
+  synopsis: "",
+  trailer_pic_url: "",
+  trailer_video_url: "",
+  rating: 0,
+  is_active: false,
+  movie_duration: "",
+  created_at: "",
+  updated_at: ""
 };
 
 const ShowtimePage = () => {
-  const [movie, setMovie] = useState(movieMeta);
+  const [movieMeta, setMovieMeta] = useState(movieMetaInit);
   const [showtimeLL, setShowtimeLL] = useState([]);
   const { get } = useFetch();
   const router = useRouter();
@@ -39,15 +46,8 @@ const ShowtimePage = () => {
       });
       const responseData = response.data;
       if (responseData) {
-        const movie = {
-          title: responseData.movie_title,
-          durationInMin: convertHhmmssToMinutes(responseData.movie_duration),
-          rating: ratings.find(r => r.id === responseData.rating)?.name,
-          posterUrl: responseData.trailer_pic_url,
-          trailerUrl: responseData.trailer_video_url,
-        };
-        setMovie(movie);
-        console.log(movie);
+        setMovieMeta(responseData);
+        console.log(movieMeta);
       }
     } catch (e) {
       toast.error("Failed to get movie!");
@@ -97,12 +97,12 @@ const ShowtimePage = () => {
           src="https://image.cnbcfm.com/api/v1/image/107120708-1663605936404-The_WOman_King_Cropped.jpg?v=1663672360&w=1920&h=1080"
           opacity={70}
         />
-        <div className="relative grid grid-cols-12 gap-x-28 max-w-7xl maxh-screen h-screen mx-auto py-10">
+        <div className="relative grid grid-cols-12 gap-x-28 max-w-7xl mx-auto py-10">
           <section className="col-span-5">
-            <TrailerSection movieMeta={movie} />
+            <TrailerSection movieMeta={movieMeta} />
           </section>
           <section className="col-span-7">
-            <ShowtimeSection movieMeta={movie} showtimeLL={showtimeLL} />
+            <ShowtimeSection movieMeta={movieMeta} showtimeLL={showtimeLL} />
           </section>
         </div>
       </div>
