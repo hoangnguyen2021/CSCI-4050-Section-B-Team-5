@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAdminUser,AllowAny
 from rest_framework import status
 from django.utils.dateparse import parse_time
+from api.booked_seats_tracker.utils import CreateBookedSeatsInstance
 import datetime
 from .models import Show
 from api.movie.models import movie
@@ -11,6 +12,7 @@ from .serializers import ShowSerializers , ShowTimeSerializers
 from api.showroom.models import Showroom
 import json
 from .models import Show
+import asyncio
 # Create your views here.
 def round_end_time_to_near_zero(end_time):
     end_time_copy = parse_time(str(end_time))
@@ -28,7 +30,7 @@ def round_end_time_to_near_zero(end_time):
     return datetime.timedelta(hours = end_time_copy.hour+hours , minutes = minutes)
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
-@permission_classes([AllowAny])
+@permission_classes([AllowAny]) 
 def show(request):
     if request.method == "GET":
         obj = Show.objects.filter(movie_id = int(request.GET.get("movie_id")) ,  start_date__lte = datetime.date.today() , end_date__gte = datetime.date.today())
@@ -55,7 +57,8 @@ def show(request):
             print(data)
             serializer = ShowSerializers(data = data)
             if( serializer.is_valid()):
-                serializer.save()
+                obj = serializer.save()
+                CreateBookedSeatsInstance(start_date=obj.start_date , end_date= obj.end_date , show_id=obj.id)
                 return Response(serializer.data , status=status.HTTP_201_CREATED)
             print(serializer.errors)
             
@@ -77,11 +80,10 @@ def show(request):
                 data["end_time"] = str(end_time)
                 serializer = ShowSerializers(data = data)
                 if( serializer.is_valid()):
-                    serializer.save()
+                    obj = serializer.save()
+                    CreateBookedSeatsInstance(start_date=obj.start_date , end_date= obj.end_date , show_id=obj.id)
                     return Response(serializer.data , status=status.HTTP_201_CREATED)
                 else:
                     return Response(serializer.errors , status = status.HTTP_200_OK)
         return Response({"cannot add movie because it conflicts with existing movie schedules"} , status = status.HTTP_409_CONFLICT)
 
-
-        

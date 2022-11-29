@@ -46,6 +46,7 @@ class UserViewSet(viewsets.ViewSet):
     def get_user_list(self,request):
         queryset = UserAccount.objects.filter(is_staff = False , is_active = True)
         seralizer = UserCreateSerializer(queryset , many = True)
+        # print(request.user)
         return Response(seralizer.data , status = status.HTTP_200_OK)
 
 
