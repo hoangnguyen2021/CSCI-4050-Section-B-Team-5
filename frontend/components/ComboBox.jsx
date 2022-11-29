@@ -60,7 +60,6 @@ const ComboBox = ({ label, options, selected, setSelected }) => {
                   >
                     {({ active, selected }) => (
                       <>
-                      <Link href={`/${option.id}`}>
                         <div className="flex items-center">
                           <img
                             src={option.imageUrl}
@@ -76,7 +75,6 @@ const ComboBox = ({ label, options, selected, setSelected }) => {
                             {option.name}
                           </span>
                         </div>
-                        </Link>
 
                         {selected && (
                           <span
