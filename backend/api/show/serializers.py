@@ -9,4 +9,4 @@ class ShowSerializers(serializers.ModelSerializer):
 class ShowTimeSerializers(serializers.ModelSerializer):
     class Meta:
         model = Show
-        fields = ["showroom_id" , "start_time"] 
+        fields = ["showroom_id" , "start_time" , "id"] 
