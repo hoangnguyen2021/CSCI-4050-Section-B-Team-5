@@ -79,8 +79,8 @@ const ComboBox = ({ label, options, selected, setSelected }) => {
                         {selected && (
                           <span
                             className={classNames(
-                              "absolute inset-y-0 right-0 flex items-center pr-4",
-                              active ? "text-white" : "text-on-primary"
+                              "absolute inset-y-0 right-0 flex items-center text-on-primary pr-4",
+                              active ? "" : ""
                             )}
                           >
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />
