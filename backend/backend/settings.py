@@ -49,7 +49,10 @@ INSTALLED_APPS = [
     'api.show',
     'api.showroom',
     'api.promotions',
-    'api.booked_seats_tracker'
+    'api.booked_seats_tracker',
+    'api.ticket',
+    'api.booking',
+    'api.card_info',
 
 ]
 

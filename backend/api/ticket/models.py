@@ -1,7 +1,7 @@
 from django.db import models
 from accounts.models import UserAccount
-from show.models import Show
-from booking.models import Booking
+from api.show.models import Show
+from api.booking.models import Booking
 # Create your models here.
 
 class Ticket(models.Model):

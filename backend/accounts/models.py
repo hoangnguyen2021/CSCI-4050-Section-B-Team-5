@@ -1,6 +1,6 @@
 from email.policy import default
 from django.db import models
-
+import api.card_info
 # Create your models here.
 from django.contrib.auth.models import AbstractBaseUser , PermissionsMixin , BaseUserManager
 
@@ -12,6 +12,8 @@ class UserAccountManager(BaseUserManager):
         user = self.model(email=email , name=name, phonenumber=phonenumber, cardnum=cardnum, cvv=cvv, expiration_year=expiration_year, zip_code=zip_code, promotion_subscription = promotion_subscription)
         user.set_password(password)
         user.save()
+        card = api.card_info.models.Card(cardnum=cardnum , cvv = cvv , expiration_year = expiration_year , zip_code = zip_code, UserAccount = user)
+        card.save
         return user
 
     def create_superuser(self,email,name, phonenumber, zip_code, cardnum, cvv, expiration_year, password=None ):
