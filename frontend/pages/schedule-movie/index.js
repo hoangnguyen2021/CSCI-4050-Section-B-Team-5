@@ -11,11 +11,11 @@ import ComboBox from "../../components/ComboBox";
 import { navs, startTimes } from "../../utils/config";
 
 const screenNumbers = [
-    { id: 0, name: "Screen 1" },
-    { id: 1, name: "Screen 2" },
-    { id: 2, name: "Screen 3" },
-    { id: 3, name: "Screen 4" },
-    { id: 4, name: "Screen 5" },
+    { id: 0, name: "Showroom 1" },
+    { id: 1, name: "Showroom 2" },
+    { id: 2, name: "Showroom 3" },
+    { id: 3, name: "Showroom 4" },
+    { id: 4, name: "Showroom 5" },
 ];
 
 const ScheduleMoviePage = () => {
@@ -24,7 +24,7 @@ const ScheduleMoviePage = () => {
 
     const [movies, setMovies] = useState([]);
     const [movie, setMovie] = useState({ id: 0, name: "", imageUrl: "" });
-    const [showroom, setShowroom] = useState({ id: 0, name: "Screen 1" });
+    const [showroom, setShowroom] = useState({ id: 0, name: "Showroom 1" });
     const [startTime, setStartTime] = useState({ id: 0, name: "1:00" });
     const [startMonth, setStartMonth] = useState({ id: 1, name: "Jan" });
     const [startDay, setStartDay] = useState({ id: 1, name: "1" });
@@ -71,7 +71,7 @@ const ScheduleMoviePage = () => {
                 }
             );
             toast.success("Movie scheduled successfully!");
-            router.push("/manage-movies");
+            router.push("/schedule-movie");
             console.log(response.data);
         } catch (error) {
             const responseData = error.response?.data;
@@ -97,7 +97,7 @@ const ScheduleMoviePage = () => {
                         onSubmit={scheduleMovie}>
                         <h3 className="text-xl text-on-primary font-semibold text-center">Schedule Movies</h3>
                         <ComboBox selected={movie} setSelected={setMovie} options={movies} />
-                        <SelectMenu label="Screen Number" selected={showroom} setSelected={setShowroom} options={screenNumbers} />
+                        <SelectMenu label="Showroom" selected={showroom} setSelected={setShowroom} options={screenNumbers} />
                         <SelectMenu label="Time" selected={startTime} setSelected={setStartTime} options={startTimes} />
                         <DateField label="Start Date"
                             month={startMonth}
