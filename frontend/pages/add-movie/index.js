@@ -132,7 +132,7 @@ const AddMoviePage = () => {
               setInput={setPosterUrl}
             />
             <InputField
-              label="Trailer URL"
+              label="Youtube embedded Trailer URL"
               input={trailerUrl}
               setInput={setTrailerUrl}
             />
