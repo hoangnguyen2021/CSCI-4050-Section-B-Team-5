@@ -6,6 +6,7 @@ import BackgroundOverlay from "../../components/BackgroundOverlay";
 import ShowtimeSection from "../../components/ShowtimeSection";
 import TopNavigation from "../../components/TopNavigation";
 import TrailerSection from "../../components/TrailerSection";
+import CrewAndSynopsis from "../../components/CrewAndSynopsis";
 import { groupBy } from "../../utils/utils";
 
 const movieMetaInit = {
@@ -94,7 +95,7 @@ const ShowtimePage = () => {
 
       <div className="relative min-h-screen">
         <BackgroundOverlay
-          src="https://image.cnbcfm.com/api/v1/image/107120708-1663605936404-The_WOman_King_Cropped.jpg?v=1663672360&w=1920&h=1080"
+          src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5298bac0-b8bf-4c80-af67-725c1272dbb0/defibp5-8019b091-dae8-426d-8276-7b6d15afcce8.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzUyOThiYWMwLWI4YmYtNGM4MC1hZjY3LTcyNWMxMjcyZGJiMFwvZGVmaWJwNS04MDE5YjA5MS1kYWU4LTQyNmQtODI3Ni03YjZkMTVhZmNjZTguanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.pojNP43h1WC_XSz5oyqkpLbNmCChKMYG38UqYi8b44o"
           opacity={70}
         />
         <div className="relative grid grid-cols-12 gap-x-28 max-w-7xl mx-auto py-10">
@@ -104,6 +105,9 @@ const ShowtimePage = () => {
           <section className="col-span-7">
             <ShowtimeSection movieMeta={movieMeta} showtimeLL={showtimeLL} />
           </section>
+          <div className="col-span-12 space-y-2">
+            <CrewAndSynopsis movieMeta={movieMeta} />
+          </div>
         </div>
       </div>
     </div>

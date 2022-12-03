@@ -42,32 +42,32 @@ const ManageMoviesPage = () => {
             <table className="table-auto border-collapse border border-slate-500">
               <thead>
                 <tr>
-                  <th className="border border-slate-600 text-on-primary">id</th>
-                  <th className="border border-slate-600 text-on-primary">Title</th>
-                  <th className="border border-slate-600 text-on-primary">Category</th>
-                  <th className="border border-slate-600 text-on-primary">Rating</th>
-                  <th className="border border-slate-600 text-on-primary">Duration</th>
-                  <th className="border border-slate-600 text-on-primary">Director</th>
-                  <th className="border border-slate-600 text-on-primary">Producer</th>
-                  <th className="border border-slate-600 text-on-primary">Cast</th>
-                  <th className="border border-slate-600 text-on-primary">Synopsis</th>
+                  <th className="border border-slate-600 text-on-primary p-1">id</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Title</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Category</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Rating</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Duration</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Director</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Producer</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Cast</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Synopsis</th>
                 </tr>
               </thead>
               <tbody>
                 {movies && movies.map(movie => {
                   return (
                     <tr key={movie.id}>
-                      <td className="border border-slate-700 text-on-primary">{movie.id}</td>
-                      <td className="border border-slate-700 text-on-primary">{movie.movie_title}</td>
-                      <td className="border border-slate-700 text-on-primary">{movie.movie_category}</td>
-                      <td className="border border-slate-700 text-on-primary">{ratings.find(r => r.id === movie.rating).name}</td>
-                      <td className="border border-slate-700 text-on-primary">{getHhmmFromHhmmss(movie.movie_duration)}</td>
-                      <td className="border border-slate-700 text-on-primary">{movie.director}</td>
-                      <td className="border border-slate-700 text-on-primary">{movie.producer}</td>
-                      <td className="border border-slate-700 text-on-primary">
+                      <td className="border border-slate-700 text-on-primary p-1">{movie.id}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{movie.movie_title}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{movie.movie_category}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{ratings.find(r => r.id === movie.rating).name}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{getHhmmFromHhmmss(movie.movie_duration)}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{movie.director}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{movie.producer}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">
                         <p className="line-clamp-5">{movie.movie_cast}</p>
                       </td>
-                      <td className="border border-slate-700 text-on-primary">
+                      <td className="border border-slate-700 text-on-primary p-1">
                         <p className="line-clamp-5">{movie.synopsis}</p>
                       </td>
                     </tr>);
