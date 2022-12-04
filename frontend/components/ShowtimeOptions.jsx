@@ -1,8 +1,12 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import OutlinedButton from "./OutlinedButton";
 import { showrooms } from "../utils/config";
 
 const ShowTimeOptions = ({ showtimeL }) => {
+  const router = useRouter();
+  const { movieId } = router.query;
+
   return (
     <div className="flex flex-col gap-y-2">
       <h2 className="text-2xl text-on-primary font-bold uppercase">
@@ -15,7 +19,13 @@ const ShowTimeOptions = ({ showtimeL }) => {
       <div className="flex flex-wrap gap-3 pt-4">
         {showtimeL.map((showtime) => {
           return (
-            <Link key={showtime.start_time} href="/1/1">
+            <Link
+              key={showtime.id}
+              href={{
+                pathname: "/[movieId]/[showId]",
+                query: { movieId: movieId, showId: showtime.id },
+              }}
+            >
               <a>
                 <OutlinedButton
                   text={showtime.start_time.substring(
