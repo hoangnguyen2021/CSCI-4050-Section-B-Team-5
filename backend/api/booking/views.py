@@ -23,8 +23,6 @@ class BookseatsViewset(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
     
     def book_seats(self , request):
-        booking = Booking()
-        booking.save()
         data = request.data
         print(data.get("show_id") , data.get("show_date") ,  data.get("tickets"))
         block_seats_and_return_price(show_id = data.get("show_id") , show_date = data.get("show_date")  ,tickets=data.get("tickets"))

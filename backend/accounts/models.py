@@ -13,7 +13,7 @@ class UserAccountManager(BaseUserManager):
         user.set_password(password)
         user.save()
         if( cardnum != None):
-            api.card_info.utils.save_card(cardnum=cardnum , cvv=cvv , expiration_year=expiration_year, zip_code=zip_code , User=user)
+            api.card_info.utils.save_card(cardnum=cardnum , cvv=cvv , expiration_year=expiration_year, zip_code=zip_code , User=user.id)
         return user
 
     def create_superuser(self,email,name, phonenumber, zip_code, cardnum, cvv, expiration_year, password=None ):
