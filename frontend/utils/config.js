@@ -62,3 +62,5 @@ export const showrooms = [
     { id: 3, name: "Showroom 4" },
     { id: 4, name: "Showroom 5" },
 ];
+
+export const rowNames = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];

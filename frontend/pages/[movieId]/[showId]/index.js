@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import toast from "react-hot-toast";
 import { useFetch } from "../../../hooks/useFetch";
 import BackgroundOverlay from "../../../components/BackgroundOverlay";
@@ -8,120 +9,8 @@ import SeatRow from "../../../components/SeatRow";
 import ScreenSvg from "../../../components/ScreenSvg";
 import MovieBookingHeader from "../../../components/MovieBookingHeader";
 import PillButton from "../../../components/PillButton";
-import Link from "next/link";
-
-const showtimeDetails = {
-  format: "DOLBY CINEMA",
-  attributes: [
-    "AMC Signature Recliners",
-    "Reserved Seating",
-    "Closed Caption",
-    "Audio Description",
-  ],
-  date: "Sep 20, 2022",
-  showtime: "6:15 pm",
-};
-
-const seatMap = [
-  [
-    { seat: "A1" },
-    { seat: "A2" },
-    null,
-    { seat: "A3" },
-    { seat: "A4" },
-    { seat: "A5" },
-    { seat: "A6" },
-    { seat: "A7" },
-    { seat: "A8" },
-    null,
-    { seat: "A19" },
-    { seat: "A10" },
-  ],
-  [
-    { seat: "B1" },
-    { seat: "B2" },
-    null,
-    { seat: "B3" },
-    { seat: "B4" },
-    { seat: "B5" },
-    { seat: "B6" },
-    { seat: "B7" },
-    { seat: "B8" },
-    null,
-    { seat: "B9" },
-    { seat: "B10" },
-  ],
-  [
-    { seat: "C1" },
-    { seat: "C2" },
-    null,
-    { seat: "C3" },
-    { seat: "C4" },
-    { seat: "C5" },
-    { seat: "C6" },
-    { seat: "C7" },
-    { seat: "C8" },
-    null,
-    { seat: "C9" },
-    { seat: "C10" },
-  ],
-  [
-    { seat: "D1" },
-    { seat: "D2" },
-    null,
-    { seat: "D3" },
-    { seat: "D4" },
-    { seat: "D5" },
-    { seat: "D6" },
-    { seat: "D7" },
-    { seat: "D8" },
-    null,
-    { seat: "D9" },
-    { seat: "D10" },
-  ],
-  [
-    { seat: "E1" },
-    { seat: "E2" },
-    null,
-    { seat: "E3" },
-    { seat: "E4" },
-    { seat: "E5" },
-    { seat: "E6" },
-    { seat: "E7" },
-    { seat: "E8" },
-    null,
-    { seat: "E9" },
-    { seat: "E10" },
-  ],
-  [
-    { seat: "F1" },
-    { seat: "F2" },
-    null,
-    { seat: "F3" },
-    { seat: "F4" },
-    { seat: "F5" },
-    { seat: "F6" },
-    { seat: "F7" },
-    { seat: "F8" },
-    null,
-    { seat: "F9" },
-    { seat: "F10" },
-  ],
-  [
-    { seat: "G1" },
-    { seat: "G2" },
-    null,
-    { seat: "G3" },
-    { seat: "G4" },
-    { seat: "G5" },
-    { seat: "G6" },
-    { seat: "G7" },
-    { seat: "G8" },
-    null,
-    { seat: "G9" },
-    { seat: "G10" },
-  ],
-];
+import { getTodayYYYYMMDD, getHhmmFromHhmmss } from "../../../utils/utils";
+import { rowNames } from "../../../utils/config";
 
 const movieMetaInit = {
   id: 0,
@@ -137,34 +26,87 @@ const movieMetaInit = {
   is_active: false,
   movie_duration: "",
   created_at: "",
-  updated_at: ""
+  updated_at: "",
 };
+
+const showMetaInit = {
+  id: 0,
+  show_date: "2000-01-01",
+  booked_seats:
+    "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  show_id: 0,
+};
+
+const selectedInit =
+  "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 
 const ShowPage = () => {
   const [movieMeta, setMovieMeta] = useState(movieMetaInit);
+  const [showMeta, setShowMeta] = useState(showMetaInit);
+  const [showtimes, setShowtimes] = useState([]);
+  const [selected, setSelected] = useState(selectedInit);
   const { get } = useFetch();
   const router = useRouter();
-  const { movieId } = router.query;
+  const { movieId, showId } = router.query;
 
   useEffect(() => {
-    if (movieId) {
+    if (movieId && showId) {
       getMovie();
+      getShow();
+      getShowtime();
     }
-  }, [movieId]);
+  }, [movieId, showId]);
 
   const getMovie = async () => {
     try {
       const response = await get("api/movie/get_movie_by_id", {
-        params: { id: movieId }
+        params: { id: movieId },
       });
       const responseData = response.data;
       if (responseData) {
         setMovieMeta(responseData);
-        console.log(movieMeta);
+        console.log(responseData);
       }
     } catch (e) {
       toast.error("Failed to get movie!");
     }
+  };
+
+  const getShow = async () => {
+    try {
+      const response = await get("api/bookedseats/getbookedtickets", {
+        params: { show_id: showId, show_date: getTodayYYYYMMDD() },
+        headers: { Authorization: "JWT " + localStorage.getItem("access") },
+      });
+      const responseData = response.data;
+      if (responseData) {
+        setShowMeta(responseData);
+        console.log(responseData);
+      }
+    } catch (error) {
+      toast.error("Cannot get show details!");
+      console.error(error);
+    }
+  };
+
+  const getShowtime = async () => {
+    try {
+      const response = await get("api/show/getshowtimes", {
+        params: { movie_id: movieId }
+      });
+      const responseData = response.data;
+      if (responseData) {
+        setShowtimes(responseData);
+        console.log(responseData);
+      }
+    } catch (e) {
+      toast.error("Failed to get showtimes!");
+    }
+  };
+
+  const toggleSelected = (index) => {
+    const replacement = selected.charAt(index) === "0" ? "1" : "0";
+    setSelected(selected => selected.substring(0, index) + replacement + selected.substring(index + 1));
   };
 
   return (
@@ -186,7 +128,7 @@ const ShowPage = () => {
           <div className="mx-auto max-w-7xl py-5 px-6">
             <MovieBookingHeader
               movieMeta={movieMeta}
-              showtimeDetails={showtimeDetails}
+              startTime={getHhmmFromHhmmss(showtimes.find(showtime => showtime.id.toString() === showId)?.start_time)}
             />
           </div>
         </div>
@@ -201,15 +143,24 @@ const ShowPage = () => {
             </h2>
           </div>
           <div className="relative flex flex-col gap-y-2 items-center max-w-7xl mx-auto px-6">
-            {seatMap.map((row) => (
-              <SeatRow key={row[0].seat.substring(0, 1)} row={row} />
+            {showMeta.booked_seats.match(/.{1,10}/g).map((row, i) => (
+              <SeatRow
+                key={i}
+                row={row}
+                rowName={rowNames[i]}
+                selected={selected.match(/.{1,10}/g)[i]}
+                toggleSelected={toggleSelected}
+              />
             ))}
           </div>
         </div>
 
         <div className="sticky bottom-0 flex justify-end items-center gap-x-4 bg-background bg-opacity-70 px-10 py-3">
           <div className="pl-10">
-            <Link href="/1/1/ticket">
+            <Link href={{
+              pathname: "/[movieId]/[showId]/[seats]",
+              query: { movieId: movieId, showId: showId, seats: selected },
+            }}>
               <a>
                 <PillButton text="Select tickets" />
               </a>
@@ -219,6 +170,6 @@ const ShowPage = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ShowPage;
