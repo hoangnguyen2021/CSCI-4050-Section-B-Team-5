@@ -12,8 +12,8 @@ def CreateBookedSeatsInstance(start_date , end_date , show_id):
     for i in range(1, delta+1):
         booked_seats  = BookedSeats(show_date = start_date + datetime.timedelta(days = i) , show_id = Show.objects.get(id = show_id) )
         booked_seats.save()
-def block_seats_and_return_price(show_id , show_date , tickets ):
-    booked_seats = BookedSeats.objects.filter(show_id = int(show_id) , show_date =  show_date)
+def block_seats_and_return_price(id ,  tickets ):
+    booked_seats = BookedSeats.objects.filter(id = int(id))
     serializer = BookedSeatsSerializer( booked_seats , many = True)
     seats_to_block = list(map( int , tickets.keys()))
     seats = list(serializer.data[0].get("booked_seats"))
