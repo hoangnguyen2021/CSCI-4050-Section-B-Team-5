@@ -24,7 +24,7 @@ class BookseatsViewset(viewsets.ViewSet):
     
     def book_seats(self , request):
         data = request.data
-        print(data.get("show_id") , data.get("show_date") ,  data.get("tickets"))
-        block_seats_and_return_price(show_id = data.get("show_id") , show_date = data.get("show_date")  ,tickets=data.get("tickets"))
+        # print(data.get("show_id") , data.get("show_date") ,  data.get("tickets"))
+        block_seats_and_return_price(id = data.get("id") ,tickets=data.get("tickets"))
         return Response(request.data , status = status.HTTP_200_OK)
 
