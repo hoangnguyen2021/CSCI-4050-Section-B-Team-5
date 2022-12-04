@@ -1,11 +1,11 @@
 import LargeMovieTitle from "./LargeMovieTitle";
-import STMovieInfo from "./STMovieInfo";
+import DurationAndRating from "./DurationAndRating";
 import RoundedImageView from "./RoundedImageView";
 import ShowtimeAttributes from "./ShowtimeAttributes";
 import DateTime from "./DateTime";
 
 const MovieBookingHeader = ({ movieMeta, showtimeDetails }) => {
-  const { title, durationInMin, rating, posterUrl } = movieMeta;
+  const { title, posterUrl } = movieMeta;
   const { attributes, date, showtime } = showtimeDetails;
 
   return (
@@ -15,7 +15,7 @@ const MovieBookingHeader = ({ movieMeta, showtimeDetails }) => {
         <div className="flex flex-col gap-y-3">
           <div>
             <LargeMovieTitle title={title} />
-            <STMovieInfo durationInMin={durationInMin} rating={rating} />
+            <DurationAndRating movieMeta={movieMeta} />
           </div>
           <ShowtimeAttributes attributes={attributes} />
         </div>
