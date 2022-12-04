@@ -9,4 +9,5 @@ urlpatterns = [
     path('showroom/' , include('api.showroom.urls') ),
     path('booking/' , include('api.booking.urls')),
     path('cards/' , include('api.card_info.urls')),
+    path('bookedseats/' , include('api.booked_seats_tracker.urls')),
 ]
