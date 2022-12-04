@@ -15,7 +15,9 @@ def CreateBookedSeatsInstance(start_date , end_date , show_id):
 def block_seats_and_return_price(show_id , show_date , tickets ):
     booked_seats = BookedSeats.objects.filter(show_id = int(show_id) , show_date =  show_date)
     serializer = BookedSeatsSerializer( booked_seats , many = True)
-    
+    for ticket in tickets:
+        print(ticket)
+
     print(serializer.data)
 
 
