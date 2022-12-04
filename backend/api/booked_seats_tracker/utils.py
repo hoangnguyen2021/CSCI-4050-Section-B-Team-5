@@ -15,10 +15,17 @@ def CreateBookedSeatsInstance(start_date , end_date , show_id):
 def block_seats_and_return_price(show_id , show_date , tickets ):
     booked_seats = BookedSeats.objects.filter(show_id = int(show_id) , show_date =  show_date)
     serializer = BookedSeatsSerializer( booked_seats , many = True)
-    for ticket in tickets:
-        print(ticket)
-
-    print(serializer.data)
+    seats_to_block = list(map( int , tickets.keys()))
+    seats = list(serializer.data[0].get("booked_seats"))
+    dict_of_serializer = dict(serializer.data[0])
+    for seat in seats_to_block:
+        seats[seat] = '1'
+    seats = "".join(seats)
+    dict_of_serializer["booked_seats"] =   seats
+    serializer = BookedSeatsSerializer(data = dict_of_serializer)
+    if( serializer.is_valid()):
+        serializer.save()
+    
 
 
 
