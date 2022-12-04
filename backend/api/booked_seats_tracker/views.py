@@ -17,6 +17,6 @@ class BookedSeatsViewSet(viewsets.ViewSet):
 
     def get_booked_tickets(self , request):
         booked_seats = BookedSeats.objects.filter(show_id = request.GET.get("show_id") , show_date = request.GET.get("show_date"))
-        serializer = BookedSeatsSerializer(booked_seats , many = True)
+        serializer = BookedSeatsSerializer(booked_seats.first() , many=False)
         return Response(serializer.data , status = status.HTTP_200_OK)
 
