@@ -22,7 +22,7 @@ def block_seats_and_return_price(show_id , show_date , tickets ):
         seats[seat] = '1'
     seats = "".join(seats)
     dict_of_serializer["booked_seats"] =   seats
-    serializer = BookedSeatsSerializer(data = dict_of_serializer)
+    serializer = BookedSeatsSerializer(booked_seats.first(), data = dict_of_serializer)
     if( serializer.is_valid()):
         serializer.save()
     
