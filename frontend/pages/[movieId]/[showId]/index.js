@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
+import { useFetch } from "../../../hooks/useFetch";
 import BackgroundOverlay from "../../../components/BackgroundOverlay";
 import TopNavigation from "../../../components/TopNavigation";
 import SeatRow from "../../../components/SeatRow";
@@ -5,15 +9,6 @@ import ScreenSvg from "../../../components/ScreenSvg";
 import MovieBookingHeader from "../../../components/MovieBookingHeader";
 import PillButton from "../../../components/PillButton";
 import Link from "next/link";
-
-const movieMeta = {
-  title: "The Woman King",
-  durationInMin: 135,
-  rating: "PG-13",
-  posterUrl:
-    "https://amc-theatres-res.cloudinary.com/image/upload/c_thumb,f_auto,fl_preserve_transparency,g_face,h_120,q_auto,r_max,w_120/e_trim/v1662739107/amc-cdn/production/2/movies/68200/68219/PosterDynamic/142758.jpg",
-  trailerUrl: "https://www.youtube.com/embed/3RDaPV_rJ1Y",
-};
 
 const showtimeDetails = {
   format: "DOLBY CINEMA",
@@ -38,13 +33,9 @@ const seatMap = [
     { seat: "A6" },
     { seat: "A7" },
     { seat: "A8" },
-    { seat: "A9" },
-    { seat: "A10" },
-    { seat: "A11" },
-    { seat: "A12" },
     null,
-    { seat: "A13" },
-    { seat: "A14" },
+    { seat: "A19" },
+    { seat: "A10" },
   ],
   [
     { seat: "B1" },
@@ -56,13 +47,9 @@ const seatMap = [
     { seat: "B6" },
     { seat: "B7" },
     { seat: "B8" },
+    null,
     { seat: "B9" },
     { seat: "B10" },
-    { seat: "B11" },
-    { seat: "B12" },
-    null,
-    { seat: "B13" },
-    { seat: "B14" },
   ],
   [
     { seat: "C1" },
@@ -74,13 +61,9 @@ const seatMap = [
     { seat: "C6" },
     { seat: "C7" },
     { seat: "C8" },
+    null,
     { seat: "C9" },
     { seat: "C10" },
-    { seat: "C11" },
-    { seat: "C12" },
-    null,
-    { seat: "C13" },
-    { seat: "C14" },
   ],
   [
     { seat: "D1" },
@@ -92,13 +75,9 @@ const seatMap = [
     { seat: "D6" },
     { seat: "D7" },
     { seat: "D8" },
+    null,
     { seat: "D9" },
     { seat: "D10" },
-    { seat: "D11" },
-    { seat: "D12" },
-    null,
-    { seat: "D13" },
-    { seat: "D14" },
   ],
   [
     { seat: "E1" },
@@ -110,13 +89,9 @@ const seatMap = [
     { seat: "E6" },
     { seat: "E7" },
     { seat: "E8" },
+    null,
     { seat: "E9" },
     { seat: "E10" },
-    { seat: "E11" },
-    { seat: "E12" },
-    null,
-    { seat: "E13" },
-    { seat: "E14" },
   ],
   [
     { seat: "F1" },
@@ -128,13 +103,9 @@ const seatMap = [
     { seat: "F6" },
     { seat: "F7" },
     { seat: "F8" },
+    null,
     { seat: "F9" },
     { seat: "F10" },
-    { seat: "F11" },
-    { seat: "F12" },
-    null,
-    { seat: "F13" },
-    { seat: "F14" },
   ],
   [
     { seat: "G1" },
@@ -146,17 +117,56 @@ const seatMap = [
     { seat: "G6" },
     { seat: "G7" },
     { seat: "G8" },
+    null,
     { seat: "G9" },
     { seat: "G10" },
-    { seat: "G11" },
-    { seat: "G12" },
-    null,
-    { seat: "G13" },
-    { seat: "G14" },
   ],
 ];
 
-export default function SelectSeatsPage() {
+const movieMetaInit = {
+  id: 0,
+  movie_title: "",
+  movie_category: "",
+  movie_cast: "",
+  director: "",
+  producer: "",
+  synopsis: "",
+  trailer_pic_url: "",
+  trailer_video_url: "",
+  rating: 0,
+  is_active: false,
+  movie_duration: "",
+  created_at: "",
+  updated_at: ""
+};
+
+const ShowPage = () => {
+  const [movieMeta, setMovieMeta] = useState(movieMetaInit);
+  const { get } = useFetch();
+  const router = useRouter();
+  const { movieId } = router.query;
+
+  useEffect(() => {
+    if (movieId) {
+      getMovie();
+    }
+  }, [movieId]);
+
+  const getMovie = async () => {
+    try {
+      const response = await get("api/movie/get_movie_by_id", {
+        params: { id: movieId }
+      });
+      const responseData = response.data;
+      if (responseData) {
+        setMovieMeta(responseData);
+        console.log(movieMeta);
+      }
+    } catch (e) {
+      toast.error("Failed to get movie!");
+    }
+  };
+
   return (
     <div className="bg-background">
       {/* Navigation */}
@@ -210,3 +220,5 @@ export default function SelectSeatsPage() {
     </div>
   );
 }
+
+export default ShowPage;
