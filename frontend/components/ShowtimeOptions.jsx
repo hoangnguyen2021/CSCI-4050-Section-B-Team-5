@@ -17,20 +17,20 @@ const ShowTimeOptions = ({ showtimeL }) => {
         }
       </h2>
       <div className="flex flex-wrap gap-3 pt-4">
-        {showtimeL.map((showtime) => {
+        {showtimeL.map((show) => {
           return (
             <Link
-              key={showtime.id}
+              key={show.id}
               href={{
                 pathname: "/[movieId]/[showId]",
-                query: { movieId: movieId, showId: showtime.id },
+                query: { movieId: movieId, showId: show.id },
               }}
             >
               <a>
                 <OutlinedButton
-                  text={showtime.start_time.substring(
+                  text={show.start_time.substring(
                     0,
-                    showtime.start_time.length - 3
+                    show.start_time.length - 3
                   )}
                 />
               </a>

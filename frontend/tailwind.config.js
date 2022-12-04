@@ -16,6 +16,7 @@ module.exports = {
         "primary-variant": "#a30000",
         "on-primary": "#ffffff",
         "on-secondary": "#000000",
+        "disabled": "#808080"
       },
     },
   },
