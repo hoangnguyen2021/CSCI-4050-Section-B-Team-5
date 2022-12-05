@@ -9,7 +9,7 @@ import BackgroundOverlay from "../../../../../components/BackgroundOverlay";
 import OrderSummary from "../../../../../components/OrderSummary";
 import PaymentForm from "../../../../../components/PaymentForm";
 import PillButton from "../../../../../components/PillButton";
-import { getHhmmFromHhmmss } from "../../../../../utils/utils";
+import { getHhmmFromHhmmss, calculatePrice } from "../../../../../utils/utils";
 
 const movieMetaInit = {
   id: 0,
@@ -43,6 +43,7 @@ const CheckoutPage = () => {
   const { get } = useFetch();
   const router = useRouter();
   const { movieId, showId, seats, ticketTypes } = router.query;
+  const { total } = calculatePrice(tickets);
 
   useEffect(() => {
     if (movieId && showId && seats && tickets) {
@@ -121,7 +122,7 @@ const CheckoutPage = () => {
 
       <div className="sticky bottom-0 flex justify-end items-center gap-x-4 bg-background px-10 py-3">
         <p className="text-on-primary text-lg font-semibold uppercase">TOTAL</p>
-        <p className="text-on-primary text-2xl font-bold">$50.39</p>
+        <p className="text-on-primary text-2xl font-bold">${total.toFixed(2)}</p>
         <div className="pl-10">
           <Link href="/orders/1/confirm">
             <a>

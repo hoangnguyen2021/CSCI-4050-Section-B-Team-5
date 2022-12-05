@@ -70,3 +70,5 @@ export const ticketTypes = [
     { name: "Child", price: 10.00 },
     { name: "Senior", price: 12.50 }
 ];
+
+export const SALES_TAX_RATE = 0.06;
