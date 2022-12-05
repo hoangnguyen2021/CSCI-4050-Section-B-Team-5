@@ -1,4 +1,5 @@
 import moment from "moment";
+import { ticketTypes, SALES_TAX_RATE } from "../utils/config";
 
 export const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -41,3 +42,15 @@ export const groupBy = (xs, key) => {
     return rv;
   }, {});
 };
+
+export const calculatePrice = (tickets) => {
+  const totalBeforeTax = tickets.reduce(
+    (accumulator, current, i) =>
+      accumulator + Number.parseFloat(current) * ticketTypes[i].price,
+    0
+  );
+  const tax = totalBeforeTax * SALES_TAX_RATE;
+  const total = totalBeforeTax + tax;
+
+  return { totalBeforeTax, tax, total };
+}
