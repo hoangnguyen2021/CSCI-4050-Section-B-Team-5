@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import toast from "react-hot-toast";
 import { useFetch } from "../../../hooks/useFetch";
 import BackgroundOverlay from "../../../components/BackgroundOverlay";
@@ -11,6 +10,7 @@ import MovieBookingHeader from "../../../components/MovieBookingHeader";
 import PillButton from "../../../components/PillButton";
 import { getTodayYYYYMMDD, getHhmmFromHhmmss } from "../../../utils/utils";
 import { rowNames } from "../../../utils/config";
+import Link from "next/link";
 
 const movieMetaInit = {
   id: 0,
@@ -45,23 +45,23 @@ const showtimeInit = {
   show_id: 0,
 };
 
-const selectedInit =
+const seatsInit =
   "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 
 const ShowPage = () => {
   const [movieMeta, setMovieMeta] = useState(movieMetaInit);
   const [showMeta, setShowMeta] = useState(showMetaInit);
   const [showtime, setShowtime] = useState(showtimeInit);
-  const [selected, setSelected] = useState(selectedInit);
-  const { get } = useFetch();
+  const [seats, setSeats] = useState(seatsInit);
+  const { get, put } = useFetch();
   const router = useRouter();
   const { movieId, showId } = router.query;
 
   useEffect(() => {
     if (movieId && showId) {
       getMovie();
-      getShow();
       getShowtime();
+      getShow();
     }
   }, [movieId, showId]);
 
@@ -77,23 +77,6 @@ const ShowPage = () => {
       }
     } catch (e) {
       toast.error("Failed to get movie!");
-    }
-  };
-
-  const getShow = async () => {
-    try {
-      const response = await get("api/bookedseats/getbookedtickets", {
-        params: { show_id: showId, show_date: getTodayYYYYMMDD() },
-        headers: { Authorization: "JWT " + localStorage.getItem("access") },
-      });
-      const responseData = response.data;
-      if (responseData) {
-        setShowMeta(responseData);
-        console.log(responseData);
-      }
-    } catch (error) {
-      toast.error("Cannot get show details!");
-      console.error(error);
     }
   };
 
@@ -114,9 +97,48 @@ const ShowPage = () => {
     }
   };
 
+  const getShow = async () => {
+    try {
+      const response = await get("api/bookedseats/getbookedtickets", {
+        params: { show_id: showId, show_date: getTodayYYYYMMDD() },
+        headers: { Authorization: "JWT " + localStorage.getItem("access") },
+      });
+      const responseData = response.data;
+      if (responseData) {
+        setShowMeta(responseData);
+        console.log(responseData);
+      }
+    } catch (e) {
+      toast.error("Cannot get show details!");
+      console.error(e);
+    }
+  };
+
+  const blockSeats = async () => {
+    try {
+      const response = await put(
+        "api/booking/block-tickets",
+        { id: showId, seats: seats },
+        { headers: { Authorization: "JWT " + localStorage.getItem("access") } }
+      );
+      const responseData = response.data;
+      if (responseData) {
+        toast.success("Seats reserved successfully!");
+        console.log(responseData);
+        router.push({
+          pathname: "/[movieId]/[showId]/[seats]",
+          query: { movieId: movieId, showId: showId, seats: seats },
+        });
+      }
+    } catch (e) {
+      console.error(e);
+      toast.error("Failed to reserve seats!");
+    }
+  };
+
   const toggleSelected = (index) => {
-    const replacement = selected.charAt(index) === "0" ? "1" : "0";
-    setSelected(
+    const replacement = seats.charAt(index) === "0" ? "1" : "0";
+    setSeats(
       (selected) =>
         selected.substring(0, index) +
         replacement +
@@ -163,7 +185,7 @@ const ShowPage = () => {
                 key={i}
                 row={row}
                 rowName={rowNames[i]}
-                selected={selected.match(/.{1,10}/g)[i]}
+                selected={seats.match(/.{1,10}/g)[i]}
                 toggleSelected={toggleSelected}
               />
             ))}
@@ -172,15 +194,11 @@ const ShowPage = () => {
 
         <div className="sticky bottom-0 flex justify-end items-center gap-x-4 bg-background bg-opacity-70 px-10 py-3">
           <div className="pl-10">
-            <Link
-              href={{
-                pathname: "/[movieId]/[showId]/[seats]",
-                query: { movieId: movieId, showId: showId, seats: selected },
-              }}
-            >
-              <a>
-                <PillButton text="Select tickets" />
-              </a>
+            <Link href={{
+              pathname: "/[movieId]/[showId]/[seats]",
+              query: { movieId: movieId, showId: showId, seats: seats },
+            }}>
+              <a><PillButton text="Select tickets" disabled={seats === seatsInit} /></a>
             </Link>
           </div>
         </div>

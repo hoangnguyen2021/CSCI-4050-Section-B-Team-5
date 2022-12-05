@@ -3,9 +3,7 @@ import PlusButton from "./PlusButton";
 import TicketDetails from "./TicketDetails";
 
 const TicketAddRemove = ({
-  type,
-  ageRange,
-  setPrice,
+  ticketType,
   quantity,
   plusDisabled,
   minusDisabled,
@@ -15,12 +13,7 @@ const TicketAddRemove = ({
   return (
     <div className="flex justify-evenly items-center gap-x-2">
       <MinusButton onClick={onMinus} disabled={minusDisabled} />
-      <TicketDetails
-        type={type}
-        ageRange={ageRange}
-        setPrice={setPrice}
-        quantity={quantity}
-      />
+      <TicketDetails ticketType={ticketType} quantity={quantity} />
       <PlusButton onClick={onPlus} disabled={plusDisabled} />
     </div>
   );

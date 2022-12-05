@@ -2,8 +2,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import OutlinedButton from "./OutlinedButton";
 import { showrooms } from "../utils/config";
+import { getHhmmFromHhmmss } from "../utils/utils";
 
-const ShowTimeOptions = ({ showtimeL }) => {
+const ShowOptions = ({ showL }) => {
   const router = useRouter();
   const { movieId } = router.query;
 
@@ -11,13 +12,12 @@ const ShowTimeOptions = ({ showtimeL }) => {
     <div className="flex flex-col gap-y-2">
       <h2 className="text-2xl text-on-primary font-bold uppercase">
         {
-          showrooms.find(
-            (showroom) => showroom.id === showtimeL[0]?.showroom_id
-          ).name
+          showrooms.find((showroom) => showroom.id === showL[0]?.showroom_id)
+            ?.name
         }
       </h2>
       <div className="flex flex-wrap gap-3 pt-4">
-        {showtimeL.map((show) => {
+        {showL.map((show) => {
           return (
             <Link
               key={show.id}
@@ -27,12 +27,7 @@ const ShowTimeOptions = ({ showtimeL }) => {
               }}
             >
               <a>
-                <OutlinedButton
-                  text={show.start_time.substring(
-                    0,
-                    show.start_time.length - 3
-                  )}
-                />
+                <OutlinedButton text={getHhmmFromHhmmss(show.start_time)} />
               </a>
             </Link>
           );
@@ -42,4 +37,4 @@ const ShowTimeOptions = ({ showtimeL }) => {
   );
 };
 
-export default ShowTimeOptions;
+export default ShowOptions;

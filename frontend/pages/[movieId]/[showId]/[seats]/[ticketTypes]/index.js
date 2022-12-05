@@ -39,17 +39,17 @@ const showtimeInit = {
 const CheckoutPage = () => {
   const [movieMeta, setMovieMeta] = useState(movieMetaInit);
   const [showtime, setShowtime] = useState(showtimeInit);
-  const [tickets, setTickets] = useState([]);
+  const [ticketCounts, setTicketCounts] = useState([]);
   const { get } = useFetch();
   const router = useRouter();
   const { movieId, showId, seats, ticketTypes } = router.query;
-  const { total } = calculatePrice(tickets);
+  const { total } = calculatePrice(ticketCounts);
 
   useEffect(() => {
-    if (movieId && showId && seats && tickets) {
+    if (movieId && showId && seats && ticketCounts) {
       getMovie();
       getShowtime();
-      setTickets(ticketTypes.split(""));
+      setTicketCounts(ticketTypes.split(""));
     }
   }, [movieId, showId, seats, ticketTypes]);
 
@@ -115,7 +115,7 @@ const CheckoutPage = () => {
             <PaymentForm />
           </section>
           <section className="col-span-5 my-10">
-            <OrderSummary tickets={tickets} />
+            <OrderSummary ticketCounts={ticketCounts} />
           </section>
         </div>
       </div>

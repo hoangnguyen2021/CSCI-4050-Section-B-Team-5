@@ -31,7 +31,7 @@ const Modal = ({ open, setOpen, title, children }) => {
             >
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-background border border-on-primary text-left shadow-xl transition-all sm:w-full sm:max-w-sm md:max-w-2xl">
                 <Dialog.Title className="flex justify-between items-center border-b px-4 py-2">
-                  <h3 className="text-on-primary text-xl font-bold">{title}</h3>
+                  <p className="text-on-primary text-xl font-bold">{title}</p>
                   <XMarkIcon
                     className="h-8 w-8 cursor-pointer hover:text-primary"
                     onClick={() => setOpen(false)}
