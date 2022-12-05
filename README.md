@@ -7,7 +7,7 @@ cd frontend
 npm install
 npm run dev
 
-To run backend:
+To run backend:\n
 Requirements:
 - Python 3.10.6 (later versions are not working)
 - Postgresql
