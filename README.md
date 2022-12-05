@@ -3,7 +3,6 @@
 Frontend is deployed: https://bulldog-cinema.vercel.app/
 
 Or to run frontend in dev:
-
 cd frontend
 
 npm install
