@@ -11,19 +11,9 @@ const OrderSummary = ({ tickets }) => {
           <p className="text-blue-600 text-lg font-semibold">Edit</p>
         </div>
         <div className="flex flex-col gap-y-5">
-          {tickets.map((ticket) => (
-            <Ticket key={ticket.key} ticket={ticket} />
+          {tickets.map((ticket, i) => (
+            <Ticket ticket={ticket} type={i} />
           ))}
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-y-2">
-        <h3 className="text-on-primary text-xl font-bold uppercase">FEES</h3>
-        <div className="flex justify-between">
-          <h3 className="text-on-primary text-lg font-normal">
-            Convenience Fee
-          </h3>
-          <p className="text-on-primary text-lg font-normal">$4.98</p>
         </div>
       </div>
 

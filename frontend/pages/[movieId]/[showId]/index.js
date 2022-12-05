@@ -37,13 +37,21 @@ const showMetaInit = {
   show_id: 0,
 };
 
+const showtimeInit = {
+  id: 0,
+  show_date: "2000-01-01",
+  booked_seats:
+    "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  show_id: 0,
+};
+
 const selectedInit =
   "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 
 const ShowPage = () => {
   const [movieMeta, setMovieMeta] = useState(movieMetaInit);
   const [showMeta, setShowMeta] = useState(showMetaInit);
-  const [showtimes, setShowtimes] = useState([]);
+  const [showtime, setShowtime] = useState(showtimeInit);
   const [selected, setSelected] = useState(selectedInit);
   const { get } = useFetch();
   const router = useRouter();
@@ -92,21 +100,28 @@ const ShowPage = () => {
   const getShowtime = async () => {
     try {
       const response = await get("api/show/getshowtimes", {
-        params: { movie_id: movieId }
+        params: { movie_id: movieId },
       });
       const responseData = response.data;
       if (responseData) {
-        setShowtimes(responseData);
+        setShowtime(
+          responseData.find((showtime) => showtime.id.toString() === showId)
+        );
         console.log(responseData);
       }
     } catch (e) {
-      toast.error("Failed to get showtimes!");
+      toast.error("Failed to get showtime!");
     }
   };
 
   const toggleSelected = (index) => {
     const replacement = selected.charAt(index) === "0" ? "1" : "0";
-    setSelected(selected => selected.substring(0, index) + replacement + selected.substring(index + 1));
+    setSelected(
+      (selected) =>
+        selected.substring(0, index) +
+        replacement +
+        selected.substring(index + 1)
+    );
   };
 
   return (
@@ -128,7 +143,7 @@ const ShowPage = () => {
           <div className="mx-auto max-w-7xl py-5 px-6">
             <MovieBookingHeader
               movieMeta={movieMeta}
-              startTime={getHhmmFromHhmmss(showtimes.find(showtime => showtime.id.toString() === showId)?.start_time)}
+              startTime={getHhmmFromHhmmss(showtime.start_time)}
             />
           </div>
         </div>
@@ -157,10 +172,12 @@ const ShowPage = () => {
 
         <div className="sticky bottom-0 flex justify-end items-center gap-x-4 bg-background bg-opacity-70 px-10 py-3">
           <div className="pl-10">
-            <Link href={{
-              pathname: "/[movieId]/[showId]/[seats]",
-              query: { movieId: movieId, showId: showId, seats: selected },
-            }}>
+            <Link
+              href={{
+                pathname: "/[movieId]/[showId]/[seats]",
+                query: { movieId: movieId, showId: showId, seats: selected },
+              }}
+            >
               <a>
                 <PillButton text="Select tickets" />
               </a>

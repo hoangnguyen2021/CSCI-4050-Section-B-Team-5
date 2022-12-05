@@ -64,3 +64,9 @@ export const showrooms = [
 ];
 
 export const rowNames = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+
+export const ticketTypes = [
+    { name: "Adult", price: 15.00 },
+    { name: "Child", price: 10.00 },
+    { name: "Senior", price: 12.50 }
+];
