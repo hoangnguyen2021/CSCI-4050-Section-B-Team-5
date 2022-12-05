@@ -1,6 +1,6 @@
 import RoundedImageView from "./RoundedImageView";
 import LargeMovieTitle from "./LargeMovieTitle";
-import DurationAndRating from "./DurationAndRating";
+import DuationRatingCategory from "./DurationRatingCategory";
 
 const ShowtimeHeader = ({ movieMeta }) => {
   const { movie_title, trailer_pic_url } = movieMeta;
@@ -10,7 +10,7 @@ const ShowtimeHeader = ({ movieMeta }) => {
       <RoundedImageView src={trailer_pic_url} />
       <div className="flex flex-col gap-y-2">
         <LargeMovieTitle title={movie_title} />
-        <DurationAndRating movieMeta={movieMeta} />
+        <DuationRatingCategory movieMeta={movieMeta} />
       </div>
     </div>
   );

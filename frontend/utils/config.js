@@ -66,9 +66,9 @@ export const showrooms = [
 export const rowNames = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
 
 export const ticketTypes = [
-    { name: "Adult", price: 15.00 },
-    { name: "Child", price: 10.00 },
-    { name: "Senior", price: 12.50 }
+    { type: "Adult", ageRange: "12-60", price: 15.00, },
+    { type: "Child", ageRange: "2-12", price: 10.00, },
+    { type: "Senior", ageRange: "60+", price: 12.50, }
 ];
 
 export const SALES_TAX_RATE = 0.06;

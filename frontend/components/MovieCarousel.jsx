@@ -8,19 +8,19 @@ const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 4,
-    paritialVisibilityGutter: 60,
+    partialVisibilityGutter: 60,
     slidesToSlide: 2, // optional, default to 1.
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 2,
-    paritialVisibilityGutter: 40,
+    partialVisibilityGutter: 40,
     slidesToSlide: 1, // optional, default to 1.
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 1,
-    paritialVisibilityGutter: 30,
+    partialVisibilityGutter: 30,
     slidesToSlide: 1, // optional, default to 1.
   },
 };
@@ -31,7 +31,7 @@ const MovieCarousel = ({ label, movies, buttonText }) => {
       {/* Decorative image and overlay */}
       <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
         <img
-          src="https://www.thx.com/wp-content/uploads/2021/03/Nordisk-Film-Cinemas-inside-theatre-image.jpg"
+          src="https://cdn.celluloidjunkie.com/wp-content/uploads/2019/02/14133416/ICE-by-CGR-Auditorium-Bohemian-Rhapsody.jpg"
           alt=""
           className="h-full w-full object-cover object-center"
         />
@@ -43,13 +43,13 @@ const MovieCarousel = ({ label, movies, buttonText }) => {
       <div className="relative z-10 bg-background bg-opacity-30 backdrop-blur-sm backdrop-filter">
         <Heading text={label} />
         <Carousel
-          partialVisbile
+          partialVisible
           responsive={responsive}
           customRightArrow={<CustomRightArrow />}
           customLeftArrow={<CustomLeftArrow />}
         >
-          {movies.map((movie) => (
-            <MovieCard key={movie.key} movie={movie} buttonText={buttonText} />
+          {movies.map((movie, i) => (
+            <MovieCard key={i} movie={movie} buttonText={buttonText} />
           ))}
         </Carousel>
       </div>
