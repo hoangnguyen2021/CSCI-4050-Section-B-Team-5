@@ -62,3 +62,13 @@ export const showrooms = [
     { id: 3, name: "Showroom 4" },
     { id: 4, name: "Showroom 5" },
 ];
+
+export const rowNames = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+
+export const ticketTypes = [
+    { name: "Adult", price: 15.00 },
+    { name: "Child", price: 10.00 },
+    { name: "Senior", price: 12.50 }
+];
+
+export const SALES_TAX_RATE = 0.06;
