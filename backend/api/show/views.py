@@ -35,9 +35,7 @@ def show(request):
     if request.method == "GET":
         obj = Show.objects.filter(movie_id = int(request.GET.get("movie_id")) ,  start_date__lte = datetime.date.today() , end_date__gte = datetime.date.today())
         serializer = ShowTimeSerializers(obj, many = True)
-        print(serializer.data, datetime.date.today())
         return Response(serializer.data)
-
 
     elif request.method == "POST":
         data = json.loads(request.body)

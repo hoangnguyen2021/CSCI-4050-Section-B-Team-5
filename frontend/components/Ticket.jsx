@@ -8,7 +8,7 @@ const Ticket = ({ ticket, type }) => {
           {ticketTypes[type].name} x {ticket}
         </p>
         <p className="text-on-primary text-lg font-normal">
-          ${ticketTypes[type].price.toFixed(2)}
+          ${(ticketTypes[type].price * ticket).toFixed(2)}
         </p>
       </div>
       <p className="text-gray-400 text-sm font-normal italic"></p>
