@@ -37,6 +37,12 @@ class PromotionsReadSet(viewsets.ModelViewSet):
         queryset = Promotions.objects.all()
         serializer = PromotionSerializers(queryset, many = True)
         return Response(serializer.data, status = status.HTTP_200_OK)
+    def get_promotion_by_id(self, request):
+        queryset = Promotions.objects.filter(promotion_code = request.GET.get("promotion_code"))
+        serializer = PromotionSerializers(queryset , many = True)
+        return Response(serializer.data , status = status.HTTP_200_OK)
+
+
 
     def insertEmp(self, request):
         
