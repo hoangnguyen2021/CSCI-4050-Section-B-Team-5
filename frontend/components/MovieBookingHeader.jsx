@@ -1,12 +1,11 @@
 import LargeMovieTitle from "./LargeMovieTitle";
 import DurationAndRating from "./DurationAndRating";
 import RoundedImageView from "./RoundedImageView";
-import ShowtimeAttributes from "./ShowtimeAttributes";
 import DateTime from "./DateTime";
+import { getTodayString } from "../utils/utils";
 
-const MovieBookingHeader = ({ movieMeta, showtimeDetails }) => {
+const MovieBookingHeader = ({ movieMeta, startTime }) => {
   const { movie_title, trailer_pic_url } = movieMeta;
-  const { attributes, date, showtime } = showtimeDetails;
 
   return (
     <div className="flex items-center justify-between">
@@ -17,10 +16,9 @@ const MovieBookingHeader = ({ movieMeta, showtimeDetails }) => {
             <LargeMovieTitle title={movie_title} />
             <DurationAndRating movieMeta={movieMeta} />
           </div>
-          <ShowtimeAttributes attributes={attributes} />
         </div>
       </div>
-      <DateTime date={date} time={showtime} />
+      <DateTime date={getTodayString()} time={startTime} />
     </div>
   );
 };

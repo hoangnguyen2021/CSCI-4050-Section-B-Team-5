@@ -60,22 +60,22 @@ const ComboBox_Category = ({ label, options, selected, setSelected }) => {
                   >
                     {({ active, selected }) => (
                       <>
-                         <Link href={`/${option.id}`}>
-                        <div  className="flex items-center">
-                          <img
-                            src={option.imageUrl}
-                            alt=""
-                            className="h-6 w-6 flex-shrink-0 rounded-full"
-                          />
-                          <span
-                            className={classNames(
-                              "ml-3 truncate",
-                              selected && "font-semibold"
-                            )}
-                          >
-                            {option.name}
-                          </span>
-                        </div>
+                        <Link href={`/${option.id}`}>
+                          <div className="flex items-center">
+                            <img
+                              src={option.imageUrl}
+                              alt=""
+                              className="h-6 w-6 flex-shrink-0 rounded-full"
+                            />
+                            <span
+                              className={classNames(
+                                "ml-3 truncate",
+                                selected && "font-semibold"
+                              )}
+                            >
+                              {option.name}
+                            </span>
+                          </div>
                         </Link>
 
                         {selected && (
