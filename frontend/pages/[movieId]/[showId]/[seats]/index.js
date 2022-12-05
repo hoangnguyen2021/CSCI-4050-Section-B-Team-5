@@ -122,6 +122,7 @@ const SelectTicketsPage = () => {
           <TicketPrompt value={availableSeats} />
           {ticketTypes.map((ticketType, i) =>
             <TicketAddRemove
+              key={ticketType.type}
               ticketType={ticketType}
               quantity={quantities[i]}
               plusDisabled={availableSeats === 0}
