@@ -51,6 +51,7 @@ class PromotionsReadSet(viewsets.ModelViewSet):
             enteredPromotion = request.body.decode("utf-8")
             enteredPromotion = json.loads(enteredPromotion)
             promotion = enteredPromotion.get("promotion_name")
+            promotion_code = enteredPromotion.get("promotion_code")
             print(enteredPromotion)
             
             saveSerializer = PromotionSerializers(data=enteredPromotion)
@@ -89,8 +90,8 @@ class PromotionsReadSet(viewsets.ModelViewSet):
             #rec = ['noyondey8@gmail.com','noyondeyiit07@gmail.com']"""
 
             send_mail(
-                    'That’s your subject Bro',
                     promotion,
+                    promotion_code,
                     'teamb5se@gmail.com',
                     value_list,
                     fail_silently=False,
