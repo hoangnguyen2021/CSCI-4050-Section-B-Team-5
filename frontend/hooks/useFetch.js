@@ -32,5 +32,17 @@ export const useFetch = () => {
     }
   };
 
-  return { get, post, loading };
+  const put = async (url, body, config) => {
+    try {
+      console.log(body);
+      const response = await server.put(url, body, config);
+      setLoading(false);
+      return response;
+    } catch (error) {
+      setLoading(false);
+      throw error;
+    }
+  };
+
+  return { get, post, put, loading };
 };

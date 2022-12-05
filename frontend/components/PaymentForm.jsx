@@ -2,7 +2,6 @@ import { useState } from "react";
 import AddButton from "./AddButton";
 import CardNumberField from "./CardNumberField";
 import Modal from "./Modal";
-import PaymentMethods from "./PaymentMethods";
 import SelectMenu from "./SelectMenu";
 import InputField from "./InputField";
 import PillButton from "./PillButton";
@@ -80,7 +79,6 @@ const PaymentForm = () => {
         Payment Method
       </h2>
       <AddButton text="Add Card" open={open} setOpen={setOpen} />
-      <PaymentMethods />
     </div>
   );
 };

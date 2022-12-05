@@ -16,6 +16,7 @@ module.exports = {
         "primary-variant": "#a30000",
         "on-primary": "#ffffff",
         "on-secondary": "#000000",
+        "disabled": "#808080"
       },
     },
   },
@@ -27,5 +28,6 @@ module.exports = {
     require("@tailwindcss/aspect-ratio"),
     require("flowbite/plugin"),
     require("tailwind-scrollbar"),
+    require('@tailwindcss/line-clamp'),
   ],
 };

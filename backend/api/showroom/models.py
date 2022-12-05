@@ -5,12 +5,9 @@ from django.db import models
 class Showroom(models.Model):
     #//place seat information in whatever way we decide
 
-    remaining_seats = models.IntegerField()
-    showRoom_name = models.CharField(max_length=200)
+    showRoom_name = models.CharField(max_length=200, unique=True)
     #// upon checkout, the remaining seats decrement
     #// need to find a way to store the seat location info
-
-    seat_info = models.JSONField()
     #{
     # row: 'A',
     # n: '12',

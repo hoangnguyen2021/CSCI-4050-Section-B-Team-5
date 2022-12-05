@@ -16,7 +16,7 @@ const SelectMenu = ({ label, options, selected, setSelected }) => {
               <span className="block truncate text-base">
                 {selected?.name ?? ""}
               </span>
-              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
                 <ChevronDownIcon
                   className="h-6 w-6 text-on-primary"
                   aria-hidden="true"
@@ -27,9 +27,12 @@ const SelectMenu = ({ label, options, selected, setSelected }) => {
             <Transition
               show={open}
               as={Fragment}
-              leave="transition ease-in duration-100"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
+              enter="transition duration-100 ease-out"
+              enterFrom="transform scale-95 opacity-0"
+              enterTo="transform scale-100 opacity-100"
+              leave="transition duration-75 ease-out"
+              leaveFrom="transform scale-100 opacity-100"
+              leaveTo="transform scale-95 opacity-0"
             >
               <Listbox.Options className="absolute z-10 max-h-36 w-full overflow-auto bg-background border py-1 focus:outline-none sm:text-sm">
                 {options.map((option) => (
@@ -38,7 +41,7 @@ const SelectMenu = ({ label, options, selected, setSelected }) => {
                     className={({ active }) =>
                       classNames(
                         active
-                          ? "text-on-primary bg-primary"
+                          ? "bg-primary text-on-primary "
                           : "text-on-primary",
                         "relative cursor-default select-none py-2 pl-3 pr-9"
                       )

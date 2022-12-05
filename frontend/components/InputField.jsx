@@ -14,7 +14,7 @@ const InputField = ({
       <input
         className={classNames(
           icon ? "pl-12 pr-2 py-2" : "",
-          "text-on-primary bg-transparent border-0 border-b border-on-primary placeholder-gray-500 text-base focus:ring-0 focus:border-0 focus:border-b-2 focus:border-on-primary"
+          "bg-transparent border-0 border-b border-on-primary placeholder-gray-500 text-base text-on-primary focus:ring-0 focus:border-0 focus:border-b-2 focus:border-on-primary"
         )}
         type="text"
         name="input"

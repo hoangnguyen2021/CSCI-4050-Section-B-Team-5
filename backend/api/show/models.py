@@ -16,12 +16,13 @@ class Show(models.Model):
     #//interval. There must be at least 10 minutes between the end_time
     #// of one movie and the show_time of the next movie.
 
-    show_date = models.DateField()
+    start_date = models.DateField()
+    end_date = models.DateField()
 
     #// first movie runs at 9:00 AM
     #// last movie runs at 10:00 PM
 
-    movie_id = models.ForeignKey(movie)
+    movie_id = models.ForeignKey(movie , on_delete=models.CASCADE   )
     #//foreign key from movie table
 
-    showroom_id = models.ForeignKey(Showroom)
+    showroom_id = models.ForeignKey(Showroom , on_delete=models.CASCADE)

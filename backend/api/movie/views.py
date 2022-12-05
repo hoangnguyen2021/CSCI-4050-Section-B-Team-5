@@ -45,20 +45,31 @@ class MovieReadSet(viewsets.ModelViewSet):
         return Response(serializer.data , status = status.HTTP_200_OK)
     
 class MovieSearchSet(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+    def get_movie_by_id(self , request):
+        queryset = movie.objects.filter(id = int(request.GET.get("id")))
+        serializer = MovieSerializers(queryset , many= True)
+        return Response(serializer.data[0] , status = status.HTTP_200_OK)
     def get_movie_list(self, request):
         queryset = movie.objects.filter(is_active = True)
         serializer = MovieSerializers(queryset, many = True)
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def search_movie_title(self, request, input):
-        queryset = movie.objects.filter(is_active = True, movie_title__icontains = input)
+        queryset = movie.objects.filter(movie_title__icontains = input)
         serializer = MovieSerializers(queryset, many = True)
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def search_movie_category(self, request, input):
-        queryset = movie.objects.filter(is_active = True, movie_category__icontains = input)
+        queryset = movie.objects.filter(movie_category__icontains = input)
         serializer = MovieSerializers(queryset, many = True)
         return Response(serializer.data, status = status.HTTP_200_OK)
+
+    def search_movie_category_alt(self, request):
+        queryset = movie.objects.filter(movie_category = request.GET.get("movie_category"))
+        serializer = MovieSerializers(queryset, many = True)
+        return Response(serializer.data, status = status.HTTP_200_OK)
+    
 
     def search_movie_director(self, request, input):
         queryset = movie.objects.filter(is_active = True, director__icontains = input)

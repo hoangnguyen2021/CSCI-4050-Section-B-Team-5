@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  Bars3Icon,
-  MagnifyingGlassIcon,
   QuestionMarkCircleIcon,
   ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
+import toast from "react-hot-toast";
+import { useFetch } from "../hooks/useFetch";
 import "react-multi-carousel/lib/styles.css";
 import TopNavigation from "../components/TopNavigation";
 import MovieCarousel from "../components/MovieCarousel";
-import { classNames } from "../utils/utils";
 import BackgroundOverlay from "../components/BackgroundOverlay";
 import Link from "next/link";
 
@@ -40,99 +39,6 @@ const footerNavigation = {
     { name: "Pinterest", href: "#" },
   ],
 };
-
-const nowPlayingMovies = [
-  {
-    key: 1,
-    title: "Pearl",
-    durationInMin: 102,
-    rating: "R",
-    releasedDate: "Sep 16, 2022",
-    posterSrc:
-      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662137861/amc-cdn/production/2/movies/70600/70588/PosterDynamic/142476.jpg",
-  },
-  {
-    key: 2,
-    title: "Avatar (Re-Released 2022)",
-    durationInMin: 165,
-    rating: "PG-13",
-    releasedDate: "Sep 23, 2022",
-    posterSrc:
-      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661270647/amc-cdn/production/2/movies/63900/63945/PosterDynamic/142040.jpg",
-  },
-  {
-    key: 3,
-    title: "Don't Worry Darling",
-    durationInMin: 123,
-    rating: "R",
-    releasedDate: "Sep 23, 2022",
-    posterSrc:
-      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662495069/amc-cdn/production/2/movies/67500/67497/PosterDynamic/142599.jpg",
-  },
-  {
-    key: 4,
-    title: "The Women King",
-    durationInMin: 135,
-    rating: "PG-13",
-    releasedDate: "Sep 16, 2022",
-    posterSrc:
-      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662739107/amc-cdn/production/2/movies/68200/68219/PosterDynamic/142758.jpg",
-  },
-  {
-    key: 5,
-    title: "Barbarian",
-    durationInMin: 103,
-    rating: "R",
-    releasedDate: "Sep 9, 2022",
-    posterSrc:
-      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661543435/amc-cdn/production/2/movies/62300/62347/PosterDynamic/142136.jpg",
-  },
-  {
-    key: 6,
-    title: "Bullet Train",
-    durationInMin: 126,
-    rating: "R",
-    releasedDate: "Sep 5, 2022",
-    posterSrc:
-      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1654093399/amc-cdn/production/2/movies/66800/66765/PosterDynamic/138993.jpg",
-  },
-  {
-    key: 7,
-    title: "DC League of Super Pets",
-    durationInMin: 105,
-    rating: "PG",
-    releasedDate: "Jul 29, 2022",
-    posterSrc:
-      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1660671932/amc-cdn/production/2/movies/55700/55685/OnDemandPoster/141739.jpg",
-  },
-  {
-    key: 8,
-    title: "Top Gun: Maverick",
-    durationInMin: 131,
-    rating: "PG-13",
-    releasedDate: "May 27, 2022",
-    posterSrc:
-      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1653736847/amc-cdn/production/2/movies/67400/67369/Poster/Primary_BoxCover_800_1200.jpg",
-  },
-  {
-    key: 9,
-    title: "Minions: The Rise of Gru",
-    durationInMin: 147,
-    rating: "PG",
-    releasedDate: "Jul 1, 2022",
-    posterSrc:
-      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1661892402/amc-cdn/production/2/movies/49600/49599/OnDemandPoster/142316.jpg",
-  },
-  {
-    key: 10,
-    title: "See How They Run",
-    durationInMin: 98,
-    rating: "PG-13",
-    releasedDate: "Sep 16, 2022",
-    posterSrc:
-      "https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1662466631/amc-cdn/production/2/movies/70100/70149/PosterDynamic/142564.jpg",
-  },
-];
 const comingSoonMovies = [
   {
     key: 1,
@@ -226,8 +132,26 @@ const comingSoonMovies = [
   },
 ];
 
-export default function Homepage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const Homepage = () => {
+  const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
+  const { get } = useFetch();
+
+  useEffect(() => {
+    getNowPlayingMovies();
+  }, []);
+
+  const getNowPlayingMovies = async () => {
+    try {
+      const response = await get("api/movie/list");
+      const responseData = response.data;
+      if (responseData) {
+        setNowPlayingMovies(responseData);
+        console.log(responseData);
+      }
+    } catch (e) {
+      toast.error("Failed to get movies!");
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -304,7 +228,7 @@ export default function Homepage() {
 
                     <div className="flex flex-1 items-center justify-end">
                       <a
-                        href="search/index.html"
+                        href="search"
                         className="hidden text-sm font-medium text-on-primary lg:block"
                       >
                         <svg
@@ -520,3 +444,5 @@ export default function Homepage() {
     </div>
   );
 }
+
+export default Homepage;

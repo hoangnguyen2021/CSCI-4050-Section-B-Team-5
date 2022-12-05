@@ -2,6 +2,13 @@ import AdminPortalNav from "../components/AdminPortalNav";
 import { navs } from "../utils/config";
 
 export default function AdminHome() {
+
+    const get_admin_name = async () => {
+        const response = await get("account/return_user_name");
+        return response.username
+    }
+
+
     return (
         <div className="dark:bg-gray-800 bg-black relative overflow-hidden h-screen">
             <AdminPortalNav navs={navs} />
@@ -18,7 +25,7 @@ export default function AdminHome() {
                         <h1 className="font-bebas-neue uppercase text-6xl sm:text-8xl font-black flex flex-col leading-none dark:text-white text-gray-800">
                             Welcome Admin,
                             <span className="text-5xl sm:text-7xl">
-                                *Insert Name*
+                                {get_admin_name}
                             </span>
                         </h1>
 

@@ -4,6 +4,7 @@ import { useFetch } from "../../hooks/useFetch";
 import AdminPortalNav from "../../components/AdminPortalNav";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
 import { navs, ratings } from "../../utils/config";
+import { getHhmmFromHhmmss } from "../../utils/utils";
 
 const ManageMoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -41,30 +42,34 @@ const ManageMoviesPage = () => {
             <table className="table-auto border-collapse border border-slate-500">
               <thead>
                 <tr>
-                  <th className="border border-slate-600">id</th>
-                  <th className="border border-slate-600">Title</th>
-                  <th className="border border-slate-600">Category</th>
-                  <th className="border border-slate-600">Rating</th>
-                  <th className="border border-slate-600">Duration</th>
-                  <th className="border border-slate-600">Director</th>
-                  <th className="border border-slate-600">Producer</th>
-                  <th className="border border-slate-600">Cast</th>
-                  <th className="border border-slate-600">Synopsis</th>
+                  <th className="border border-slate-600 text-on-primary p-1">id</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Title</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Category</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Rating</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Duration</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Director</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Producer</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Cast</th>
+                  <th className="border border-slate-600 text-on-primary p-1">Synopsis</th>
                 </tr>
               </thead>
               <tbody>
                 {movies && movies.map(movie => {
                   return (
                     <tr key={movie.id}>
-                      <td className="border border-slate-700">{movie.id}</td>
-                      <td className="border border-slate-700">{movie.movie_title}</td>
-                      <td className="border border-slate-700">{movie.movie_category}</td>
-                      <td className="border border-slate-700">{ratings.find(r => r.id === movie.rating).name}</td>
-                      <td className="border border-slate-700">{movie.movie_duration}</td>
-                      <td className="border border-slate-700">{movie.director}</td>
-                      <td className="border border-slate-700">{movie.producer}</td>
-                      <td className="border border-slate-700">{movie.movie_cast}</td>
-                      <td className="border border-slate-700">{movie.synopsis}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{movie.id}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{movie.movie_title}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{movie.movie_category}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{ratings.find(r => r.id === movie.rating).name}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{getHhmmFromHhmmss(movie.movie_duration)}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{movie.director}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">{movie.producer}</td>
+                      <td className="border border-slate-700 text-on-primary p-1">
+                        <p className="line-clamp-5">{movie.movie_cast}</p>
+                      </td>
+                      <td className="border border-slate-700 text-on-primary p-1">
+                        <p className="line-clamp-5">{movie.synopsis}</p>
+                      </td>
                     </tr>);
                 })}
               </tbody>
