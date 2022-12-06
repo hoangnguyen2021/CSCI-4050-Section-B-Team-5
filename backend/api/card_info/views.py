@@ -24,6 +24,6 @@ class CardInfoViewSet(viewsets.ViewSet):
         if( serializer.is_valid()):
             result = save_card(cardnum= serializer.data['cardnum'] , expiration_year=serializer.data['expiration_year'] , zip_code=serializer.data['zip_code'] , cvv = serializer.data['cvv'], User = serializer.data['UserAccount'])
             if( result == False):
-                return Response({"Cannot store more than 3 cards"} , status = status.HTTP_200_OK)
+                return Response({"Cannot store more than 3 cards"} , status = status.HTTP_406_NOT_ACCEPTABLE)
             return Response(serializer.data , status = status.HTTP_201_CREATED )
-        return Response(serializer.errors , status = status.HTTP_200_OK)
+        return Response(serializer.errors , status = status.HTTP_406_NOT_ACCEPTABLE)

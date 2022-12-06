@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+import datetime
 # Create your models here.
 
 class movie(models.Model):
@@ -20,3 +21,4 @@ class movie(models.Model):
     movie_duration = models.DurationField()
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+    release_date = models.DateField(default=datetime.date.today)
