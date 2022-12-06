@@ -36,7 +36,7 @@ class BookseatsViewset(viewsets.ViewSet):
         receipt = Booking.objects.filter(UserAcc = request.user)
         receipt_serializer = BookingSerializer(receipt, many = True)
         print(receipt)
-        return Response(receipt, status=status.HTTP_200_OK)
+        return Response(receipt.data, status=status.HTTP_200_OK)
     
     def block_seats(self , request):
         data = request.data
