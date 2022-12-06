@@ -6,7 +6,7 @@ from .models import UserAccount
 from .serializers import UserCreateSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes  
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser , IsAuthenticated
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import permissions
@@ -36,7 +36,12 @@ class GetAdmin(viewsets.ViewSet):
     def is_admin(self , request ):
         return Response({"Admin": "True"} , status = status.HTTP_200_OK)
 
-
+class UserProfileSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+    def change_password(self , request):
+        user = UserAccount.objects.get(id = request.user.id)
+        password = request.data.get("new_password")
+        user.set_password(password)
 
 
 class UserViewSet(viewsets.ViewSet):
