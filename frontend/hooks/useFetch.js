@@ -44,5 +44,17 @@ export const useFetch = () => {
     }
   };
 
-  return { get, post, put, loading };
+  const patch = async (url, body, config) => {
+    try {
+      console.log(body);
+      const response = await server.patch(url, body, config);
+      setLoading(false);
+      return response;
+    } catch (error) {
+      setLoading(false);
+      throw error;
+    }
+  };
+
+  return { get, post, put, patch, loading };
 };
