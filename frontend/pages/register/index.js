@@ -11,6 +11,7 @@ import PhoneNumberField from "../../components/PhoneNumberField";
 import PasswordField from "../../components/PasswordField";
 import Checkbox from "../../components/Checkbox";
 import SubmitButton from "../../components/SubmitButton";
+import PaymentForm from "../../components/PaymentForm";
 
 const RegisterPage = () => {
   const { post } = useFetch();
@@ -19,6 +20,10 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const [cardNum, setCardNum] = useState("");
+  const [cvv, setCvv] = useState("");
+  const [zip, setZip] = useState("");
+  const [expire, setExpire] = useState("");
   const [promotion, setPromotion] = useState(false);
   const router = useRouter();
 
@@ -31,10 +36,10 @@ const RegisterPage = () => {
         email: email,
         password: password,
         re_password: rePassword,
-        cardnum: "",
-        cvv: "",
-        expiration_year: "",
-        zip_code: "", 
+        cardnum: cardNum,
+        cvv: cvv,
+        expiration_year: expire,
+        zip_code: zip,
         promotion_subscription: promotion
       });
       toast.success("You are registered!");
@@ -91,6 +96,7 @@ const RegisterPage = () => {
                 password={rePassword}
                 setPassword={setRePassword}
               />
+              <PaymentForm />
               <div className="self-start">
                 <Checkbox label="Subscribe to Promotions" value={promotion} setValue={setPromotion} />
               </div>
@@ -98,7 +104,6 @@ const RegisterPage = () => {
                 <SubmitButton text="Submit" />
               </div>
             </form>
-
             <div className="text-base font-medium text-center">
               <span className="text-on-primary">Already have an account? </span>
               <Link href="/login">

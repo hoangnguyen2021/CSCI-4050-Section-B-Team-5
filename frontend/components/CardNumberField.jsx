@@ -1,14 +1,10 @@
-import { useState } from "react";
-
-const CardNumberField = () => {
-  const [card, setCard] = useState("");
-
+const CardNumberField = ({ cardNum, setCardNum }) => {
   const validate = (input) => {
     return !isNaN(input[input.length - 1]) && input.length <= 20;
   };
 
   const handleCardDisplay = () => {
-    const rawCardNumber = [...card.split(" ").join("")]; // Remove old space
+    const rawCardNumber = [...cardNum.split(" ").join("")]; // Remove old space
     const formattedCardNumber = []; // Create formatted card number as array
     rawCardNumber.forEach((t, i) => {
       if (i % 4 === 0) formattedCardNumber.push(" "); // Add space
@@ -28,7 +24,7 @@ const CardNumberField = () => {
         value={handleCardDisplay()}
         onChange={(e) => {
           const value = e.target.value;
-          if (validate(value)) setCard(value);
+          if (validate(value)) setCardNum(value);
         }}
       />
       <svg

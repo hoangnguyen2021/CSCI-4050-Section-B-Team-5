@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { useFetch } from "../../../../../hooks/useFetch";
@@ -9,7 +8,8 @@ import BackgroundOverlay from "../../../../../components/BackgroundOverlay";
 import OrderSummary from "../../../../../components/OrderSummary";
 import PaymentForm from "../../../../../components/PaymentForm";
 import PillButton from "../../../../../components/PillButton";
-import { getHhmmFromHhmmss, calculatePrice } from "../../../../../utils/utils";
+import { getTodayYYYYMMDD, getHhmmFromHhmmss, calculatePrice } from "../../../../../utils/utils";
+import CreditCard from "../../../../../components/CreditCard";
 
 const movieMetaInit = {
   id: 0,
@@ -28,6 +28,14 @@ const movieMetaInit = {
   updated_at: "",
 };
 
+const showMetaInit = {
+  id: 0,
+  show_date: "2000-01-01",
+  booked_seats:
+    "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  show_id: 0,
+};
+
 const showtimeInit = {
   id: 0,
   show_date: "2000-01-01",
@@ -38,9 +46,12 @@ const showtimeInit = {
 
 const CheckoutPage = () => {
   const [movieMeta, setMovieMeta] = useState(movieMetaInit);
+  const [showMeta, setShowMeta] = useState(showMetaInit);
   const [showtime, setShowtime] = useState(showtimeInit);
+  const [cards, setCards] = useState([]);
+  const [card, setCard] = useState();
   const [ticketCounts, setTicketCounts] = useState([]);
-  const { get } = useFetch();
+  const { get, post } = useFetch();
   const router = useRouter();
   const { movieId, showId, seats, ticketTypes } = router.query;
   const { total } = calculatePrice(ticketCounts);
@@ -49,6 +60,8 @@ const CheckoutPage = () => {
     if (movieId && showId && seats && ticketCounts) {
       getMovie();
       getShowtime();
+      getShow();
+      getCards();
       setTicketCounts(ticketTypes.split(""));
     }
   }, [movieId, showId, seats, ticketTypes]);
@@ -68,6 +81,23 @@ const CheckoutPage = () => {
     }
   };
 
+  const getShow = async () => {
+    try {
+      const response = await get("api/bookedseats/getbookedtickets", {
+        params: { show_id: showId, show_date: getTodayYYYYMMDD() },
+        headers: { Authorization: "JWT " + localStorage.getItem("access") },
+      });
+      const responseData = response.data;
+      if (responseData) {
+        setShowMeta(responseData);
+        console.log(responseData);
+      }
+    } catch (e) {
+      toast.error("Cannot get show details!");
+      console.error(e);
+    }
+  };
+
   const getShowtime = async () => {
     try {
       const response = await get("api/show/getshowtimes", {
@@ -82,6 +112,51 @@ const CheckoutPage = () => {
       }
     } catch (e) {
       toast.error("Failed to get showtime!");
+    }
+  };
+
+  const getCards = async () => {
+    try {
+      const response = await get("api/cards/get-card-info", {
+        headers: {
+          Authorization: "JWT " + localStorage.getItem("access"),
+        },
+      });
+      const responseData = response.data;
+      if (responseData) {
+        setCards(responseData);
+        console.log(responseData);
+      }
+    } catch (e) {
+      toast.error("Failed to get cards!");
+    }
+  };
+
+  const checkOut = async () => {
+    try {
+      const response = await post(
+        "api/booking/checkout-and-bookseats",
+        {
+          id: showMeta.id,
+          seats: seats,
+          card: card,
+          show_id: showId,
+          total_price: total,
+          adult: ticketCounts[0],
+          child: ticketCounts[1],
+          senior: ticketCounts[2]
+        },
+        {
+          headers: {
+            Authorization: "JWT " + localStorage.getItem("access"),
+          },
+        }
+      );
+      router.push("/orders/1/confirm");
+      console.log(response.data);
+    } catch (error) {
+      toast.error("Cannot book tickets!");
+      console.error(error);
     }
   };
 
@@ -111,8 +186,14 @@ const CheckoutPage = () => {
         </div>
 
         <div className="relative grid grid-cols-12 max-w-7xl mx-auto min-h-screen px-6">
-          <section className="col-span-7 my-10">
+          <section className="col-span-7 flex flex-col gap-y-3 my-10">
+            <h2 className="text-2xl text-on-primary font-extrabold">
+              Payment Method
+            </h2>
             <PaymentForm />
+            {cards.map((card) => (
+              <CreditCard key={card.id} card={card} setCard={setCard} />
+            ))}
           </section>
           <section className="col-span-5 my-10">
             <OrderSummary ticketCounts={ticketCounts} />
@@ -124,11 +205,7 @@ const CheckoutPage = () => {
         <p className="text-on-primary text-lg font-semibold uppercase">TOTAL</p>
         <p className="text-on-primary text-2xl font-bold">${total.toFixed(2)}</p>
         <div className="pl-10">
-          <Link href="/orders/1/confirm">
-            <a>
-              <PillButton text="Purchase" />
-            </a>
-          </Link>
+          <PillButton text="Purchase" onClick={checkOut} />
         </div>
       </div>
     </div>

@@ -14,11 +14,11 @@ const DuationRatingCategory = ({ movieMeta, textCenter = false }) => {
       <span className="text-md font-light text-on-primary">
         {hours} HRS {minutes} MIN
       </span>
-      <span>|</span>
+      <span className="text-on-primary">|</span>
       <span className="text-md font-light text-on-primary">
         {ratings.find((r) => r.id === rating)?.name}
       </span>
-      <span>|</span>
+      <span className="text-on-primary">|</span>
       <span className="text-md font-light text-on-primary">
         {movie_category}
       </span>

@@ -1,3 +1,4 @@
+import { classNames } from "../utils/utils";
 import SelectMenu from "./SelectMenu";
 
 const months = [
@@ -83,25 +84,42 @@ const years = [
   { id: 30, name: 2030 },
 ];
 
-const DateField = ({ label, month, day, year, setMonth, setDay, setYear }) => {
+const DateField = ({
+  label,
+  prefix = "",
+  month,
+  day,
+  year,
+  setMonth,
+  setDay,
+  setYear,
+  monthYearOnly = false,
+}) => {
   return (
     <div className="space-y-1">
       <div className="text-on-primary text-base font-medium">{label}</div>
-      <div className="grid grid-cols-3 gap-x-10">
+      <div
+        className={classNames(
+          monthYearOnly ? "grid-cols-2" : "grid-cols-3",
+          "grid gap-x-10"
+        )}
+      >
         <SelectMenu
-          label="Month"
+          label={`${prefix} Month`}
           options={months}
           selected={month}
           setSelected={setMonth}
         />
+        {!monthYearOnly && (
+          <SelectMenu
+            label={`${prefix} Day`}
+            options={days}
+            selected={day}
+            setSelected={setDay}
+          />
+        )}
         <SelectMenu
-          label="Day"
-          options={days}
-          selected={day}
-          setSelected={setDay}
-        />
-        <SelectMenu
-          label="Year"
+          label={`${prefix} Year`}
           options={years}
           selected={year}
           setSelected={setYear}
