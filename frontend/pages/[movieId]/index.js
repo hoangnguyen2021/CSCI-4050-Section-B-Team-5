@@ -87,7 +87,7 @@ const MoviePage = () => {
         </header>
 
         <div className="relative z-10 mx-auto max-w-3xl py-10 px-6 text-center">
-          <h1 className="text-2xl font-bold tracking-tight lg:text-3xl">
+          <h1 className="text-2xl font-bold tracking-tight text-on-primary lg:text-3xl">
             Showtimes
           </h1>
         </div>
