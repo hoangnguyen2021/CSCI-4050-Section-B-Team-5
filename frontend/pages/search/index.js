@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import { useFetch } from "../../hooks/useFetch";
 import SearchNavigation from "../../components/SearchNavigation";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
-import ComboBox from "../../components/ComboBox";
 import Link from "next/link";
 import ComboBox_Title from "../../components/ComboBox_Title";
 

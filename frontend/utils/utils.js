@@ -25,11 +25,7 @@ export const getHhmmFromHhmmss = (hhmmss) => {
 };
 
 export const getTodayString = () => {
-  return new Date().toLocaleDateString("en-us", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  return moment().format("MMM D YYYY");
 };
 
 export const getTodayYYYYMMDD = () => {
