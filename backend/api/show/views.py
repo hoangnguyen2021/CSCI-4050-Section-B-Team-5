@@ -39,6 +39,7 @@ def show(request):
 
     elif request.method == "POST":
         data = json.loads(request.body)
+        print(data.get("movie_id"))
         duration = list(movie.objects.filter(id = data.get("movie_id")).values_list("movie_duration" , flat = True))[0]
         end_time = parse_time(data.get("start_time"))
         duration =  parse_time(str(duration))
@@ -73,6 +74,7 @@ def show(request):
              showroom_id  = data.get("showroom_id"))
         
         other_start_times = mid_start_times | mid_end_times | start_times_end_times_in_mid | start_times_and_end_times_are_outside
+        print(other_start_times)
         for item in other_start_times:
             print(item)
         flag = 0
@@ -92,6 +94,7 @@ def show(request):
             print(item.__getattribute__("start_date") , item.__getattribute__("end_date"))
             start_time_itr,end_time_itr = parse_time(str(item.__getattribute__("start_time"))) , parse_time(str(item.__getattribute__("end_time")))
             start_time_itr,end_time_itr = datetime.timedelta(hours = start_time_itr.hour , minutes= start_time_itr.minute , seconds= start_time_itr.second) ,datetime.timedelta(hours = end_time_itr.hour , minutes= end_time_itr.minute , seconds= end_time_itr.second)
+            print(start_time , start_time_itr, end_time , end_time_itr )
             if( start_time >= start_time_itr and start_time <= end_time_itr):
                 flag = 0
                 #notschedule the movie
@@ -103,13 +106,13 @@ def show(request):
                 #schedule the movie
             if( flag == 0):
                  return Response({"cannot add movie because it conflicts with existing movie schedules"} , status = status.HTTP_409_CONFLICT)
-            data["end_time"] = str(end_time)
-            serializer = ShowSerializers(data = data)
-            if( serializer.is_valid()):
-                obj = serializer.save()
-                CreateBookedSeatsInstance(start_date=obj.start_date , end_date= obj.end_date , show_id=obj.id)
-                return Response(serializer.data , status=status.HTTP_201_CREATED)
-            else:
-                return Response(serializer.errors , status = status.HTTP_200_OK)
-       
+        data["end_time"] = str(end_time)
+        serializer = ShowSerializers(data = data)
+        if( serializer.is_valid()):
+            obj = serializer.save()
+            CreateBookedSeatsInstance(start_date=obj.start_date , end_date= obj.end_date , show_id=obj.id)
+            return Response(serializer.data , status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors , status = status.HTTP_200_OK)
+    
 
