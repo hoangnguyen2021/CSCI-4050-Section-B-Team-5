@@ -36,7 +36,8 @@ class BookseatsViewset(viewsets.ViewSet):
     def checkout_and_book_seats(self , request):
         cards = Card.objects.filter(UserAccount = request.user)
         cards_serilaizer = CardInfoSerialzer(cards , many = True)
-        selected_card = CardInfoSerialzer(Card.objects.filter(id = int(request.data.get("card"))) , many = True)
+        print(request.data.get("card") , "Card")
+        selected_card = CardInfoSerialzer(Card.objects.filter(id = request.data.get("card")) , many = True)
         seats = []
         seats_to_be_booked = request.data.get("seats")
         print(request.data.get("seats"))
@@ -55,12 +56,12 @@ class BookseatsViewset(viewsets.ViewSet):
                 ticket_obj = ticket(AgeGroup = "adult" , Seat_no = seats[i] , Booking_Id = booking )
                 ticket_obj.save()
                 i+=1
-            for item in range(request.data.get("child")):
+            for item in range(int(request.data.get("child"))):
                 ticket_obj = ticket(AgeGroup = "child" , Seat_no = seats[i] , Booking_Id = booking)
                 ticket_obj.save()
                 i+=1
-            for item in range(request.data.get("senior")):
-                ticket_obj = ticket(AgeGroup = "child" , Seat_no = seats[i] , Booking_Id = booking)
+            for item in range(int(request.data.get("senior"))):
+                ticket_obj = ticket(AgeGroup = "senior" , Seat_no = seats[i] , Booking_Id = booking)
                 ticket_obj.save()
                 i+=1
             booked_seats = BookedSeats.objects.filter(id = int(request.data.get("id")))

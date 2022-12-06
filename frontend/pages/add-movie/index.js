@@ -47,7 +47,6 @@ const AddMoviePage = () => {
         rating: ratings.find((r) => r.name === rating.name).id,
         movie_duration: convertMinutesToHhmmss(duration),
       };
-      console.log(body);
       const response = await post(
         "api/movie/create",
         body,

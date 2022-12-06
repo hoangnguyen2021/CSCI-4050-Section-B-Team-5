@@ -118,7 +118,7 @@ const ShowPage = () => {
     try {
       const response = await put(
         "api/booking/block-tickets",
-        { id: showId, seats: seats },
+        { id: showMeta.id, seats: seats },
         { headers: { Authorization: "JWT " + localStorage.getItem("access") } }
       );
       const responseData = response.data;
@@ -194,12 +194,7 @@ const ShowPage = () => {
 
         <div className="sticky bottom-0 flex justify-end items-center gap-x-4 bg-background bg-opacity-70 px-10 py-3">
           <div className="pl-10">
-            <Link href={{
-              pathname: "/[movieId]/[showId]/[seats]",
-              query: { movieId: movieId, showId: showId, seats: seats },
-            }}>
-              <a><PillButton text="Select tickets" disabled={seats === seatsInit} /></a>
-            </Link>
+            <PillButton text="Select tickets" disabled={seats === seatsInit} onClick={blockSeats} />
           </div>
         </div>
       </div>

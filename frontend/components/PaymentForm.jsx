@@ -1,16 +1,23 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
+import { useFetch } from "../hooks/useFetch";
 import AddButton from "./AddButton";
 import CardNumberField from "./CardNumberField";
 import Modal from "./Modal";
 import InputField from "./InputField";
-import PillButton from "./PillButton";
 import { CVVSvg, ZipCodeSvg } from "./Svg";
 import DateField from "./DateField";
+import SubmitButton from "./SubmitButton";
 
 const PaymentForm = () => {
+  const { post } = useFetch();
+  const router = useRouter();
+
   const [open, setOpen] = useState(false);
   const [month, setMonth] = useState({ id: 1, name: "Jan" });
   const [year, setYear] = useState({ id: 22, name: 2023 });
+  const [cardNum, setCardNum] = useState("");
   const [CVV, setCVV] = useState("");
   const [zipCode, setZipCode] = useState("");
 
@@ -24,21 +31,49 @@ const PaymentForm = () => {
     return regex.test(input);
   };
 
+  const addCard = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await post(
+        "api/cards/save-card",
+        {
+          cardnum: cardNum.replaceAll(" ", ""),
+          cvv: CVV,
+          expiration_year: year.name,
+          zip_code: zipCode,
+        },
+        {
+          headers: {
+            Authorization: "JWT " + localStorage.getItem("access"),
+          },
+        }
+      );
+      router.reload();
+      console.log(response.data);
+    } catch (error) {
+      toast.error("Cannot add card!");
+      console.error(error);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-y-5">
       <Modal open={open} setOpen={setOpen} title="Add Card">
-        <div className="flex flex-col gap-y-5">
+        <form className="flex flex-col gap-y-5" onSubmit={addCard}>
           <div className="flex">
             <img
               className="h-6"
               src="https://amc-theatres-res.cloudinary.com/image/upload/v1556564205/amc-cdn/static/images/forms/accepted_cards.png"
             />
           </div>
-          <CardNumberField />
+          <CardNumberField cardNum={cardNum} setCardNum={setCardNum} />
           <DateField
             prefix="Exp."
             month={month}
             year={year}
+            setMonth={setMonth}
+            setYear={setYear}
             monthYearOnly={true}
           />
           <div className="grid grid-cols-2 gap-x-10">
@@ -63,10 +98,10 @@ const PaymentForm = () => {
               validate={validateZipCode}
             />
           </div>
-          <div className="flex">
-            <PillButton text="Add Card" onClick={() => setOpen(false)} />
+          <div className="flex justify-center">
+            <SubmitButton text="Add Card" />
           </div>
-        </div>
+        </form>
       </Modal>
       <h2 className="text-2xl text-on-primary font-extrabold">
         Payment Method
