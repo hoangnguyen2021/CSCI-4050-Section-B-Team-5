@@ -268,12 +268,14 @@ const Homepage = () => {
           <p className="mt-4 text-xl text-on-primary">
             Browse through hundreds of spectacular movies.
           </p>
-          <a
-            href="/search"
-            className="mt-8 inline-block rounded-md border border-transparent bg-white py-3 px-8 text-base font-medium text-on-secondary hover:bg-primary hover:text-on-primary"
-          >
-            Browse Movies
-          </a>
+          <Link href="/search">
+            <a
+              className="mt-8 inline-block rounded-md border border-transparent bg-white py-3 px-8 text-base font-medium text-on-secondary hover:bg-primary hover:text-on-primary"
+            >
+              Browse Movies
+            </a>
+          </Link>
+
         </div>
       </div>
 
