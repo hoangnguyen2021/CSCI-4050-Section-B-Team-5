@@ -40,10 +40,8 @@ const SelectMenu = ({ label, options, selected, setSelected }) => {
                     key={option.id}
                     className={({ active }) =>
                       classNames(
-                        active
-                          ? "bg-primary text-on-primary "
-                          : "text-on-primary",
-                        "relative cursor-default select-none py-2 pl-3 pr-9"
+                        active ? "bg-primary" : "",
+                        "relative cursor-default select-none text-on-primary py-2 pl-3 pr-9"
                       )
                     }
                     value={option}

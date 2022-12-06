@@ -2,7 +2,6 @@ import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { classNames } from "../utils/utils";
-import Link from "next/link";
 
 const ComboBox = ({ label, options, selected, setSelected }) => {
   const [query, setQuery] = useState("");
@@ -66,7 +65,7 @@ const ComboBox = ({ label, options, selected, setSelected }) => {
                           />
                           <span
                             className={classNames(
-                              "ml-3 truncate",
+                              "ml-3 truncate text-on-primary",
                               selected && "font-semibold"
                             )}
                           >
