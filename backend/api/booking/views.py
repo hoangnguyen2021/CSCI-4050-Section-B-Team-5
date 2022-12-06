@@ -31,6 +31,12 @@ from api.booked_seats_tracker.serializers import BookedSeatsSerializer
 
 class BookseatsViewset(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
+
+    def get_booking_by_user(self, request):
+        receipt = Booking.objects.filter(UserAcc = request.user)
+        receipt_serializer = BookingSerializer(receipt, many = True)
+        print(receipt)
+        return receipt
     
     def block_seats(self , request):
         data = request.data
