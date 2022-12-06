@@ -192,7 +192,7 @@ const CheckoutPage = () => {
             </h2>
             <PaymentForm />
             {cards.map((card) => (
-              <CreditCard card={card} setCard={setCard} />
+              <CreditCard key={card.id} card={card} setCard={setCard} />
             ))}
           </section>
           <section className="col-span-5 my-10">
