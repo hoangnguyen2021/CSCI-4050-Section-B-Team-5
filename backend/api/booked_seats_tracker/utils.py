@@ -30,6 +30,11 @@ def block_seats_and_return_price(id ,  seats_to_be_blocked):
         serializer.save()
     return final_seat_map
 
+def get_booked_seat_tracker_details_by_id(id):
+    booked_seats = BookedSeats.objects.filter(id = id)
+    serializer = BookedSeatsSerializer(booked_seats.first() , many=False)
+    return serializer.data[0]
+
     
 
 
