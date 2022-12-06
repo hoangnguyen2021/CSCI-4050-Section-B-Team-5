@@ -8,15 +8,7 @@ import SelectMenu from "../../components/SelectMenu";
 import DateField from "../../components/DateField";
 import SubmitButton from "../../components/SubmitButton";
 import ComboBox from "../../components/ComboBox";
-import { navs, startTimes } from "../../utils/config";
-
-const screenNumbers = [
-    { id: 0, name: "Showroom 1" },
-    { id: 1, name: "Showroom 2" },
-    { id: 2, name: "Showroom 3" },
-    { id: 3, name: "Showroom 4" },
-    { id: 4, name: "Showroom 5" },
-];
+import { navs, startTimes, showrooms } from "../../utils/config";
 
 const ScheduleMoviePage = () => {
     const { get, post } = useFetch();
@@ -97,7 +89,7 @@ const ScheduleMoviePage = () => {
                         onSubmit={scheduleMovie}>
                         <h3 className="text-xl text-on-primary font-semibold text-center">Schedule Movies</h3>
                         <ComboBox selected={movie} setSelected={setMovie} options={movies} />
-                        <SelectMenu label="Showroom" selected={showroom} setSelected={setShowroom} options={screenNumbers} />
+                        <SelectMenu label="Showroom" selected={showroom} setSelected={setShowroom} options={showrooms} />
                         <SelectMenu label="Time" selected={startTime} setSelected={setStartTime} options={startTimes} />
                         <DateField label="Start Date"
                             month={startMonth}
