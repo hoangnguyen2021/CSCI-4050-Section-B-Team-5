@@ -26,9 +26,9 @@ const movieMetaInit = {
   updated_at: ""
 };
 
-const ShowtimePage = () => {
+const MoviePage = () => {
   const [movieMeta, setMovieMeta] = useState(movieMetaInit);
-  const [showtimeLL, setShowtimeLL] = useState([]);
+  const [showLL, setShowLL] = useState([]);
   const { get } = useFetch();
   const router = useRouter();
   const { movieId } = router.query;
@@ -62,9 +62,9 @@ const ShowtimePage = () => {
       });
       const responseData = response.data;
       if (responseData) {
-        const list = Object.values(groupBy(responseData, "showroom_id"));
-        setShowtimeLL(list);
-        console.log(list);
+        const showLList = Object.values(groupBy(responseData, "showroom_id"));
+        setShowLL(showLList);
+        console.log(showLList);
       }
     } catch (e) {
       toast.error("Failed to get showtime!");
@@ -75,7 +75,7 @@ const ShowtimePage = () => {
     <div className="bg-background">
       <div className="relative">
         <BackgroundOverlay
-          src="https://www.siff.net/images/CINEMA/Venues/OPS_Uptown_Thumbnail_1600x900.jpg"
+          src="https://www.gannett-cdn.com/-mm-/7fcb1b07090f1189a43fd757f29cb0dedc1223ab/c=0-23-2000-1153/local/-/media/2017/06/27/Kitsap/Kitsap/636341612816801482-Seefilm.jpg?width=3200&height=1680&fit=crop"
           opacity={70}
         />
         {/* Navigation */}
@@ -93,9 +93,9 @@ const ShowtimePage = () => {
         </div>
       </div>
 
-      <div className="relative min-h-screen">
+      <div className="relative">
         <BackgroundOverlay
-          src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5298bac0-b8bf-4c80-af67-725c1272dbb0/defibp5-8019b091-dae8-426d-8276-7b6d15afcce8.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzUyOThiYWMwLWI4YmYtNGM4MC1hZjY3LTcyNWMxMjcyZGJiMFwvZGVmaWJwNS04MDE5YjA5MS1kYWU4LTQyNmQtODI3Ni03YjZkMTVhZmNjZTguanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.pojNP43h1WC_XSz5oyqkpLbNmCChKMYG38UqYi8b44o"
+          src="https://cdn.celluloidjunkie.com/wp-content/uploads/2019/02/14133416/ICE-by-CGR-Auditorium-Bohemian-Rhapsody.jpg"
           opacity={70}
         />
         <div className="relative grid grid-cols-12 gap-x-28 max-w-7xl mx-auto py-10">
@@ -103,15 +103,17 @@ const ShowtimePage = () => {
             <TrailerSection movieMeta={movieMeta} />
           </section>
           <section className="col-span-7">
-            <ShowtimeSection movieMeta={movieMeta} showtimeLL={showtimeLL} />
+            <ShowtimeSection movieMeta={movieMeta} showLL={showLL} />
           </section>
-          <div className="col-span-12 space-y-2">
-            <CrewAndSynopsis movieMeta={movieMeta} />
-          </div>
+        </div>
+      </div>
+      <div className="bg-background">
+        <div className="max-w-7xl mx-auto py-10 space-y-3">
+          <CrewAndSynopsis movieMeta={movieMeta} />
         </div>
       </div>
     </div>
   );
 };
 
-export default ShowtimePage;
+export default MoviePage;

@@ -2,51 +2,27 @@ import { useState } from "react";
 import AddButton from "./AddButton";
 import CardNumberField from "./CardNumberField";
 import Modal from "./Modal";
-import PaymentMethods from "./PaymentMethods";
-import SelectMenu from "./SelectMenu";
 import InputField from "./InputField";
 import PillButton from "./PillButton";
 import { CVVSvg, ZipCodeSvg } from "./Svg";
-
-const months = [
-  { id: 1, name: "Jan" },
-  { id: 2, name: "Feb" },
-  { id: 3, name: "Mar" },
-  { id: 4, name: "April" },
-  { id: 5, name: "May" },
-  { id: 6, name: "Jun" },
-  { id: 7, name: "Jul" },
-  { id: 8, name: "Aug" },
-  { id: 9, name: "Sep" },
-  { id: 10, name: "Oct" },
-  { id: 11, name: "Nov" },
-  { id: 12, name: "Dec" },
-];
-
-const years = [
-  { id: 1, name: 2022 },
-  { id: 2, name: 2023 },
-  { id: 3, name: 2024 },
-  { id: 4, name: 2025 },
-  { id: 5, name: 2026 },
-  { id: 6, name: 2027 },
-  { id: 7, name: 2028 },
-  { id: 8, name: 2029 },
-  { id: 9, name: 2030 },
-  { id: 10, name: 2031 },
-  { id: 11, name: 2032 },
-  { id: 12, name: 2033 },
-  { id: 13, name: 2034 },
-  { id: 14, name: 2035 },
-  { id: 15, name: 2036 },
-  { id: 16, name: 2037 },
-  { id: 17, name: 2038 },
-  { id: 18, name: 2039 },
-  { id: 19, name: 2040 },
-];
+import DateField from "./DateField";
 
 const PaymentForm = () => {
   const [open, setOpen] = useState(false);
+  const [month, setMonth] = useState({ id: 1, name: "Jan" });
+  const [year, setYear] = useState({ id: 22, name: 2023 });
+  const [CVV, setCVV] = useState("");
+  const [zipCode, setZipCode] = useState("");
+
+  const validateCVV = (input) => {
+    const regex = new RegExp(/^[0-9]*$/);
+    return regex.test(input);
+  };
+
+  const validateZipCode = (input) => {
+    const regex = new RegExp(/^[0-9]*$/);
+    return regex.test(input);
+  };
 
   return (
     <div className="flex flex-col gap-y-5">
@@ -59,16 +35,32 @@ const PaymentForm = () => {
             />
           </div>
           <CardNumberField />
+          <DateField
+            prefix="Exp."
+            month={month}
+            year={year}
+            monthYearOnly={true}
+          />
           <div className="grid grid-cols-2 gap-x-10">
-            <SelectMenu label="Exp. Month" options={months} />
-            <SelectMenu label="Exp. Year" options={years} />
-          </div>
-          <div className="grid grid-cols-2 gap-x-10">
-            <InputField label="CVV" placeholder="CVV" icon={<CVVSvg />} />
+            <InputField
+              label="CVV"
+              placeholder="CVV"
+              icon={<CVVSvg />}
+              minLength={3}
+              maxLength={3}
+              input={CVV}
+              setInput={setCVV}
+              validate={validateCVV}
+            />
             <InputField
               label="Zip Code"
               placeholder="XXXXX"
               icon={<ZipCodeSvg />}
+              minLength={5}
+              maxLength={5}
+              input={zipCode}
+              setInput={setZipCode}
+              validate={validateZipCode}
             />
           </div>
           <div className="flex">
@@ -80,7 +72,6 @@ const PaymentForm = () => {
         Payment Method
       </h2>
       <AddButton text="Add Card" open={open} setOpen={setOpen} />
-      <PaymentMethods />
     </div>
   );
 };

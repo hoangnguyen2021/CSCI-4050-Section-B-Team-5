@@ -45,6 +45,8 @@ const SelectTicketsPage = () => {
   const [adult, setAdult] = useState(0);
   const [child, setChild] = useState(0);
   const [senior, setSenior] = useState(0);
+  const quantities = [adult, child, senior];
+  const setQuantities = [setAdult, setChild, setSenior];
   const { get } = useFetch();
   const router = useRouter();
   const { movieId, showId, seats } = router.query;
@@ -118,54 +120,23 @@ const SelectTicketsPage = () => {
 
         <div className="relative flex flex-col justify-center my-10 gap-y-4 mx-auto max-w-4xl px-6">
           <TicketPrompt value={availableSeats} />
-          <TicketAddRemove
-            type="Adult"
-            ageRange="12-60"
-            setPrice={ticketTypes[0].price}
-            quantity={adult}
-            plusDisabled={availableSeats === 0}
-            minusDisabled={availableSeats >= totalSeats || adult <= 0}
-            onMinus={() => {
-              setAdult((adult) => adult - 1);
-              setAvailableSeats((availableSeats) => availableSeats + 1);
-            }}
-            onPlus={() => {
-              setAdult((adult) => adult + 1);
-              setAvailableSeats((availableSeats) => availableSeats - 1);
-            }}
-          />
-          <TicketAddRemove
-            type="Child"
-            ageRange="2-12"
-            setPrice={ticketTypes[1].price}
-            quantity={child}
-            plusDisabled={availableSeats === 0}
-            minusDisabled={availableSeats >= totalSeats || child <= 0}
-            onMinus={() => {
-              setChild((child) => child - 1);
-              setAvailableSeats((availableSeats) => availableSeats + 1);
-            }}
-            onPlus={() => {
-              setChild((child) => child + 1);
-              setAvailableSeats((availableSeats) => availableSeats - 1);
-            }}
-          />
-          <TicketAddRemove
-            type="Senior"
-            ageRange="60+"
-            setPrice={ticketTypes[2].price}
-            quantity={senior}
-            plusDisabled={availableSeats === 0}
-            minusDisabled={availableSeats >= totalSeats || senior <= 0}
-            onMinus={() => {
-              setSenior((senior) => senior - 1);
-              setAvailableSeats((availableSeats) => availableSeats + 1);
-            }}
-            onPlus={() => {
-              setSenior((senior) => senior + 1);
-              setAvailableSeats((availableSeats) => availableSeats - 1);
-            }}
-          />
+          {ticketTypes.map((ticketType, i) =>
+            <TicketAddRemove
+              key={ticketType.type}
+              ticketType={ticketType}
+              quantity={quantities[i]}
+              plusDisabled={availableSeats === 0}
+              minusDisabled={availableSeats >= totalSeats || quantities[i] <= 0}
+              onMinus={() => {
+                setQuantities[i]((quantity) => quantity - 1);
+                setAvailableSeats((availableSeats) => availableSeats + 1);
+              }}
+              onPlus={() => {
+                setQuantities[i]((quantity) => quantity + 1);
+                setAvailableSeats((availableSeats) => availableSeats - 1);
+              }}
+            />
+          )}
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 import LargeMovieTitle from "./LargeMovieTitle";
-import DurationAndRating from "./DurationAndRating";
+import DurationRatingCategory from "./DurationRatingCategory";
 import RoundedImageView from "./RoundedImageView";
 import DateTime from "./DateTime";
 import { getTodayString } from "../utils/utils";
@@ -14,7 +14,7 @@ const MovieBookingHeader = ({ movieMeta, startTime }) => {
         <div className="flex flex-col gap-y-3">
           <div>
             <LargeMovieTitle title={movie_title} />
-            <DurationAndRating movieMeta={movieMeta} />
+            <DurationRatingCategory movieMeta={movieMeta} />
           </div>
         </div>
       </div>
