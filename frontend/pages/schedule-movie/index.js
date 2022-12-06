@@ -16,7 +16,7 @@ const ScheduleMoviePage = () => {
 
     const [movies, setMovies] = useState([]);
     const [movie, setMovie] = useState({ id: 0, name: "", imageUrl: "" });
-    const [showroom, setShowroom] = useState({ id: 0, name: "Showroom 1" });
+    const [showroom, setShowroom] = useState({ id: 1, name: "Showroom 1" });
     const [startTime, setStartTime] = useState({ id: 0, name: "1:00" });
     const [startMonth, setStartMonth] = useState({ id: 1, name: "Jan" });
     const [startDay, setStartDay] = useState({ id: 1, name: "1" });
