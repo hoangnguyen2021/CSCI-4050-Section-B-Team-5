@@ -47,7 +47,7 @@ const TopNavigation = () => {
             Profile
           </div>
           <Modal open={open} setOpen={setOpen} title="Edit Profile">
-            <EditProfileForm />
+            <EditProfileForm setOpen={setOpen} />
           </Modal>
         </div>
       </div>

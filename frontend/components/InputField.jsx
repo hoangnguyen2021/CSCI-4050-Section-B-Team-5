@@ -24,7 +24,8 @@ const InputField = ({
         placeholder={placeholder}
         value={input}
         onChange={(e) => {
-          if (validate(e.target.value)) setInput(e.target.value);
+          if (validate && validate(e.target.value)) setInput(e.target.value);
+          else setInput(e.target.value);
         }}
         minLength={minLength}
         maxLength={maxLength}

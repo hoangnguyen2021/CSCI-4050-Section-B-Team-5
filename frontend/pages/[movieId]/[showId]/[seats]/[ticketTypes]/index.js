@@ -187,9 +187,12 @@ const CheckoutPage = () => {
 
         <div className="relative grid grid-cols-12 max-w-7xl mx-auto min-h-screen px-6">
           <section className="col-span-7 flex flex-col gap-y-3 my-10">
+            <h2 className="text-2xl text-on-primary font-extrabold">
+              Payment Method
+            </h2>
             <PaymentForm />
             {cards.map((card) => (
-              <CreditCard card={card} setCard={setCard} />
+              <CreditCard key={card.id} card={card} setCard={setCard} />
             ))}
           </section>
           <section className="col-span-5 my-10">
