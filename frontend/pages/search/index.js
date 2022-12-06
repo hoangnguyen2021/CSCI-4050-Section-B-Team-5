@@ -60,7 +60,7 @@ const Search = () => {
                             selected={movie}
                             setSelected={setMovie}
                             options={movies}
-                            onClick={<Link to={`/${movie.id}`} />}
+                            onClick={<Link href={`/${movie.id}`} />}
                         />
                     </form>
                 </div>
