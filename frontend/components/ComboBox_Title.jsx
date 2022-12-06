@@ -99,4 +99,4 @@ const ComboBox = ({ label, options, selected, setSelected }) => {
   );
 };
 
-export default ComboBox;
+export default ComboBox_Title;
