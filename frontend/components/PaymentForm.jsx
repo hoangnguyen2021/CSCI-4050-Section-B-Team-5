@@ -51,6 +51,7 @@ const PaymentForm = () => {
       );
       router.reload();
       console.log(response.data);
+      toast.success("Add card successfully!");
     } catch (error) {
       toast.error("Cannot add card!");
       console.error(error);
@@ -103,9 +104,6 @@ const PaymentForm = () => {
           </div>
         </form>
       </Modal>
-      <h2 className="text-2xl text-on-primary font-extrabold">
-        Payment Method
-      </h2>
       <AddButton text="Add Card" open={open} setOpen={setOpen} />
     </div>
   );

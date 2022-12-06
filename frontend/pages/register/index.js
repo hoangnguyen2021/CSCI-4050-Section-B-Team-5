@@ -11,6 +11,8 @@ import PhoneNumberField from "../../components/PhoneNumberField";
 import PasswordField from "../../components/PasswordField";
 import Checkbox from "../../components/Checkbox";
 import SubmitButton from "../../components/SubmitButton";
+import PaymentForm from "../../components/PaymentForm";
+
 const RegisterPage = () => {
   const { post } = useFetch();
   const [name, setName] = useState("");
@@ -37,7 +39,7 @@ const RegisterPage = () => {
         cardnum: cardNum,
         cvv: cvv,
         expiration_year: expire,
-        zip_code: zip, 
+        zip_code: zip,
         promotion_subscription: promotion
       });
       toast.success("You are registered!");
@@ -94,10 +96,7 @@ const RegisterPage = () => {
                 password={rePassword}
                 setPassword={setRePassword}
               />
-              <InputField placeholder="Card Number" input={cardNum} setInput={setCardNum} />
-              <InputField placeholder="CVV" input={cvv} setInput={setCvv} />
-              <InputField placeholder="Expire Year" input={expire} setInput={setExpire} />
-              <InputField placeholder="Zip Code" input={zip} setInput={setZip} />
+              <PaymentForm />
               <div className="self-start">
                 <Checkbox label="Subscribe to Promotions" value={promotion} setValue={setPromotion} />
               </div>
