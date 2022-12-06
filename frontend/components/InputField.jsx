@@ -5,8 +5,11 @@ const InputField = ({
   input,
   setInput,
   placeholder,
+  minLength = 0,
+  maxLength = 255,
   icon,
   readOnly = false,
+  validate,
 }) => {
   return (
     <label className="relative w-full flex flex-col">
@@ -20,7 +23,11 @@ const InputField = ({
         name="input"
         placeholder={placeholder}
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={(e) => {
+          if (validate(e.target.value)) setInput(e.target.value);
+        }}
+        minLength={minLength}
+        maxLength={maxLength}
         required
         readOnly={readOnly}
       />

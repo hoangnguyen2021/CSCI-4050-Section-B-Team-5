@@ -1,8 +1,8 @@
 import { calculatePrice } from "../utils/utils";
 import Ticket from "./Ticket";
 
-const OrderSummary = ({ tickets }) => {
-  const { tax, total } = calculatePrice(tickets);
+const OrderSummary = ({ ticketCounts }) => {
+  const { tax, total } = calculatePrice(ticketCounts);
 
   return (
     <div className="flex flex-col gap-y-10 justify-center">
@@ -14,8 +14,8 @@ const OrderSummary = ({ tickets }) => {
           <p className="text-blue-600 text-lg font-semibold">Edit</p>
         </div>
         <div className="flex flex-col gap-y-5">
-          {tickets.map((ticket, i) => (
-            <Ticket ticket={ticket} type={i} />
+          {ticketCounts.map((ticketCount, i) => (
+            <Ticket key={i} ticketCount={ticketCount} type={i} />
           ))}
         </div>
       </div>
