@@ -1,9 +1,10 @@
+import Link from "next/link";
 import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { classNames } from "../utils/utils";
 
-const ComboBox = ({ label, options, selected, setSelected }) => {
+const ComboBox_Title = ({ label, options, selected, setSelected }) => {
   const [query, setQuery] = useState("");
 
   const filteredOptions =
@@ -74,7 +75,6 @@ const ComboBox = ({ label, options, selected, setSelected }) => {
                             </span>
                           </div>
                         </Link>
-                        
 
                         {selected && (
                           <span
