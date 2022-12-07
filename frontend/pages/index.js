@@ -1,44 +1,13 @@
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-  QuestionMarkCircleIcon,
-  ShoppingBagIcon,
-} from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
 import { useFetch } from "../hooks/useFetch";
 import "react-multi-carousel/lib/styles.css";
 import TopNavigation from "../components/TopNavigation";
 import MovieCarousel from "../components/MovieCarousel";
 import BackgroundOverlay from "../components/BackgroundOverlay";
-import Link from "next/link";
+import moment from "moment";
 
-const footerNavigation = {
-  shop: [
-    { name: "Bags", href: "#" },
-    { name: "Tees", href: "#" },
-    { name: "Objects", href: "#" },
-    { name: "Home Goods", href: "#" },
-    { name: "Accessories", href: "#" },
-  ],
-  company: [
-    { name: "Who we are", href: "#" },
-    { name: "Sustainability", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Careers", href: "#" },
-    { name: "Terms & Conditions", href: "#" },
-    { name: "Privacy", href: "#" },
-  ],
-  account: [
-    { name: "Manage Account", href: "#" },
-    { name: "Returns & Exchanges", href: "#" },
-    { name: "Redeem a Gift Card", href: "#" },
-  ],
-  connect: [
-    { name: "Contact Us", href: "#" },
-    { name: "Twitter", href: "#" },
-    { name: "Instagram", href: "#" },
-    { name: "Pinterest", href: "#" },
-  ],
-};
 const comingSoonMovies = [
   {
     key: 1,
@@ -134,6 +103,7 @@ const comingSoonMovies = [
 
 const Homepage = () => {
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
+  const [comingSoonMovies, setComingSoonMovies] = useState([]);
   const { get } = useFetch();
 
   useEffect(() => {
@@ -145,7 +115,8 @@ const Homepage = () => {
       const response = await get("api/movie/list");
       const responseData = response.data;
       if (responseData) {
-        setNowPlayingMovies(responseData);
+        setNowPlayingMovies(responseData.filter(m => moment(m.release_date).isBefore(moment())));
+        setComingSoonMovies(responseData.filter(m => moment(m.release_date).isAfter(moment())));
         console.log(responseData);
       }
     } catch (e) {
