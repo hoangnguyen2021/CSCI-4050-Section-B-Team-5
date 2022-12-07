@@ -12,6 +12,7 @@ import NumberField from "../../components/NumberField";
 import SubmitButton from "../../components/SubmitButton";
 import { navs, categories, ratings } from "../../utils/config";
 import { convertMinutesToHhmmss } from "../../utils/utils";
+import moment from "moment";
 
 const AddMoviePage = () => {
   const { post } = useFetch();
@@ -46,6 +47,7 @@ const AddMoviePage = () => {
         trailer_video_url: trailerUrl,
         rating: ratings.find((r) => r.name === rating.name).id,
         movie_duration: convertMinutesToHhmmss(duration),
+        release_date: `${year.name}-${month.id}-${day.name}`,
       };
       const response = await post(
         "api/movie/create",

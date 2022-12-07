@@ -6,7 +6,14 @@ import { ratings } from "../utils/config";
 import { convertHhmmssToMinutes } from "../utils/utils";
 
 const MovieCard = ({ movie, buttonText }) => {
-  const { id, trailer_pic_url, movie_title, movie_duration, rating } = movie;
+  const {
+    id,
+    trailer_pic_url,
+    movie_title,
+    movie_duration,
+    rating,
+    release_date,
+  } = movie;
 
   return (
     <div className="group max-w-sm bg-transparent rounded-t-lg px-8 hover:bg-primary/50">
@@ -16,7 +23,7 @@ const MovieCard = ({ movie, buttonText }) => {
         <HPMovieInfo
           durationInMin={convertHhmmssToMinutes(movie_duration)}
           rating={ratings.find((r) => r.id === rating)?.name}
-          releasedDate={"Sep 16, 2022"}
+          releasedDate={release_date}
         />
         <Link href={`/${id}`}>
           <a className="block">
