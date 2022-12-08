@@ -29,14 +29,14 @@ from api.show.models import Show
 from api.booked_seats_tracker.models import BookedSeats
 from api.booked_seats_tracker.serializers import BookedSeatsSerializer
 
+
 class BookseatsViewset(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_booking_by_user(self, request):
-        receipt = Booking.objects.filter(UserAcc = request.user)
+        receipt = Booking.objects.filter(UserAccount = request.user)
         receipt_serializer = BookingSerializer(receipt, many = True)
-        print(receipt)
-        return Response(receipt.data, status=status.HTTP_200_OK)
+        return Response(receipt_serializer.data , status = status.HTTP_200_OK)
     
     def block_seats(self , request):
         data = request.data
