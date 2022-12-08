@@ -155,7 +155,6 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'build/static')]
 STATIC_ROOT = os.path.join(BASE_DIR , 'static')
 DOMAIN = "localhost:3000"
 DJOSER = {
