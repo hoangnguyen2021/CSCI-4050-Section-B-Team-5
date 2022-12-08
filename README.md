@@ -6,9 +6,9 @@ https://bulldog-cinema.vercel.app/
 
 ### Or to run frontend in dev:
 ```
-cd frontend  
-npm install  
-npm run dev  
+cd frontend
+npm install
+npm run dev
 ```
 
 ### To run backend:
@@ -19,13 +19,13 @@ npm run dev
 
 ```
 cd backend  
-pip3 install -r requirements.txt  
-// maybe: pip3 install psycopg2-binary  
+pip3 install -r requirements.txt
+// maybe: pip3 install psycopg2-binary
 // maybe: pip3 install --upgrade pip
-pip3 install django-cors-headers  
-python3 manage.py migrate  
-python3 manage.py makemigrations  
-python3 manage.py runserver  
+pip3 install django-cors-headers
+python3 manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py runserver
 ```
 
 ### To flush backend:
